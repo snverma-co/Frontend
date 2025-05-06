@@ -153,7 +153,7 @@ const Footer = () => {
               <PhoneIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
               Russia: +7(800)100-96-89
             </FooterLink>
-            <FooterLink href="mailto:info@neerajbhagat.com">
+            <FooterLink href="mailto:info@snvcas.com">
               <EmailIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
               info@snvcas.com
             </FooterLink>

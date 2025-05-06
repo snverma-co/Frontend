@@ -320,31 +320,31 @@ const Navbar = () => {
       window.scrollTo(0, 0);
     } else if (item === 'Audit & Assurance') {
       const tabIndex = ['Statutory Assurance', 'Statutory Audits', 'Transfer Pricing Audits', 'Tax Audits', 'VAT Audits', 'Management Assurance', 'Internal Audits', 'Internal Controls and Compliance Audits', 'Systems Audits', 'Socio Assurance', 'Social Audits', 'Special Audits & Assessments'].indexOf(subItem);
-      navigate('/services', { state: { selectedTab: tabIndex + 1 } });
+      navigate('/audit-and-assurance', { state: { selectedTab: tabIndex + 1 } });
       window.scrollTo(0, 0);
     } else if (item === 'Taxation') {
       const tabIndex = ['Cross Border Taxation', 'Double Tax Avoidance Advisory', 'Transfer Pricing', 'Taxation Litigation Services','Corporate Taxation Advisory', 'Direct Taxation Advisory', 'Indirect Taxation Advisory', 'VAT/ GST', 'Service Tax', 'Strategic Business Decisions',  'Succession Planning', 'Tax Review (Due Diligence)'].indexOf(subItem);
-      navigate('/services2', { state: { selectedTab: tabIndex + 1 } });
+      navigate('/taxation', { state: { selectedTab: tabIndex + 1 } });
       window.scrollTo(0, 0);
     } else if (item === 'Regulatory Advisory') {
       const tabIndex = ['Corporate Law', 'Limited Liability Partnership Law', 'Foreign Exchange Law', 'Trade Marks'].indexOf(subItem);
-      navigate('/services3', { state: { selectedTab: tabIndex + 1 } });
+      navigate('/regulatory-advisory', { state: { selectedTab: tabIndex + 1 } });
       window.scrollTo(0, 0);
     } else if (item === 'Transaction Advisory') {
       const tabIndex = ['Business Valuations', 'Capital Services', 'Corporate Finance Advisory', 'Mergers, Acquisitions & Re-structuring', 'Negotiation & Transaction Management', 'Sales, Divestitures & Demergers', 'Transaction Evaluation (Due Diligence)'].indexOf(subItem);
-      navigate('/services4', { state: { selectedTab: tabIndex + 1 } });
+      navigate('/transaction-advisory', { state: { selectedTab: tabIndex + 1 } });
       window.scrollTo(0, 0);
     } else if (item === 'NGO / Trust') {
-      navigate('/services5');
+      navigate('/ngo-and-trust');
       window.scrollTo(0, 0);
     } else if (item === 'Accounting Advisory') {
-      navigate('/services6');
+      navigate('/accounting-advisory');
       window.scrollTo(0, 0);
     } else if (item === 'Setting up Business in India') {
-      navigate('/services7');
+      navigate('/business-setup-india');
       window.scrollTo(0, 0);
     } else if (item === 'Consultancy') {
-      navigate('/services8');
+      navigate('/business-consultancy');
       window.scrollTo(0, 0);
     } else if (item === 'CONTACT US') {
       navigate('/contact');

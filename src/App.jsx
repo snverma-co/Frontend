@@ -34,7 +34,10 @@ import { PageTitle } from './components/PageTitle';
 
 const HomePage = () => (
   <Box>
-    <PageTitle title="Home" />
+    <PageTitle 
+      title="Home"
+      description="Top Chartered Accountant firm in Delhi offering expert accounting, taxation, and business advisory services. Get professional CA services tailored to your needs."
+    />
     <Hero />
     <AboutSection />
     <StatsSection />
@@ -49,7 +52,10 @@ const HomePage = () => (
 
 const ServicePageWrapper = ({ component: Component, title }) => (
   <Box>
-    <PageTitle title={title} />
+    <PageTitle 
+      title={title}
+      description={`Professional ${title} by Delhi's leading CA firm. Expert guidance and solutions for all your financial needs.`}
+    />
     <Component />
   </Box>
 );
@@ -62,20 +68,20 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicePageWrapper component={ServicesPage} title="Audit & Assurance Services" />} />
-            <Route path="/services2" element={<ServicePageWrapper component={ServicesPage2} title="Taxation Services" />} />
-            <Route path="/services3" element={<ServicePageWrapper component={ServicesPage3} title="Regulatory Advisory Services" />} />
-            <Route path="/services4" element={<ServicePageWrapper component={ServicesPage4} title="NGO & Trust Services" />} />
-            <Route path="/services5" element={<ServicePageWrapper component={ServicesPage5} title="Accounting Advisory Services" />} />
-            <Route path="/services6" element={<ServicePageWrapper component={ServicesPage6} title="Business Setup in India" />} />
-            <Route path="/services7" element={<ServicePageWrapper component={ServicesPage7} title="Transaction Advisory Services" />} />
-            <Route path="/services8" element={<ServicePageWrapper component={ServicesPage8} title="Business Consultancy Services" />} />
-            <Route path="/gst-calculator" element={<Box><PageTitle title="GST Calculator" /><GSTCalculator /></Box>} />
-            <Route path="/income-tax-calculator" element={<Box><PageTitle title="Income Tax Calculator" /><IncomeTaxCalculator /></Box>} />
-            <Route path="/tds-calculator" element={<Box><PageTitle title="TDS Calculator" /><TDSCalculator /></Box>} />
-            <Route path="/contact" element={<Box><PageTitle title="Contact Us" /><ContactUsPage /></Box>} />
-            <Route path="/company" element={<Box><PageTitle title="About Our Company" /><FounderPage /></Box>} />
-            <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" /><CareersPage /></Box>} />
+            <Route path="/audit-and-assurance" element={<ServicePageWrapper component={ServicesPage} title="Audit & Assurance Services" />} />
+            <Route path="/taxation" element={<ServicePageWrapper component={ServicesPage2} title="Taxation Services" />} />
+            <Route path="/regulatory-advisory" element={<ServicePageWrapper component={ServicesPage3} title="Regulatory Advisory Services" />} />
+            <Route path="/ngo-and-trust" element={<ServicePageWrapper component={ServicesPage5} title="NGO & Trust Services" />} />
+            <Route path="/accounting-advisory" element={<ServicePageWrapper component={ServicesPage6} title="Accounting Advisory Services" />} />
+            <Route path="/business-setup-india" element={<ServicePageWrapper component={ServicesPage7} title="Business Setup in India" />} />
+            <Route path="/transaction-advisory" element={<ServicePageWrapper component={ServicesPage4} title="Transaction Advisory Services" />} />
+            <Route path="/business-consultancy" element={<ServicePageWrapper component={ServicesPage8} title="Business Consultancy Services" />} />
+            <Route path="/gst-calculator" element={<Box><PageTitle title="GST Calculator" description="Free GST Calculator tool by S N Verma & Co. Calculate GST rates, input tax credit, and total tax liability easily." /><GSTCalculator /></Box>} />
+            <Route path="/income-tax-calculator" element={<Box><PageTitle title="Income Tax Calculator" description="Calculate your income tax liability with our free Income Tax Calculator. Get accurate tax calculations as per latest Indian tax laws." /><IncomeTaxCalculator /></Box>} />
+            <Route path="/tds-calculator" element={<Box><PageTitle title="TDS Calculator" description="Calculate TDS (Tax Deducted at Source) accurately with our free TDS Calculator. Know your tax deductions as per Income Tax Act." /><TDSCalculator /></Box>} />
+            <Route path="/contact" element={<Box><PageTitle title="Contact Us" description="Contact S N Verma & Co., your trusted CA firm in Delhi. Get expert consultation for all your accounting, tax, and business advisory needs." /><ContactUsPage /></Box>} />
+            <Route path="/company" element={<Box><PageTitle title="About Our Company" description="Learn about S N Verma & Co., a leading chartered accountancy firm in Delhi with years of expertise in providing comprehensive financial services." /><FounderPage /></Box>} />
+            <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" description="Join S N Verma & Co., a leading CA firm in Delhi. Explore exciting career opportunities in accounting, taxation, and financial advisory services." /><CareersPage /></Box>} />
           </Routes>
           <ContactIcons />
           <Footer />

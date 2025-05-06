@@ -348,7 +348,7 @@ const ServicesSection = () => {
                           }}
                         >
                           <Link 
-                            to={service.id === 'audit' ? '/services' : service.id === 'taxation' ? '/services2' : service.id === 'regulatory' ? '/services3' : service.id === 'transaction' ? '/services4' : service.id === 'ngo' ? '/services5' : service.id === 'accounting' ? '/services6' : service.id === 'business' ? '/services7' : '/services8'} 
+                            to={service.id === 'audit' ? '/audit-and-assurance' : service.id === 'taxation' ? '/taxation' : service.id === 'regulatory' ? '/regulatory-advisory' : service.id === 'transaction' ? '/transaction-advisory' : service.id === 'ngo' ? '/ngo-and-trust' : service.id === 'accounting' ? '/accounting-advisory' : service.id === 'business' ? '/business-setup-india' : '/business-consultancy'} 
                             style={{ textDecoration: 'none', color: 'inherit' }}
                             onClick={() => window.scrollTo(0, 0)}
                           >
