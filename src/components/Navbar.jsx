@@ -281,6 +281,12 @@ const Navbar = () => {
         window.scrollTo(0, 0);
         return;
       }
+      if (item === 'CAREERS') {
+        navigate('/careers');
+        window.scrollTo(0, 0);
+        return;
+      }
+      
       const path = `/${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`;
       navigate(path);
     }

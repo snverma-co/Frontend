@@ -16,12 +16,11 @@ export const fetchFinancialNews = async () => {
       }
     );
 
-    if (!response.data) {
+    if (!response.data || !response.data.articles) {
       throw new Error('Failed to fetch news');
     }
 
-    const data = await response.json();
-    return data.articles.map(article => ({
+    return response.data.articles.map(article => ({
       id: article.url,
       title: article.title,
       date: new Date(article.publishedAt).toLocaleDateString(),
