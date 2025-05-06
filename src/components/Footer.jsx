@@ -155,7 +155,7 @@ const Footer = () => {
             </FooterLink>
             <FooterLink href="mailto:info@neerajbhagat.com">
               <EmailIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
-              info@neerajbhagat.com
+              info@snvcas.com
             </FooterLink>
           </Grid>
 

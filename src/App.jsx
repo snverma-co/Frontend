@@ -30,8 +30,11 @@ import FounderPage from './components/FounderPage';
 import CareersPage from './components/CareersPage';
 import Footer from './components/Footer';
 
+import { PageTitle } from './components/PageTitle';
+
 const HomePage = () => (
   <Box>
+    <PageTitle title="Home" />
     <Hero />
     <AboutSection />
     <StatsSection />
@@ -44,6 +47,13 @@ const HomePage = () => (
   </Box>
 );
 
+const ServicePageWrapper = ({ component: Component, title }) => (
+  <Box>
+    <PageTitle title={title} />
+    <Component />
+  </Box>
+);
+
 function App() {
   return (
     <LanguageProvider>
@@ -52,20 +62,20 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services2" element={<ServicesPage2 />} />
-            <Route path="/services3" element={<ServicesPage3 />} />
-            <Route path="/services4" element={<ServicesPage4 />} />
-            <Route path="/services5" element={<ServicesPage5 />} />
-            <Route path="/services6" element={<ServicesPage6 />} />
-            <Route path="/services7" element={<ServicesPage7 />} />
-            <Route path="/services8" element={<ServicesPage8 />} />
-            <Route path="/gst-calculator" element={<GSTCalculator />} />
-            <Route path="/income-tax-calculator" element={<IncomeTaxCalculator />} />
-            <Route path="/tds-calculator" element={<TDSCalculator />} />
-            <Route path="/contact" element={<ContactUsPage />} />
-            <Route path="/company" element={<FounderPage />} />
-            <Route path="/careers" element={<CareersPage />} />
+            <Route path="/services" element={<ServicePageWrapper component={ServicesPage} title="Audit & Assurance Services" />} />
+            <Route path="/services2" element={<ServicePageWrapper component={ServicesPage2} title="Taxation Services" />} />
+            <Route path="/services3" element={<ServicePageWrapper component={ServicesPage3} title="Regulatory Advisory Services" />} />
+            <Route path="/services4" element={<ServicePageWrapper component={ServicesPage4} title="NGO & Trust Services" />} />
+            <Route path="/services5" element={<ServicePageWrapper component={ServicesPage5} title="Accounting Advisory Services" />} />
+            <Route path="/services6" element={<ServicePageWrapper component={ServicesPage6} title="Business Setup in India" />} />
+            <Route path="/services7" element={<ServicePageWrapper component={ServicesPage7} title="Transaction Advisory Services" />} />
+            <Route path="/services8" element={<ServicePageWrapper component={ServicesPage8} title="Business Consultancy Services" />} />
+            <Route path="/gst-calculator" element={<Box><PageTitle title="GST Calculator" /><GSTCalculator /></Box>} />
+            <Route path="/income-tax-calculator" element={<Box><PageTitle title="Income Tax Calculator" /><IncomeTaxCalculator /></Box>} />
+            <Route path="/tds-calculator" element={<Box><PageTitle title="TDS Calculator" /><TDSCalculator /></Box>} />
+            <Route path="/contact" element={<Box><PageTitle title="Contact Us" /><ContactUsPage /></Box>} />
+            <Route path="/company" element={<Box><PageTitle title="About Our Company" /><FounderPage /></Box>} />
+            <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" /><CareersPage /></Box>} />
           </Routes>
           <ContactIcons />
           <Footer />
