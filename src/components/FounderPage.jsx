@@ -64,7 +64,7 @@ const FounderPage = () => {
               <Box
                 component="img"
                 src="/neeraj-bhagat.jpg"
-                alt="Neeraj Bhagat"
+                alt="S N Verma"
                 sx={{
                   width: '100%',
                   height: 'auto',
@@ -127,7 +127,7 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
               >
-                Neeraj Bhagat is a member of the Institute of Chartered Accountants of India
+                S N Verma is a member of the Institute of Chartered Accountants of India
                 (ICAI) since 1997. He has worked with professionally managed corporates in
                 the capacity as a consultant. He has experience of handling corporate affairs
                 in different areas for over a decade. He has helped many organizations to set
@@ -139,7 +139,7 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ color: '#666', lineHeight: 1.8 }}
               >
-                Neeraj has vast knowledge and a thorough understanding of Indian laws and
+                S N Verma has vast knowledge and a thorough understanding of Indian laws and
                 regulations, as well as the complex corporate taxation system. Neeraj & his
                 team have assisted many overseas companies in completing paperwork,
                 getting necessary approvals, paying taxes, filing, and much more.
@@ -175,7 +175,7 @@ const FounderPage = () => {
               <Box
                 component="img"
                 src="/ruchika-bhagat.jpg"
-                alt="Ruchika Bhagat"
+                alt="Vipin Verma"
                 sx={{
                   width: '100%',
                   height: 'auto',
@@ -229,9 +229,9 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
               >
-                Mrs. Ruchika Bhagat graduated from the University of Delhi in the year 1996.
-                She became a member of the Institute of Chartered Accountants of India
-                (ICAI) in 1998. She is a strategic adviser in setting up businesses in India for
+                Mr. Vipin Verma graduated from the University of Delhi in the year 1996.
+                He became a member of the Institute of Chartered Accountants of India
+                (ICAI) in 1998. He is a strategic adviser in setting up businesses in India for
                 foreign companies and taking care of its compliance.
               </Typography>
               <Typography
@@ -240,7 +240,7 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
               >
-                She specializes in Business Advisory, Tax, Regulatory and Risk Advisory. She is a strategic
+                He specializes in Business Advisory, Tax, Regulatory and Risk Advisory. He is a strategic
                 adviser in setting up businesses in India for foreign companies and taking
                 care of its compliance.
               </Typography>
@@ -250,11 +250,11 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ color: '#666', lineHeight: 1.8 }}
               >
-                Her professionalism and expertise in serving clients to their satisfaction
-                have always been an inspiration for all in the organization. Her extensive
+                His professionalism and expertise in serving clients to their satisfaction
+                have always been an inspiration for all in the organization. His extensive
                 knowledge and hard work are the pillars of this firm.
-                She is a business professional with more than 26 years of experience
-                helping other businesses grow and be more profitable. She has a strong and
+                He is a business professional with more than 26 years of experience
+                helping other businesses grow and be more profitable. He has a strong and
                 genuine passion for business growth and sustainability and has a vast
                 knowledge of working with Indian companies as well as many foreign
                 companies (from the UK, USA, Italy, China, Korea, USA, UK, Japan, Israel,

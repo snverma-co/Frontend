@@ -229,7 +229,7 @@ const ContactUsPage = () => {
                     <Box>
                       <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>Email Address</Typography>
                       <Typography variant="body1" sx={{ color: '#666' }}>
-                        info@neerajbhagat.com
+                        info@snvcas.com
                       </Typography>
                     </Box>
                   </Box>

@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export const submitCareerForm = async (formData) => {
   try {
-    if (!formData.name || !formData.email || !formData.phone || !formData.designation || !formData.state || !formData.experience) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.designation || !formData.state || !formData.experience || !formData.position || !formData.resume) {
       throw new Error('All fields are required');
     }
 
