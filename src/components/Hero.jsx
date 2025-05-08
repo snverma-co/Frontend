@@ -10,7 +10,7 @@ const HeroSection = styled(Box)(({ theme }) => ({
   position: 'relative',
   minHeight: '100vh',
   width: '100%',
-  backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/Front Image.jpg")',
+  backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/grouppic.JPG")',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundAttachment: 'fixed',

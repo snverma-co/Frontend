@@ -1,6 +1,7 @@
 import { Box, Container, Typography, TextField, Button, Grid, Paper, Breadcrumbs, Link } from '@mui/material';
 import { ContactSection } from './ContactSection';
 import { useState } from 'react';
+import ThankYou from './ThankYou/ThankYou';
 import { styled } from '@mui/material/styles';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
@@ -65,6 +66,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const CareersPage = () => {
   const { translations } = useLanguage();
   const navigate = useNavigate();
+  const [showThankYou, setShowThankYou] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -77,20 +79,66 @@ const CareersPage = () => {
     captcha: ''
   });
 
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    designation: '',
+    state: '',
+    experience: '',
+    position: '',
+    resume: '',
+    captcha: '',
+    submit: ''
+  });
+
   const [captchaValue, setCaptchaValue] = useState({
     num1: Math.floor(Math.random() * 10),
     num2: Math.floor(Math.random() * 10)
   });
 
+  const validateField = (name, value) => {
+    let error = '';
+    if (!value) {
+      error = `${name.charAt(0).toUpperCase() + name.slice(1)} is required`;
+    } else if (name === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        error = 'Please enter a valid email address';
+      }
+    } else if (name === 'phone') {
+      const phoneRegex = /^[0-9+\-\s()]{10,}$/;
+      if (!phoneRegex.test(value)) {
+        error = 'Please enter a valid phone number';
+      }
+    }
+    return error;
+  };
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'resume' && files) {
       const file = files[0];
+      const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+      
+      if (file.size > maxSize) {
+        setErrors(prev => ({
+          ...prev,
+          resume: 'File size must be less than 5MB'
+        }));
+        e.target.value = ''; // Reset file input
+        return;
+      }
+      
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData(prev => ({
           ...prev,
           [name]: reader.result
+        }));
+        setErrors(prev => ({
+          ...prev,
+          resume: ''
         }));
       };
       reader.readAsDataURL(file);
@@ -99,14 +147,36 @@ const CareersPage = () => {
         ...prev,
         [name]: value
       }));
+      
+      // Validate field on change
+      const error = validateField(name, value);
+      setErrors(prev => ({
+        ...prev,
+        [name]: error
+      }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate all fields
+    const newErrors = {};
+    Object.keys(formData).forEach(field => {
+      if (field !== 'captcha') {
+        newErrors[field] = validateField(field, formData[field]);
+      }
+    });
+
     const expectedAnswer = captchaValue.num1 + captchaValue.num2;
     if (Number(formData.captcha) !== expectedAnswer) {
-      alert('Please enter the correct captcha value');
+      newErrors.captcha = 'Please enter the correct captcha value';
+    }
+
+    setErrors(newErrors);
+
+    // Check if there are any errors
+    if (Object.values(newErrors).some(error => error)) {
       return;
     }
 
@@ -116,7 +186,7 @@ const CareersPage = () => {
       const response = await submitCareerForm(formDataWithoutCaptcha);
 
       if (response.success) {
-        alert('Form submitted successfully!');
+        setShowThankYou(true);
         setFormData({
           name: '',
           email: '',
@@ -129,7 +199,10 @@ const CareersPage = () => {
           captcha: ''
         });
       } else {
-        alert(response.message || 'Failed to submit form. Please try again.');
+        setErrors(prev => ({
+          ...prev,
+          submit: response.message || 'Failed to submit form. Please try again.'
+        }));
       }
 
       // Reset captcha
@@ -139,9 +212,16 @@ const CareersPage = () => {
       });
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('An error occurred while submitting the form');
+      setErrors(prev => ({
+        ...prev,
+        submit: 'An error occurred while submitting the form'
+      }));
     }
   };
+
+  if (showThankYou) {
+    return <ThankYou message="Thank you for your application. We will review it and get back to you soon." />;
+  }
 
   return (
     <Box sx={{ pb: 8 }}>
@@ -212,6 +292,8 @@ const CareersPage = () => {
                   onChange={handleChange}
                   required
                   variant="outlined"
+                  error={!!errors.name}
+                  helperText={errors.name}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -224,6 +306,8 @@ const CareersPage = () => {
                   onChange={handleChange}
                   required
                   variant="outlined"
+                  error={!!errors.email}
+                  helperText={errors.email}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -235,6 +319,8 @@ const CareersPage = () => {
                   onChange={handleChange}
                   required
                   variant="outlined"
+                  error={!!errors.phone}
+                  helperText={errors.phone}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -246,6 +332,8 @@ const CareersPage = () => {
                   onChange={handleChange}
                   required
                   variant="outlined"
+                  error={!!errors.designation}
+                  helperText={errors.designation}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -257,6 +345,8 @@ const CareersPage = () => {
                   onChange={handleChange}
                   required
                   variant="outlined"
+                  error={!!errors.state}
+                  helperText={errors.state}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -268,6 +358,8 @@ const CareersPage = () => {
                   onChange={handleChange}
                   required
                   variant="outlined"
+                  error={!!errors.experience}
+                  helperText={errors.experience}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -279,6 +371,8 @@ const CareersPage = () => {
                   onChange={handleChange}
                   required
                   variant="outlined"
+                  error={!!errors.position}
+                  helperText={errors.position}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -291,6 +385,8 @@ const CareersPage = () => {
                   required
                   variant="outlined"
                   InputLabelProps={{ shrink: true }}
+                  error={!!errors.resume}
+                  helperText={errors.resume}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -306,9 +402,18 @@ const CareersPage = () => {
                     required
                     variant="outlined"
                     sx={{ width: '150px' }}
+                    error={!!errors.captcha}
+                    helperText={errors.captcha}
                   />
                 </Box>
               </Grid>
+              {errors.submit && (
+                <Grid item xs={12}>
+                  <Typography color="error" align="center">
+                    {errors.submit}
+                  </Typography>
+                </Grid>
+              )}
               <Grid item xs={12} sx={{ textAlign: 'center' }}>
                 <StyledButton type="submit" variant="contained">
                   Submit

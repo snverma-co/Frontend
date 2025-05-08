@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { submitContactForm } from '../api/formHandlers';
+import ThankYou from './ThankYou/ThankYou';
 import { motion } from 'framer-motion';
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -51,7 +52,17 @@ const AnimatedBox = styled(Box)(({ theme, isVisible = false, delay = 0 }) => ({
 }));
 
 export const ContactSection = () => {
+  const [showThankYou, setShowThankYou] = useState(false);
   const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    company: '',
+    services: '',
+    message: ''
+  });
+
+  const [errors, setErrors] = useState({
     fullName: '',
     email: '',
     phone: '',
@@ -90,6 +101,24 @@ export const ContactSection = () => {
     };
   }, []);
 
+  const validateField = (name, value) => {
+    let error = '';
+    if (!value.trim()) {
+      error = `${name.charAt(0).toUpperCase() + name.slice(1)} is required`;
+    } else if (name === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        error = 'Please enter a valid email address';
+      }
+    } else if (name === 'phone') {
+      const phoneRegex = /^[0-9+\-\s()]{10,}$/;
+      if (!phoneRegex.test(value)) {
+        error = 'Please enter a valid phone number';
+      }
+    }
+    return error;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -97,21 +126,43 @@ export const ContactSection = () => {
       [name]: value
     }));
     setSelectedLabel(name);
+
+    // Validate field on change
+    const error = validateField(name, value);
+    setErrors(prev => ({
+      ...prev,
+      [name]: error
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate all fields
+    const newErrors = {};
+    Object.keys(formData).forEach(field => {
+      newErrors[field] = validateField(field, formData[field]);
+    });
+
+    setErrors(newErrors);
+
+    // Check if there are any errors
+    if (Object.values(newErrors).some(error => error)) {
+      return;
+    }
+
     try {
       const response = await submitContactForm({
         name: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         company: formData.company,
-        services: formData.services,
-        message: formData.message
+        services: formData.services || 'Other',
+        message: formData.message,
+        createdAt: new Date()
       });
       if (response.success) {
-        alert(response.message);
+        setShowThankYou(true);
         setFormData({
           fullName: '',
           email: '',
@@ -128,6 +179,10 @@ export const ContactSection = () => {
       console.error('Form submission error:', error);
     }
   };
+
+  if (showThankYou) {
+    return <ThankYou message="Thank you for reaching out. We will get back to you shortly." />;
+  }
 
   return (
     <Box 
@@ -298,6 +353,8 @@ export const ContactSection = () => {
               onChange={handleChange}
               placeholder="Full Name"
               required
+              error={!!errors.fullName}
+              helperText={errors.fullName}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '20px',
@@ -341,6 +398,8 @@ export const ContactSection = () => {
               onChange={handleChange}
               placeholder="Email Address"
               required
+              error={!!errors.email}
+              helperText={errors.email}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '20px',
@@ -383,6 +442,8 @@ export const ContactSection = () => {
               onChange={handleChange}
               placeholder="Phone Number"
               required
+              error={!!errors.phone}
+              helperText={errors.phone}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '20px',
@@ -424,6 +485,8 @@ export const ContactSection = () => {
               value={formData.company}
               onChange={handleChange}
               placeholder="Company Name"
+              error={!!errors.company}
+              helperText={errors.company}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '20px',
@@ -465,6 +528,8 @@ export const ContactSection = () => {
               value={formData.services}
               onChange={handleChange}
               placeholder="Services You Are Interested In"
+              error={!!errors.services}
+              helperText={errors.services}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '20px',
@@ -508,6 +573,8 @@ export const ContactSection = () => {
               placeholder="How can we help you?"
               multiline
               rows={4}
+              error={!!errors.message}
+              helperText={errors.message}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '15px',

@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Card, CardContent, Button } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent, Button, IconButton } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation, useMotionValue, useTransform, useScroll } from 'framer-motion';
@@ -10,6 +10,10 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DescriptionIcon from '@mui/icons-material/Description';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const services = [
   {
@@ -82,14 +86,12 @@ const ServicesSection = () => {
     if (carousel.current) {
       const totalWidth = carousel.current.scrollWidth - carousel.current.offsetWidth;
       setWidth(totalWidth);
-      // Set initial position to center
       x.set(-totalWidth / 2);
     }
   }, []);
 
-  // Auto-play animation from center
+  // Auto-play animation
   useEffect(() => {
-    let interval;
     if (autoPlay && width > 0) {
       controls.start({
         x: [-width / 2, -width, 0, -width / 2],
@@ -99,9 +101,23 @@ const ServicesSection = () => {
           repeat: Infinity
         }
       });
+    } else {
+      controls.stop();
     }
     return () => controls.stop();
   }, [autoPlay, controls, width]);
+
+  const handleSlide = (direction) => {
+    setAutoPlay(false);
+    const currentX = x.get();
+    const newX = direction === 'left' 
+      ? Math.min(currentX + 300, 0)
+      : Math.max(currentX - 300, -width);
+    controls.start({
+      x: newX,
+      transition: { duration: 0.5 }
+    });
+  };
 
   return (
     <Box
@@ -141,6 +157,7 @@ const ServicesSection = () => {
         >
           {translations['Our Services']}
         </Typography>
+       
         <Typography
           variant="h3"
           className="animate"
@@ -397,6 +414,7 @@ const ServicesSection = () => {
                             }
                           }}
                         />
+                        
                         <Box
                           className="particle-container"
                           sx={{
@@ -451,11 +469,43 @@ const ServicesSection = () => {
                         </Box>
                       </Box>
                     </Box>
+                    
                   </CardContent>
+                  
                 </Card>
+                
             );
           })}
           </motion.div>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, gap: 2 }}>
+          <IconButton
+            onClick={() => handleSlide('left')}
+            sx={{
+              bgcolor: 'rgba(63, 81, 181, 0.1)',
+              '&:hover': { bgcolor: 'rgba(63, 81, 181, 0.2)' }
+            }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <IconButton
+            onClick={() => setAutoPlay(!autoPlay)}
+            sx={{
+              bgcolor: 'rgba(63, 81, 181, 0.1)',
+              '&:hover': { bgcolor: 'rgba(63, 81, 181, 0.2)' }
+            }}
+          >
+            {autoPlay ? <PauseIcon /> : <PlayArrowIcon />}
+          </IconButton>
+          <IconButton
+            onClick={() => handleSlide('right')}
+            sx={{
+              bgcolor: 'rgba(63, 81, 181, 0.1)',
+              '&:hover': { bgcolor: 'rgba(63, 81, 181, 0.2)' }
+            }}
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        </Box>
         </Box>
       </Container>
     </Box>

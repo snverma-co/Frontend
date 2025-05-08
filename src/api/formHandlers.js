@@ -2,18 +2,32 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export const submitCareerForm = async (formData) => {
   try {
-    if (!formData.name || !formData.email || !formData.phone || !formData.designation || !formData.state || !formData.experience || !formData.position || !formData.resume) {
-      throw new Error('All fields are required');
+    // Validate required fields
+    const requiredFields = ['name', 'email', 'phone', 'designation', 'state', 'experience', 'position', 'resume'];
+    const missingFields = requiredFields.filter(field => !formData[field]);
+    
+    if (missingFields.length > 0) {
+      return { 
+        success: false, 
+        message: `Missing required fields: ${missingFields.join(', ')}`
+      };
     }
 
+    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      throw new Error('Please enter a valid email address');
+      return { success: false, message: 'Please enter a valid email address' };
     }
 
+    // Validate phone format
     const phoneRegex = /^[0-9+\-\s()]{10,}$/;
     if (!phoneRegex.test(formData.phone)) {
-      throw new Error('Please enter a valid phone number');
+      return { success: false, message: 'Please enter a valid phone number' };
+    }
+
+    // Validate resume data
+    if (!formData.resume.startsWith('data:')) {
+      return { success: false, message: 'Invalid resume file format' };
     }
 
     const response = await fetch(`${API_BASE_URL}/career`, {
@@ -24,16 +38,25 @@ export const submitCareerForm = async (formData) => {
       body: JSON.stringify(formData)
     });
 
+    let result;
+    try {
+      result = await response.json();
+    } catch (parseError) {
+      console.error('Error parsing response:', parseError);
+      throw new Error('Invalid server response');
+    }
+
     if (!response.ok) {
-      const result = await response.json();
       throw new Error(result.message || 'Failed to submit career form');
     }
 
-    const result = await response.json();
     return result;
   } catch (error) {
     console.error('Career form submission error:', error);
-    throw new Error(error.message || 'Failed to submit career form');
+    return {
+      success: false,
+      message: error.message || 'Failed to submit career form. Please try again.'
+    };
   }
 };
 
@@ -45,12 +68,12 @@ export const submitContactForm = async (formData) => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      throw new Error('Please enter a valid email address');
+      return { success: false, message: 'Please enter a valid email address' };
     }
 
     const phoneRegex = /^[0-9+\-\s()]{10,}$/;
     if (!phoneRegex.test(formData.phone)) {
-      throw new Error('Please enter a valid phone number');
+      return { success: false, message: 'Please enter a valid phone number' };
     }
 
     const response = await fetch(`${API_BASE_URL}/contact`, {
@@ -83,6 +106,58 @@ export const submitContactForm = async (formData) => {
   } catch (error) {
     console.error('Contact form submission error:', error);
     throw new Error(error.message || 'Failed to submit contact form');
+  }
+};
+
+export const submitIconForm = async (formData) => {
+  try {
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.message) {
+      return { success: false, message: 'All fields are required' };
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return { success: false, message: 'Please enter a valid email address' };
+    }
+
+    const response = await fetch(`${API_BASE_URL}/icon-contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+
+    let result;
+    try {
+      result = await response.json();
+    } catch (parseError) {
+      console.error('Error parsing response:', parseError);
+      return {
+        success: false,
+        message: 'Server error. Please try again later.'
+      };
+    }
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: result.message || 'Failed to submit contact form'
+      };
+    }
+
+    return {
+      success: true,
+      message: 'Form submitted successfully'
+    };
+  } catch (error) {
+    console.error('Icon contact form submission error:', error);
+    return {
+      success: false,
+      message: 'Failed to submit contact form. Please try again.'
+    };
   }
 };
 

@@ -2,6 +2,7 @@ import { Box, IconButton, Modal, TextField, Button, Typography } from '@mui/mate
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { submitIconForm } from '../api/formHandlers';
 
 const IconContainer = styled(Box)(({ theme }) => ({
   position: 'fixed',
@@ -51,6 +52,8 @@ const ContactIcons = () => {
     message: '',
     captchaAnswer: ''
   });
+  const [errors, setErrors] = useState({});
+  const [showThankYou, setShowThankYou] = useState(false);
   const { translations } = useLanguage();
 
   const handleOpen = () => setOpen(true);
@@ -64,20 +67,48 @@ const ContactIcons = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = 'Please enter a valid email';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    if (formData.captchaAnswer !== '2') newErrors.captcha = 'Please answer the captcha correctly';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.captchaAnswer === '2') {
-      // Here you would typically send the form data to your backend
-      console.log('Form submitted:', formData);
-      handleClose();
-      // Reset form
-      
-      setFormData({
-        name: '',
-        email: '',
-        message: '',
-        captchaAnswer: ''
-      });
+    if (validateForm()) {
+      try {
+        const response = await submitIconForm({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        });
+
+        if (response.success) {
+          setShowThankYou(true);
+          setTimeout(() => {
+            setShowThankYou(false);
+            handleClose();
+          }, 3000);
+
+          setFormData({
+            name: '',
+            email: '',
+            message: '',
+            captchaAnswer: ''
+          });
+          setErrors({});
+        } else {
+          alert(response.message || 'Failed to submit form. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert(error.message || 'Failed to submit form. Please try again.');
+      }
     } else {
       alert('Please answer the captcha correctly');
     }
@@ -108,6 +139,16 @@ const ContactIcons = () => {
         onClose={handleClose}
         aria-labelledby="contact-form-modal"
       >
+        {showThankYou ? (
+          <ModalContent>
+            <Typography variant="h5" component="h2" sx={{ textAlign: 'center', color: '#4CAF50' }}>
+              Thank you for your message!
+            </Typography>
+            <Typography sx={{ textAlign: 'center', mt: 2 }}>
+              We will get back to you soon.
+            </Typography>
+          </ModalContent>
+        ) : (
         <ModalContent>
           <CloseButton onClick={handleClose}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#000">
@@ -128,8 +169,13 @@ const ContactIcons = () => {
               onChange={handleInputChange}
               required
               placeholder="Enter your name"
-              sx={{ mb: 2 }}
+              sx={{ mb: errors.name ? 0.5 : 2 }}
             />
+            {errors.name && (
+              <Typography color="error" variant="caption" sx={{ mb: 1.5, display: 'block' }}>
+                {errors.name}
+              </Typography>
+            )}
             <TextField
               fullWidth
               label={translations['Email']}
@@ -139,8 +185,13 @@ const ContactIcons = () => {
               onChange={handleInputChange}
               required
               placeholder="Enter your email"
-              sx={{ mb: 2 }}
+              sx={{ mb: errors.email ? 0.5 : 2 }}
             />
+            {errors.email && (
+              <Typography color="error" variant="caption" sx={{ mb: 1.5, display: 'block' }}>
+                {errors.email}
+              </Typography>
+            )}
             <TextField
               fullWidth
               label={translations['Message']}
@@ -151,8 +202,13 @@ const ContactIcons = () => {
               onChange={handleInputChange}
               required
               placeholder="Type your message here"
-              sx={{ mb: 2 }}
+              sx={{ mb: errors.message ? 0.5 : 2 }}
             />
+            {errors.message && (
+              <Typography color="error" variant="caption" sx={{ mb: 1.5, display: 'block' }}>
+                {errors.message}
+              </Typography>
+            )}
             <TextField
               fullWidth
               label="What is 1 × 2?"
@@ -161,8 +217,13 @@ const ContactIcons = () => {
               onChange={handleInputChange}
               required
               placeholder="Enter your answer"
-              sx={{ mb: 2 }}
+              sx={{ mb: errors.captcha ? 0.5 : 2 }}
             />
+            {errors.captcha && (
+              <Typography color="error" variant="caption" sx={{ mb: 1.5, display: 'block' }}>
+                {errors.captcha}
+              </Typography>
+            )}
             <Button
               type="submit"
               variant="contained"
@@ -217,7 +278,9 @@ const ContactIcons = () => {
             </Button>
           </form>
         </ModalContent>
+      )}      
       </ContactModal>
+      
     </>
   );
 };
