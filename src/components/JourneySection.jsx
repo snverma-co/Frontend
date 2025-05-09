@@ -47,7 +47,10 @@ const JourneySection = () => {
       variants={containerVariants}
       ref={ref}
       sx={{
-        background: 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)',
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/journey.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
         py: 6,
         color: 'white',
         position: 'relative',
@@ -61,6 +64,7 @@ const JourneySection = () => {
           backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)',
           backgroundSize: '20px 20px',
           pointerEvents: 'none',
+          zIndex: 1
         },
       }}
     >

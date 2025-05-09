@@ -176,6 +176,8 @@ const Footer = () => {
             <FooterLink onClick={() => { navigate('/careers'); window.scrollTo(0, 0); }} sx={{ cursor: 'pointer' }}>Careers</FooterLink>
             <FooterLink onClick={() => { navigate('/knowledge'); window.scrollTo(0, 0); }} sx={{ cursor: 'pointer' }}>Knowledge & Events</FooterLink>
             <FooterLink onClick={() => { navigate('/contact'); window.scrollTo(0, 0); }} sx={{ cursor: 'pointer' }}>Contact Us</FooterLink>
+            <FooterLink onClick={() => { navigate('/terms'); window.scrollTo(0, 0); }} sx={{ cursor: 'pointer' }}>Terms & Conditions</FooterLink>
+            <FooterLink onClick={() => { navigate('/privacy'); window.scrollTo(0, 0); }} sx={{ cursor: 'pointer' }}>Privacy Policy</FooterLink>
           </Grid>
         </Grid>
 

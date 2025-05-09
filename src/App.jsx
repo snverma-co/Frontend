@@ -28,7 +28,9 @@ import ContactSection from './components/ContactSection';
 import ContactUsPage from './components/ContactUsPage';
 import FounderPage from './components/FounderPage';
 import CareersPage from './components/CareersPage';
+import TermsPage from './components/TermsPage';
 import Footer from './components/Footer';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 import { PageTitle } from './components/PageTitle';
 
@@ -82,6 +84,8 @@ function App() {
             <Route path="/contact" element={<Box><PageTitle title="Contact Us" description="Contact S N Verma & Co., your trusted CA firm in Delhi. Get expert consultation for all your accounting, tax, and business advisory needs." /><ContactUsPage /></Box>} />
             <Route path="/company" element={<Box><PageTitle title="About Our Company" description="Learn about S N Verma & Co., a leading chartered accountancy firm in Delhi with years of expertise in providing comprehensive financial services." /><FounderPage /></Box>} />
             <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" description="Join S N Verma & Co., a leading CA firm in Delhi. Explore exciting career opportunities in accounting, taxation, and financial advisory services." /><CareersPage /></Box>} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
           <ContactIcons />
           <Footer />
