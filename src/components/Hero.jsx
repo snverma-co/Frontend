@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import NewsSection from './NewsSection';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   paddingTop: '80px',
@@ -150,8 +149,7 @@ const Hero = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={5}>
-            <NewsSection />
-          </Grid>
+              </Grid>
         </Grid>
       </Container>
     </HeroSection>
