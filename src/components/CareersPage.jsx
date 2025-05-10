@@ -376,19 +376,22 @@ const CareersPage = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  type="file"
-                  label="Resume"
-                  name="resume"
-                  onChange={handleChange}
-                  required
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
-                  error={!!errors.resume}
-                  helperText={errors.resume}
-                />
-              </Grid>
+  <TextField
+    fullWidth
+    type="file"
+    label="Resume"
+    name="resume"
+    onChange={handleChange}
+    required
+    variant="outlined"
+    InputLabelProps={{ shrink: true }}
+    error={!!errors.resume}
+    helperText={errors.resume}
+  />
+  <Typography variant="body2" color="textSecondary" style={{ marginTop: 4 }}>
+    * File size should be below 5MB
+  </Typography>
+</Grid>
               <Grid item xs={12}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                   <Typography variant="body1">

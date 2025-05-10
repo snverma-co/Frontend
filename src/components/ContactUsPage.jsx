@@ -145,16 +145,32 @@ const ContactUsPage = () => {
             <Typography color="#fff">Contact Us</Typography>
           </Breadcrumbs>
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-            <IconCircle>
-              <PhoneIcon />
-            </IconCircle>
-            <IconCircle>
-              <EmailIcon />
-            </IconCircle>
-            <IconCircle>
-              <ShareIcon />
-            </IconCircle>
-          </Box>
+  <IconCircle component="a" href="tel:+1234567890">
+    <PhoneIcon />
+  </IconCircle>
+  <IconCircle component="a" href="mailto:example@example.com">
+    <EmailIcon />
+  </IconCircle>
+  <IconCircle
+    onClick={() => {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: 'Check this out!',
+            text: 'Here is something interesting',
+            url: window.location.href,
+          })
+          .catch((error) => console.log('Error sharing:', error));
+      } else {
+        alert('Share not supported on this browser.');
+      }
+    }}
+    sx={{ cursor: 'pointer' }}
+  >
+    <ShareIcon />
+  </IconCircle>
+</Box>
+
         </Container>
       </StyledHeader>
 
