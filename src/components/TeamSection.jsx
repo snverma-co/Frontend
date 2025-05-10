@@ -63,19 +63,20 @@ const TeamSection = () => {
           component={motion.h2}
           variants={itemVariants}
           variant="h3"
-          align="center"
           sx={{
+            fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
             mb: 6,
             fontWeight: 'bold',
-            fontFamily: '"Playfair Display", serif'
+            fontFamily: '"Playfair Display", serif',
+            textAlign: 'center'
           }}
         >
         
         </Typography>
 
-        <Grid container spacing={4} justifyContent="center" alignItems="center" sx={{ maxWidth: '1200px', mx: 'auto', flexWrap: 'nowrap', px: 2 }}>
+        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} justifyContent="center" alignItems="center" sx={{ maxWidth: '1200px', mx: 'auto', flexWrap: { xs: 'wrap', md: 'nowrap' }, px: { xs: 1, sm: 2 } }}>
           {teamMembers.map((member, index) => (
-            <Grid item xs={12} sm={6} md={6} key={index} sx={{ flex: 1 }}>
+            <Grid item xs={12} sm={6} md={6} key={index} sx={{ flex: { xs: '0 0 100%', md: 1 }, mb: { xs: 2, md: 0 } }}>
               <Card
                 component={motion.div}
                 variants={itemVariants}
@@ -96,9 +97,9 @@ const TeamSection = () => {
                   image={member.image}
                   alt={member.name}
                   sx={{
-                    height: 400,
+                    height: { xs: 300, sm: 350, md: 400 },
                     objectFit: 'cover',
-                    borderRadius: '16px 16px 0 0',
+                    borderRadius: { xs: '8px 8px 0 0', md: '16px 16px 0 0' },
                     transition: 'transform 0.3s ease',
                     '&:hover': {
                       transform: 'scale(1.05)'
@@ -150,15 +151,15 @@ const TeamSection = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{
-              padding: '16px 40px',
-              fontSize: '1.2rem',
+              padding: '20px 50px',
+              fontSize: '1.1rem',
               fontWeight: 600,
               color: '#fff',
               background: 'linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)',
               border: 'none',
-              borderRadius: '8px',
+              borderRadius: '12px',
               cursor: 'pointer',
-              boxShadow: '0 4px 20px rgba(25, 118, 210, 0.25)',
+              boxShadow: '0 6px 25px rgba(25, 118, 210, 0.35)',
               transition: 'all 0.3s ease',
               marginTop: '-20px'
             }}

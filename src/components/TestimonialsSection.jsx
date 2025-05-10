@@ -234,7 +234,7 @@ const TestimonialsSection = () => {
     <Box
       ref={sectionRef}
       sx={{
-        py: 8,
+        py: { xs: 6, sm: 7, md: 8 },
         background: 'url("/testimonials-bg.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -252,15 +252,16 @@ const TestimonialsSection = () => {
         }
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
         <Typography
           variant="h2"
           align="center"
           sx={{
-            mb: 2,
+            mb: { xs: 1, sm: 1.5, md: 2 },
             fontWeight: 600,
             color: '#333',
             fontFamily: '"Playfair Display", serif',
+            fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(-30px)',
             transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -278,9 +279,10 @@ const TestimonialsSection = () => {
           variant="h6"
           align="center"
           sx={{
-            mb: 6,
+            mb: { xs: 4, sm: 5, md: 6 },
             color: '#666',
             fontFamily: '"Playfair Display", serif',
+            fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(-20px)',
             transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s'
@@ -299,9 +301,7 @@ const TestimonialsSection = () => {
             position: 'relative',
             scrollBehavior: 'smooth',
             WebkitOverflowScrolling: 'touch',
-            '&::-webkit-scrollbar': {
-              display: 'none'
-            },
+            '&::-webkit-scrollbar': { display: 'none' },
             msOverflowStyle: 'none',
             scrollbarWidth: 'none'
           }}
@@ -309,31 +309,32 @@ const TestimonialsSection = () => {
           <Box
             sx={{
               display: 'flex',
-              gap: '2rem',
-              padding: '1rem',
+              gap: { xs: '1rem', sm: '1.5rem', md: '2rem' },
+              padding: { xs: '0.5rem', sm: '0.75rem', md: '1rem' },
               width: 'max-content'
             }}
           >
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 key={index}
-              isVisible={isVisible}
-              index={index}
+                isVisible={isVisible}
+                index={index}
                 sx={{
-                  width: { xs: '280px', sm: '320px', md: '360px' },
+                  width: { xs: '260px', sm: '300px', md: '360px' },
                   flex: '0 0 auto',
-                  mx: 2,
-                  minHeight: '300px'
+                  minHeight: { xs: '280px', sm: '300px', md: '320px' },
+                  padding: { xs: 2.5, sm: 3, md: 4 }
                 }}
               >
-                <QuoteIcon className="quote-icon" />
+                <QuoteIcon className="quote-icon" sx={{ fontSize: { xs: '32px', sm: '36px', md: '40px' } }} />
                 <Typography
                   variant="body1"
                   sx={{
-                    mb: 3,
+                    mb: { xs: 2, sm: 2.5, md: 3 },
                     color: '#555',
                     lineHeight: 1.8,
-                    fontStyle: 'italic'
+                    fontStyle: 'italic',
+                    fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }
                   }}
                 >
                   {testimonial.text}
@@ -341,15 +342,26 @@ const TestimonialsSection = () => {
                 <Rating
                   value={testimonial.rating}
                   readOnly
-                  sx={{ mb: 2, color: '#8BC34A' }}
+                  sx={{ mb: { xs: 1.5, sm: 2, md: 2 }, color: '#8BC34A' }}
                 />
                 <Typography
                   variant="h6"
-                  sx={{ fontWeight: 600, color: '#333', mb: 1 }}
+                  sx={{
+                    fontWeight: 600,
+                    color: '#333',
+                    mb: { xs: 0.5, sm: 0.75, md: 1 },
+                    fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+                  }}
                 >
                   {testimonial.name}
                 </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#666' }}>
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    color: '#666',
+                    fontSize: { xs: '0.8rem', sm: '0.9rem', md: '1rem' }
+                  }}
+                >
                   {testimonial.company}
                 </Typography>
               </TestimonialCard>
