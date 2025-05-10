@@ -485,7 +485,7 @@ const Navbar = () => {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             <Typography variant="h5" component="div" sx={{
-              color: '#333',
+              color: '#4B0082',
               lineHeight: 1.2,
               fontSize: '1.8rem',
               fontWeight: 500,
