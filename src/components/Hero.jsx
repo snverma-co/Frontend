@@ -12,10 +12,15 @@ const HeroSection = styled(Box)(({ theme }) => ({
   backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/grouppic.JPG")',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  backgroundAttachment: 'fixed',
+  backgroundAttachment: { xs: 'scroll', md: 'fixed' },
+  backgroundRepeat: 'no-repeat',
   display: 'flex',
   alignItems: 'center',
-  color: '#fff'
+  color: '#fff',
+  [theme.breakpoints.down('sm')]: {
+    backgroundPosition: 'center center',
+    backgroundSize: 'cover'
+  }
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
