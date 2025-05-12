@@ -152,7 +152,7 @@ const TestimonialsSection = () => {
             }
           }
         }
-      }, 5000);
+      }, 3000);
     }
   };
 
@@ -233,6 +233,7 @@ const TestimonialsSection = () => {
   return (
     <Box
       ref={sectionRef}
+
       sx={{
         py: { xs: 6, sm: 7, md: 8 },
         background: 'url("/testimonials-bg.jpg")',
@@ -303,26 +304,25 @@ const TestimonialsSection = () => {
             WebkitOverflowScrolling: 'touch',
             '&::-webkit-scrollbar': { display: 'none' },
             msOverflowStyle: 'none',
-            scrollbarWidth: 'none'
-          }}
-        >
-          <Box
-            sx={{
+            scrollbarWidth: 'none',
+            '& > div': {
               display: 'flex',
               gap: { xs: '1rem', sm: '1.5rem', md: '2rem' },
               padding: { xs: '0.5rem', sm: '0.75rem', md: '1rem' },
               width: 'max-content'
-            }}
-          >
+            }
+          }}
+        >
+          <Box>
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 key={index}
                 isVisible={isVisible}
                 index={index}
                 sx={{
-                  width: { xs: '260px', sm: '300px', md: '360px' },
+                  width: { xs: '280px', sm: '320px', md: '360px' },
                   flex: '0 0 auto',
-                  minHeight: { xs: '280px', sm: '300px', md: '320px' },
+                  minHeight: { xs: '300px', sm: '320px', md: '340px' },
                   padding: { xs: 2.5, sm: 3, md: 4 }
                 }}
               >
