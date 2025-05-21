@@ -31,6 +31,7 @@ import CareersPage from './components/CareersPage';
 import TermsPage from './components/TermsPage';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
+// import Utilities from './components/Utilities'; // Removed as Utilities page is deleted
 
 import { PageTitle } from './components/PageTitle';
 
@@ -86,6 +87,9 @@ function App() {
             <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" description="Join S N Verma & Co., a leading CA firm in Delhi. Explore exciting career opportunities in accounting, taxation, and financial advisory services." /><CareersPage /></Box>} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
+            {/* <Route path="/utilities" element={<Box><PageTitle title="Utilities" description="Various utility tools provided by S N Verma & Co." /><Utilities /></Box>} /> */}
+            <Route path="/rates-of-tds" element={<Box><PageTitle title="Rates of TDS" description="Details about Rates of TDS." /><div>Rates of TDS Page - Under Construction</div></Box>} />
+            <Route path="/tds-rates-nri" element={<Box><PageTitle title="TDS Rates of N.R.I us 195" description="Details about TDS Rates for N.R.I under section 195." /><div>TDS Rates of N.R.I us 195 Page - Under Construction</div></Box>} />
           </Routes>
           <ContactIcons />
           <Footer />
