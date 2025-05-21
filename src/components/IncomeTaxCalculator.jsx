@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Box, Container, Typography, TextField, Select, MenuItem, FormControl, InputLabel, Grid, Button, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { Box, Container, Typography, TextField, Select, MenuItem, FormControl, InputLabel, Grid, Button, RadioGroup, FormControlLabel, Radio, Snackbar, Alert } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useLanguage } from '../contexts/LanguageContext';
+import PrintIcon from '@mui/icons-material/Print';
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(4),
@@ -27,6 +28,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const IncomeTaxCalculator = () => {
   const { translations } = useLanguage();
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     assesseeName: '',
     status: 'Individual',
@@ -65,10 +67,99 @@ const IncomeTaxCalculator = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name !== 'assesseeName' && value < 0) {
+      setError('Values cannot be negative');
+      return;
+    }
     setFormData(prev => ({
       ...prev,
       [name]: name === 'assesseeName' ? value : Number(value)
     }));
+  };
+
+  const handlePrint = () => {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Tax Calculation Summary</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .details { margin-bottom: 20px; }
+            .summary { border-top: 2px solid #000; padding-top: 20px; }
+            .row { display: flex; justify-content: space-between; margin: 10px 0; }
+            .highlight { font-weight: bold; color: #1976d2; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Income Tax Calculation Summary</h1>
+            <p>Generated on ${new Date().toLocaleDateString()}</p>
+          </div>
+          <div class="details">
+            <h2>Assessee Details</h2>
+            <div class="row">
+              <span>Name:</span>
+              <span>${formData.assesseeName || 'Not Specified'}</span>
+            </div>
+            <div class="row">
+              <span>Status:</span>
+              <span>${formData.status}</span>
+            </div>
+            <div class="row">
+              <span>Financial Year:</span>
+              <span>${formData.financialYear}</span>
+            </div>
+            <div class="row">
+              <span>Tax Regime:</span>
+              <span>${formData.regime === 'old' ? 'Old Regime' : 'New Regime'}</span>
+            </div>
+          </div>
+          <div class="summary">
+            <h2>Tax Calculation Summary</h2>
+            <div class="row">
+              <span>Total Income:</span>
+              <span>₹${taxDetails.totalIncome.toLocaleString()}</span>
+            </div>
+            <div class="row">
+              <span>Total Deductions:</span>
+              <span>₹${taxDetails.totalDeductions.toLocaleString()}</span>
+            </div>
+            <div class="row">
+              <span>Taxable Income:</span>
+              <span>₹${taxDetails.taxableIncome.toLocaleString()}</span>
+            </div>
+            <div class="row">
+              <span>Income Tax:</span>
+              <span>₹${taxDetails.taxAmount.toLocaleString()}</span>
+            </div>
+            <div class="row">
+              <span>Surcharge:</span>
+              <span>₹${taxDetails.surcharge.toLocaleString()}</span>
+            </div>
+            <div class="row">
+              <span>Education Cess:</span>
+              <span>₹${taxDetails.educationCess.toLocaleString()}</span>
+            </div>
+            <div class="row highlight">
+              <span>Total Tax Liability:</span>
+              <span>₹${taxDetails.totalTaxLiability.toLocaleString()}</span>
+            </div>
+            <div class="row">
+              <span>Taxes Paid:</span>
+              <span>₹${taxDetails.taxesPaid.toLocaleString()}</span>
+            </div>
+            <div class="row highlight">
+              <span>Tax Payable:</span>
+              <span>₹${taxDetails.taxPayable.toLocaleString()}</span>
+            </div>
+          </div>
+          <script>window.onload = () => { window.print(); window.close(); };</script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
   };
 
   const calculateTax = () => {
@@ -340,11 +431,40 @@ const IncomeTaxCalculator = () => {
           </Grid>
         </Grid>
 
-        <Box sx={{ textAlign: 'center', mt: 4 }}>
+        <Box sx={{ textAlign: 'center', mt: 4, display: 'flex', justifyContent: 'center', gap: 2 }}>
           <StyledButton variant="contained" onClick={calculateTax}>
             Calculate Tax
           </StyledButton>
+          {taxDetails.totalTaxLiability > 0 && (
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<PrintIcon />}
+              onClick={handlePrint}
+              sx={{
+                marginTop: 2,
+                padding: '10px 30px',
+                backgroundColor: '#2196F3',
+                '&:hover': {
+                  backgroundColor: '#1976D2'
+                }
+              }}
+            >
+              Print Summary
+            </Button>
+          )}
         </Box>
+
+        <Snackbar
+          open={!!error}
+          autoHideDuration={6000}
+          onClose={() => setError('')}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert onClose={() => setError('')} severity="error" sx={{ width: '100%' }}>
+            {error}
+          </Alert>
+        </Snackbar>
 
         {taxDetails.totalTaxLiability > 0 && (
           <Box sx={{ mt: 4 }}>

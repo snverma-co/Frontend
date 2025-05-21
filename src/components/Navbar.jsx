@@ -53,8 +53,8 @@ const MenuPopper = styled(Popper)(({ theme }) => ({
   width: '100%',
   '& .MuiPaper-root': {
     position: 'relative',
-    left: '-70px',
-    transform: 'translateX(-50%)',
+    left: '-100%',
+    transform: 'none',
     backgroundColor: '#fff',
     boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
     borderRadius: '8px',
@@ -214,7 +214,54 @@ const Navbar = () => {
             'Home Loan Calculator',
             'Get No. Of Installment'
           ]
-        }
+        },
+        {
+          name: 'UTILITIES',
+          items: [
+            'Rates of TDS',
+            'TDS Rates of N.R.I us 195',
+            'Rates of Income Tax',
+            'Depreciation Rates Companies Act',
+            'Depreciation Rates Income Tax Act',
+            'ROC Filing Fees (Cos Act, 2013)',
+            'ROC Fees Structure (Cos Act, 2013)',
+            'Cost inflation Index',
+            'IFSC Codes',
+            'MICR Codes',
+            'Rates of NSC Interest',
+            'Gold and Silver Rates',
+            'Rates of Stamp Duty',
+            'LLP Fees',
+            'National Industies Classification',
+            'HSN Rates List',
+            'Deduction u/s 80TTA Vs 80TTB'
+
+
+
+
+
+            // Add more utility items here later
+          ]
+          
+        },
+        {
+          name: 'Links',
+          items: [
+            'Quick Links',
+            'Important Links',
+            'GST/VAT Links',
+            'Ease Of Doing Business'
+           
+
+
+
+
+
+            // Add more utility items here later
+          ]
+          
+        },
+        
       ]
     },
     'CONTACT US'
@@ -296,6 +343,7 @@ const Navbar = () => {
       setServicesAnchorEl(null);
       setKnowledgeAnchorEl(null);
       setCompanyAnchorEl(null);
+      // setUtilitiesAnchorEl(null); // Reset Utilities anchor - REMOVED
       setActiveSubmenu(null);
     }, 300);
     setCloseTimeoutId(timeoutId);
@@ -408,9 +456,17 @@ const Navbar = () => {
         default:
           break;
       }
+    } else if (item === 'UTILITIES') {
+      if (subItem === 'Rates of TDS') {
+        navigate('/rates-of-tds');
+        window.scrollTo(0, 0);
+      }
+      // Add more utility sub-item cases here if needed
     }
     setServicesAnchorEl(null);
     setKnowledgeAnchorEl(null);
+    setCompanyAnchorEl(null);
+    setActiveSubmenu(null);
   };
 
   const handleLanguageChange = (event) => {
@@ -526,14 +582,14 @@ const Navbar = () => {
                   onMouseEnter={(e) => handleMouseEnter(e, item.name === 'SERVICES' ? 'services' : item.name === 'COMPANY' ? 'company' : 'knowledge')}
                   onClick={(e) => handleClick(e, item)}
                   endIcon={<KeyboardArrowDownIcon />}
-                  isactive={activeSubmenu === (item.name === 'SERVICES' ? 'services' : item.name === 'COMPANY' ? 'company' : 'knowledge') ? 1 : 0}
+                  isactive={activeSubmenu === (item.name === 'SERVICES' ? 'services' : item.name === 'COMPANY' ? 'company' : 'knowledge') ? 1 : 0} 
                   sx={{ fontSize: '0.9rem', py: 1, px: 1.5 }}
                 >
                   {translations[item.name]}
                 </StyledButton>
                 <MenuPopper
-                  open={item.name === 'SERVICES' ? servicesOpen : item.name === 'COMPANY' ? companyOpen : knowledgeOpen}
-                  anchorEl={item.name === 'SERVICES' ? servicesAnchorEl : item.name === 'COMPANY' ? companyAnchorEl : knowledgeAnchorEl}
+                  open={item.name === 'SERVICES' ? servicesOpen : item.name === 'COMPANY' ? companyOpen : knowledgeOpen} 
+                  anchorEl={item.name === 'SERVICES' ? servicesAnchorEl : item.name === 'COMPANY' ? companyAnchorEl : knowledgeAnchorEl} 
                   placement="bottom-start"
                   transition
                   disablePortal
