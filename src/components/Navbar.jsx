@@ -584,6 +584,7 @@ const Navbar = () => {
                   endIcon={<KeyboardArrowDownIcon />}
                   isactive={activeSubmenu === (item.name === 'SERVICES' ? 'services' : item.name === 'COMPANY' ? 'company' : 'knowledge') ? 1 : 0} 
                   sx={{ fontSize: '0.9rem', py: 1, px: 1.5 }}
+                  data-menu={item.name === 'SERVICES' ? 'services' : item.name === 'COMPANY' ? 'company' : 'knowledge'}
                 >
                   {translations[item.name]}
                 </StyledButton>
