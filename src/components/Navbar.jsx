@@ -118,7 +118,11 @@ const Navbar = () => {
           }
         },
         {
-          name: 'Our Team'
+          name: 'Our Team',
+          onClick: () => {
+            navigate('/team');
+            window.scrollTo(0, 0);
+          }
         },
         {
           name: 'Videos'
@@ -358,11 +362,11 @@ const Navbar = () => {
     if (item === 'HOME') {
       navigate('/');
       window.scrollTo(0, 0);
-    } else if (item === 'COMPANY' || item === 'Founder') {
+    } else if (item === 'COMPANY' || item === 'Founder' || item === 'Our Team') {
       if (subItem === 'Founder' || item === 'Founder') {
         navigate('/company');
         window.scrollTo(0, 0);
-      } else if (subItem === 'Our Team') {
+      } else if (subItem === 'Our Team' || item === 'Our Team') {
         navigate('/team');
         window.scrollTo(0, 0);
       } else if (subItem === 'Videos') {
