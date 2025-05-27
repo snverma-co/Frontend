@@ -63,14 +63,14 @@ const FounderPage = () => {
             >
               <Box
                 component="img"
-                src="/neeraj-bhagat.jpg"
-                alt="S N Verma"
+                src="/Founder Image.jpeg"
+                alt="S.N. Verma"
                 sx={{
                   width: '100%',
                   height: 'auto',
                   borderRadius: '10px',
                   position: 'relative',
-                  zIndex: 1,
+                  zIndex: 1, 
                   boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
                 }}
               />
@@ -92,18 +92,22 @@ const FounderPage = () => {
                 Founder of S N VERMA & CO.
               </Typography>
               <Typography
-                variant="h2"
-                component={motion.h1}
-                variants={itemVariants}
-                sx={{
-                  fontWeight: 700,
-                  mb: 3,
-                  fontFamily: '"Playfair Display", serif',
-                  color: '#1a1a1a'
-                }}
-              >
-                Meet S N Verma
-              </Typography>
+  variant="h2"
+  component={motion.h1}
+  variants={itemVariants}
+  sx={{
+    fontWeight: 700,
+    mb: 3,
+    fontFamily: '"Playfair Display", serif',
+    color: '#1a1a1a',
+    whiteSpace: 'nowrap',     // Prevent line break
+    // overflow: 'hidden',       // Optional: hides overflow text
+    textOverflow: 'ellipsis'  // Optional: adds "..." if text overflows
+  }}
+>
+Late Shri CA S.N. Verma
+</Typography>
+
               <Typography
                 variant="h6"
                 component={motion.div}
@@ -118,8 +122,7 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
               >
-                A reputed Tax Consultant & Chartered Accountant, who has helped many
-                individuals/organizations to establish business in India
+               The legacy of S N Verma & Co. was built on the vision, dedication, and unparalleled expertise of our founder, Late Shri S. N. Verma. In 1970, with a commitment to excellence and a passion for serving clients, he laid the foundation of our firm, which has grown into a trusted name in the financial and taxation landscape over the past 55 years.
               </Typography>
               <Typography
                 variant="body1"
@@ -127,11 +130,9 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
               >
-                S N Verma is a member of the Institute of Chartered Accountants of India
-                (ICAI) since 1997. He has worked with professionally managed corporates in
-                the capacity as a consultant. He has experience of handling corporate affairs
-                in different areas for over a decade. He has helped many organizations to set
-                up business in India and operating it smoothly.
+              Shri S. N. Verma was a true visionary, renowned for his profound knowledge in auditing, taxation, financial planning, and business growth strategies. His ability to navigate complex financial challenges with precision and foresight set a benchmark for excellence. A dedicated professional, he took personal care to resolve every client’s matter, earning their trust and building enduring relationships.
+
+
               </Typography>
               <Typography
                 variant="body1"
@@ -139,17 +140,27 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ color: '#666', lineHeight: 1.8 }}
               >
-                S N Verma has vast knowledge and a thorough understanding of Indian laws and
-                regulations, as well as the complex corporate taxation system. Neeraj & his
-                team have assisted many overseas companies in completing paperwork,
-                getting necessary approvals, paying taxes, filing, and much more.
+              A true karmayogi, Shri Verma’s tireless work ethic and commitment to integrity shaped the firm’s ethos. Under his leadership, S N Verma & Co. grew into a vast empire of expertise, delivering innovative solutions and fostering sustainable growth for clients across diverse sectors.
+
+
+              </Typography>
+              <br></br>
+              <Typography
+                variant="body1"
+                component={motion.p}
+                variants={itemVariants}
+                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+              >
+              His legacy continues to inspire us every day. At S N Verma & Co., we honor his vision by walking in his footsteps, upholding the values of trust, excellence, and client-first service that he instilled. Shri S. N. Verma’s actions and principles remain the guiding light for our firm, driving us to empower our clients and achieve new heights of success.
+
+
               </Typography>
             </Box>
           </Grid>
         </Grid>
       </Container>
 
-      <Container maxWidth="lg">
+      {/* <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center" direction="row-reverse">
           <Grid item xs={12} md={6}>
             <Box
@@ -200,7 +211,7 @@ const FounderPage = () => {
                 variants={itemVariants}
                 sx={{ color: '#4CAF50', mb: 2, fontWeight: 600 }}
               >
-                Managing Director of S N VERMA & CO.
+                Senior Partner of S.N. VERMA & CO.
               </Typography>
               <Typography
                 variant="h2"
@@ -213,7 +224,7 @@ const FounderPage = () => {
                   color: '#1a1a1a'
                 }}
               >
-                Meet Vipin Verma
+               Vipin Verma
               </Typography>
               <Typography
                 variant="h6"
@@ -263,7 +274,7 @@ const FounderPage = () => {
             </Box>
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
       <ContactSection />
     </Box>
   );

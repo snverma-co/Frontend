@@ -34,6 +34,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 // import Utilities from './components/Utilities'; // Removed as Utilities page is deleted
 
 import { PageTitle } from './components/PageTitle';
+import TeamPage from './components/TeamPage';
 
 const HomePage = () => (
   <Box>
@@ -84,6 +85,7 @@ function App() {
             <Route path="/tds-calculator" element={<Box><PageTitle title="TDS Calculator" description="Calculate TDS (Tax Deducted at Source) accurately with our free TDS Calculator. Know your tax deductions as per Income Tax Act." /><TDSCalculator /></Box>} />
             <Route path="/contact" element={<Box><PageTitle title="Contact Us" description="Contact S N Verma & Co., your trusted CA firm in Delhi. Get expert consultation for all your accounting, tax, and business advisory needs." /><ContactUsPage /></Box>} />
             <Route path="/company" element={<Box><PageTitle title="About Our Company" description="Learn about S N Verma & Co., a leading chartered accountancy firm in Delhi with years of expertise in providing comprehensive financial services." /><FounderPage /></Box>} />
+            <Route path="/team" element={<TeamPage />} />
             <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" description="Join S N Verma & Co., a leading CA firm in Delhi. Explore exciting career opportunities in accounting, taxation, and financial advisory services." /><CareersPage /></Box>} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />

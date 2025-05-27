@@ -54,7 +54,7 @@ export const languages = {
 
     // About section translations
     'SERVING OUR VALUED CLIENTS FOR MORE THAN 50+ YEARS': 'SERVING OUR VALUED CLIENTS FOR MORE THAN 50+ YEARS',
-    'Your Trusted Partner': 'Your Trusted Partner',
+    'Your Trusted Partner in Financial Excellence Since 1970': 'Your Trusted Partner in Financial Excellence Since 1970',
     'We are prominent Chartered Accountants in India. We offer services in New Delhi and other major cities in India, like accounts outsourcing, auditing, company formation in India, business taxation, corporate compliance, starting business in India, registration of foreign companies, transfer pricing, tax due diligence, taxation of expatriates etc.': 'We are prominent Chartered Accountants in India. We offer services in New Delhi and other major cities in India, like accounts outsourcing, auditing, company formation in India, business taxation, corporate compliance, starting business in India, registration of foreign companies, transfer pricing, tax due diligence, taxation of expatriates etc.',
     'Explore More About Us': 'Explore More About Us',
 
@@ -121,7 +121,7 @@ export const languages = {
     'Our Services': 'हमारी सेवाएं',
     'Let\'s Talk': 'बात करें',
     'SERVING OUR VALUED CLIENTS FOR MORE THAN 50+ YEARS': '50+ वर्षों से हमारे मूल्यवान ग्राहकों की सेवा',
-    'Your Trusted Partner': 'आपका विश्वसनीय साथी',
+    'Your Trusted Partner in Financial Excellence Since 1970': '1970 से वित्तीय उत्कृष्टता में आपका विश्वसनीय भागीदार',
     'We are prominent Chartered Accountants in India. We offer services in New Delhi and other major cities in India, like accounts outsourcing, auditing, company formation in India, business taxation, corporate compliance, starting business in India, registration of foreign companies, transfer pricing, tax due diligence, taxation of expatriates etc.': 'हम भारत के प्रमुख चार्टर्ड एकाउंटेंट हैं। हम नई दिल्ली और भारत के अन्य प्रमुख शहरों में सेवाएं प्रदान करते हैं, जैसे अकाउंट्स आउटसोर्सिंग, ऑडिटिंग, भारत में कंपनी गठन, व्यवसाय कराधान, कॉर्पोरेट अनुपालन, भारत में व्यवसाय शुरू करना, विदेशी कंपनियों का पंजीकरण, ट्रांसफर प्राइसिंग, कर डयू डिलिजेंस, प्रवासी कराधान आदि।',
     'Explore More About Us': 'हमारे बारे में और जानें',
 
@@ -188,7 +188,7 @@ export const languages = {
     'Our Services': 'અમારી સેવાઓ',
     'Let\'s Talk': 'વાત કરીએ',
     'SERVING OUR VALUED CLIENTS FOR MORE THAN 50+ YEARS': '50+ વર્ષથી અમારા મૂલ્યવાન ગ્રાહકોની સેવા',
-    'Your Trusted Partner': 'તમારો વિશ્વસનીય ભાગીદાર',
+    'Your Trusted Partner in Financial Excellence Since 1970': '1970 થી નાણાકીય શ્રેષ્ઠતામાં તમારા વિશ્વસનીય ભાગીદાર',
     'We are prominent Chartered Accountants in India. We offer services in New Delhi and other major cities in India, like accounts outsourcing, auditing, company formation in India, business taxation, corporate compliance, starting business in India, registration of foreign companies, transfer pricing, tax due diligence, taxation of expatriates etc.': 'અમે ભારતના અગ્રણી ચાર્ટર્ડ એકાઉન્ટન્ટ્સ છીએ. અમે નવી દિલ્હી અને ભારતના અન્ય મુખ્ય શહેરોમાં સેવાઓ આપીએ છીએ, જેમ કે એકાઉન્ટ્સ આઉટસોર્સિંગ, ઓડિટિંગ, ભારતમાં કંપની સ્થાપના, બિઝનેસ ટેક્સેશન, કોર્પોરેટ કમ્પ્લાયન્સ, ભારતમાં બિઝનેસ શરૂ કરવો, વિદેશી કંપનીઓની નોંધણી, ટ્રાન્સફર પ્રાઇસિંગ, ટેક્સ ડ્યૂ ડિલિજન્સ, એક્સપેટ્રિએટ્સનું ટેક્સેશન વગેરે.',
     'Explore More About Us': 'અમારા વિશે વધુ જાણો',
 

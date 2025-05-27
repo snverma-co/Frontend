@@ -1,46 +1,48 @@
-import { Box, Container, Typography, Button } from '@mui/material';
+import { Box, Container, Typography, Button, Collapse } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+// import PlayArrowIcon from '@mui/icons-material/PlayArrow'; // Removed PlayArrowIcon
 import { useLanguage } from '../contexts/LanguageContext';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const VideoThumbnail = styled(Box, {
+const ImageContainer = styled(Box, { // Renamed from VideoThumbnail for clarity
   shouldComponentUpdate: (props) => true,
 })(({ theme, isVisible = false, ...props }) => ({
   position: 'relative',
   width: '100%',
-  paddingTop: '56.25%',
-  backgroundColor: '#000',
+  paddingTop: '56.25%', // Maintains 16:9 aspect ratio
+  backgroundColor: '#e0e0e0', // Placeholder background for images
   borderRadius: theme.spacing(2),
   overflow: 'hidden',
-  cursor: 'pointer',
+  // cursor: 'pointer', // Removed cursor pointer as it's not a video
   transform: `translateX(${isVisible ? '0' : '-100%'})`,
   opacity: isVisible ? 1 : 0,
   transition: 'transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease-in',
-  '&:hover .playButton': {
-    transform: 'translate(-50%, -50%) scale(1.1)'
-  }
+  // '&:hover .playButton': { // Removed hover effect for play button
+  //   transform: 'translate(-50%, -50%) scale(1.1)'
+  // }
+  marginBottom: theme.spacing(2), // Add some margin between stacked images
 }));
 
-const PlayButton = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '80px',
-  height: '80px',
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  borderRadius: '50%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transition: 'transform 0.3s ease',
-  '& svg': {
-    fontSize: '40px',
-    color: '#4CAF50'
-  }
-}));
+// Removed PlayButton styled component
+// const PlayButton = styled(Box)(({ theme }) => ({
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   width: '80px',
+//   height: '80px',
+//   backgroundColor: 'rgba(255, 255, 255, 0.9)',
+//   borderRadius: '50%',
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   transition: 'transform 0.3s ease',
+//   '& svg': {
+//     fontSize: '40px',
+//     color: '#4CAF50'
+//   }
+// }));
 
 const ContentBox = styled(Box, {
   shouldComponentUpdate: (props) => true,
@@ -51,10 +53,13 @@ const ContentBox = styled(Box, {
   willChange: 'transform, opacity'
 }));
 
+
 const AboutSection = () => {
   const { translations, isRTL } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const sectionRef = useRef(null);
+  const expandedContentRef = useRef(null); // Ref for the expanded content
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,6 +88,23 @@ const AboutSection = () => {
     };
   }, []);
 
+  const toggleReadMore = () => {
+    const currentlyCollapsing = showMore; // True if we are about to collapse
+    setShowMore(!showMore);
+
+    if (!currentlyCollapsing) { // If expanding (showMore will be true AFTER setShowMore)
+      // Scroll to the start of the expanded content after a short delay for rendering
+      setTimeout(() => {
+        expandedContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300); // Adjust delay as needed for Collapse transition
+    } else {
+      // If collapsing, scroll to the top of the sectionRef (the whole About section)
+      setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  };
+
   return (
     <Box ref={sectionRef} sx={{ py: 8, backgroundColor: '#fff' }}>
       <Container>
@@ -92,24 +114,76 @@ const AboutSection = () => {
           gap: 4,
           alignItems: 'center'
         }}>
-          <VideoThumbnail isVisible={isVisible}>
-            <Box
-              component="img"
-              src="/team-photo.jpg"
-              alt="Company Video Thumbnail"
-              sx={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }}
-            />
-            <PlayButton className="playButton">
-              <PlayArrowIcon />
-            </PlayButton>
-          </VideoThumbnail>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {showMore && (
+              <>
+                <ImageContainer isVisible={isVisible} sx={{ mb: 2 }}>
+                  <Box
+                    component="img"
+                    src="/Corporate-Interior-Design-Creating-Spaces-That-Inspire.jpeg" // Placeholder
+                    alt="Additional Image 1"
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </ImageContainer>
+                <ImageContainer isVisible={isVisible} sx={{ mb: 2 }}>
+                  <Box
+                    component="img"
+                    src="/shutterstock_1718050765-min-scaled.jpg" // Placeholder
+                    alt="Additional Image 2"
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </ImageContainer>
+              </>
+            )}
+            <ImageContainer isVisible={isVisible}>
+              <Box
+                component="img"
+                src="/premium_photo-1683120730432-b5ea74bd9047.jpeg"
+                // Existing image, formerly video thumbnail
+                alt="Main Company Image"
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+              {/* Removed PlayButton */}
+            </ImageContainer>
+            {showMore && (
+              <ImageContainer isVisible={isVisible} sx={{ mt: 2 }}>
+                <Box
+                  component="img"
+                  src="/360_F_294692075_lHznNpWRsFYNvyjCt5QNElzU8vddCOao.jpg" // Placeholder
+                  alt="Additional Image 3"
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </ImageContainer>
+            )}
+          </Box>
 
           <ContentBox isVisible={isVisible} sx={{ textAlign: isRTL ? 'right' : 'left' }}>
             <Typography
@@ -120,7 +194,7 @@ const AboutSection = () => {
                 mb: 2
               }}
             >
-              {translations['SERVING OUR VALUED CLIENTS FOR MORE THAN 50+ YEARS']}
+              SERVING OUR VALUED CLIENTS FOR MORE THAN 55+ YEARS
             </Typography>
 
             <Typography
@@ -142,7 +216,7 @@ const AboutSection = () => {
                 fontFamily: '"Playfair Display", serif'
               }}
             >
-              {translations['Your Trusted Partner']}
+              {translations['Your Trusted Partner in Financial Excellence Since 1970']}
             </Typography>
 
             <Typography
@@ -153,50 +227,106 @@ const AboutSection = () => {
                 lineHeight: 1.8
               }}
             >
-              {translations['We are prominent Chartered Accountants in India. We offer services in New Delhi and other major cities in India, like accounts outsourcing, auditing, company formation in India, business taxation, corporate compliance, starting business in India, registration of foreign companies, transfer pricing, tax due diligence, taxation of expatriates etc.']}
+              For over 55 years, S N Verma & Co., a premier Chartered Accountant firm, has been a beacon of trust, expertise, and innovation in the financial and taxation landscape. Established in 1970, we have built an enduring legacy of delivering tailored, high-quality solutions to businesses, individuals, and organizations across diverse sectors. Our commitment to excellence and client-centric approach has made us a preferred partner for navigating the complexities of finance and compliance.
             </Typography>
 
-            <Button
-              variant="contained"
-              onClick={() => {
-                navigate('/company');
-                window.scrollTo(0, 0);
-              }}
-              sx={{
-                backgroundColor: '#4CAF50',
-                color: '#fff',
-                borderRadius: '25px',
-                padding: '10px 30px',
-                position: 'relative',
-                overflow: 'hidden',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  background: 'linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent)',
-                  transform: 'translateX(-100%)',
-                  transition: 'transform 0.6s',
-                },
-                '&:hover': {
-                  backgroundColor: '#45a049',
-                  transform: 'scale(1.05) rotate(1deg)',
-                  boxShadow: '0 6px 20px rgba(76,175,80,0.4)',
-                  '&::before': {
-                    transform: 'translateX(100%)',
-                  }
-                },
-                '&:active': {
-                  transform: 'scale(0.98) rotate(0deg)',
-                  boxShadow: '0 2px 10px rgba(76,175,80,0.3)',
-                }
-              }}
-            >
-              {translations['Explore More About Us']}
-            </Button>
+            {!showMore && (
+              <Button onClick={toggleReadMore} variant="contained" sx={{ mt: 2, mb: 2, backgroundColor: '#4CAF50', '&:hover': { backgroundColor: '#388E3C' } }}>
+                {translations['Read More'] || 'Read More'}
+              </Button>
+            )}
+
+            <Collapse in={showMore} timeout="auto" unmountOnExit>
+              <Box ref={expandedContentRef} sx={{ mt: showMore ? 4 : 0 }}> {/* Added ref here */}
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: '#333',
+                    fontWeight: 600,
+                    mb: 2,
+                    fontFamily: '"Playfair Display", serif'
+                  }}
+                >
+                  Our Expertise
+                </Typography>
+                
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: '#666',
+                    mb: 2,
+                    lineHeight: 1.8
+                  }}
+                >
+                  At S N Verma & Co., we offer a comprehensive suite of services backed by decades of experience and a deep understanding of evolving regulations. Our areas of expertise include:
+                </Typography>
+                
+                <Box component="ul" sx={{ pl: 2, mb: 3, color: '#666' }}>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Direct & Indirect Taxation:</strong> Strategic solutions for tax optimization and compliance.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Audit & Assurance:</strong> Reliable services ensuring financial integrity and transparency.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Business Advisory:</strong> Expert guidance for growth, strategy, and operational efficiency.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Corporate Law & Compliance:</strong> Navigating legal frameworks with precision and care.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>GST & Indirect Taxes:</strong> Comprehensive support for Goods and Services Tax matters.
+                  </Typography>
+                </Box>
+
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: '#333',
+                    fontWeight: 600,
+                    mb: 2,
+                    fontFamily: '"Playfair Display", serif'
+                  }}
+                >
+                  Our Mission
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: '#666',
+                    mb: 2,
+                    lineHeight: 1.8
+                  }}
+                >
+                  Our mission is to empower our clients with insightful financial solutions, fostering their growth and success while upholding the highest standards of integrity and professionalism. We strive to be a catalyst for positive financial transformation, contributing to a robust economic environment.
+                </Typography>
+
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: '#333',
+                    fontWeight: 600,
+                    mb: 2,
+                    fontFamily: '"Playfair Display", serif'
+                  }}
+                >
+                  Our Vision
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: '#666',
+                    mb: 4, 
+                    lineHeight: 1.8
+                  }}
+                >
+                  To be recognized as a leading Chartered Accountant firm, renowned for our expertise, ethical practices, and unwavering commitment to client satisfaction. We aim to continuously innovate and adapt, setting new benchmarks in the financial services industry.
+                </Typography>
+                <Button onClick={toggleReadMore} variant="contained" sx={{ mt: 2, backgroundColor: '#4CAF50', '&:hover': { backgroundColor: '#388E3C' } }}>
+                  {translations['Read Less'] || 'Read Less'}
+                </Button>
+              </Box>
+            </Collapse>
           </ContentBox>
         </Box>
       </Container>
