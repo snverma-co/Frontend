@@ -114,7 +114,7 @@ Late Shri CA S.N. Verma
                 variants={itemVariants}
                 sx={{ color: '#4CAF50', mb: 3, fontStyle: 'italic' }}
               >
-                Chartered Accountant in Delhi
+                Chartered Accountant
               </Typography>
               <Typography
                 variant="body1"
@@ -160,7 +160,7 @@ Late Shri CA S.N. Verma
         </Grid>
       </Container>
 
-      {/* <Container maxWidth="lg">
+      <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center" direction="row-reverse">
           <Grid item xs={12} md={6}>
             <Box
@@ -183,98 +183,12 @@ Late Shri CA S.N. Verma
                 }
               }}
             >
-              <Box
-                component="img"
-                src="/ruchika-bhagat.jpg"
-                alt="Vipin Verma"
-                sx={{
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '10px',
-                  position: 'relative',
-                  zIndex: 1,
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-                }}
-              />
+           
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Box
-              component={motion.div}
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Typography
-                variant="overline"
-                component={motion.div}
-                variants={itemVariants}
-                sx={{ color: '#4CAF50', mb: 2, fontWeight: 600 }}
-              >
-                Senior Partner of S.N. VERMA & CO.
-              </Typography>
-              <Typography
-                variant="h2"
-                component={motion.h1}
-                variants={itemVariants}
-                sx={{
-                  fontWeight: 700,
-                  mb: 3,
-                  fontFamily: '"Playfair Display", serif',
-                  color: '#1a1a1a'
-                }}
-              >
-               Vipin Verma
-              </Typography>
-              <Typography
-                variant="h6"
-                component={motion.div}
-                variants={itemVariants}
-                sx={{ color: '#4CAF50', mb: 3, fontStyle: 'italic' }}
-              >
-                Chartered Accountant in Delhi
-              </Typography>
-              <Typography
-                variant="body1"
-                component={motion.p}
-                variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
-              >
-                Mr. Vipin Verma graduated from the University of Delhi in the year 1996.
-                He became a member of the Institute of Chartered Accountants of India
-                (ICAI) in 1998. He is a strategic adviser in setting up businesses in India for
-                foreign companies and taking care of its compliance.
-              </Typography>
-              <Typography
-                variant="body1"
-                component={motion.p}
-                variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
-              >
-                He specializes in Business Advisory, Tax, Regulatory and Risk Advisory. He is a strategic
-                adviser in setting up businesses in India for foreign companies and taking
-                care of its compliance.
-              </Typography>
-              <Typography
-                variant="body1"
-                component={motion.p}
-                variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
-              >
-                His professionalism and expertise in serving clients to their satisfaction
-                have always been an inspiration for all in the organization. His extensive
-                knowledge and hard work are the pillars of this firm.
-                He is a business professional with more than 26 years of experience
-                helping other businesses grow and be more profitable. He has a strong and
-                genuine passion for business growth and sustainability and has a vast
-                knowledge of working with Indian companies as well as many foreign
-                companies (from the UK, USA, Italy, China, Korea, USA, UK, Japan, Israel,
-                etc).
-              </Typography>
-            </Box>
-          </Grid>
+         
         </Grid>
-      </Container> */}
+      </Container>
       <ContactSection />
     </Box>
   );

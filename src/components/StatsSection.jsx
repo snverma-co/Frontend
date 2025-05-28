@@ -8,11 +8,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 const stats = [
-  { icon: BusinessIcon, value: '28+', label: 'Years of experience' },
+  { icon: BusinessIcon, value: '55+', label: 'Years of experience' },
   { icon: SettingsIcon, value: '100+', label: 'Services We Offers' },
   { icon: PublicIcon, value: '5+', label: 'Countries Operations' },
   { icon: GroupIcon, value: '100+', label: 'Professionals' },
-  { icon: EmojiEmotionsIcon, value: '1500+', label: 'Happy Clients' }
+  { icon: EmojiEmotionsIcon, value: '1000+', label: 'Happy Clients' }
 ];
 
 const StatsSection = () => {
