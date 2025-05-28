@@ -9,10 +9,10 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 const stats = [
   { icon: BusinessIcon, value: '55+', label: 'Years of experience' },
-  { icon: SettingsIcon, value: '100+', label: 'Services We Offers' },
+  { icon: SettingsIcon, value: '50+', label: 'Services We Offers' },
   { icon: PublicIcon, value: '5+', label: 'Countries Operations' },
   { icon: GroupIcon, value: '100+', label: 'Professionals' },
-  { icon: EmojiEmotionsIcon, value: '1000+', label: 'Happy Clients' }
+  { icon: EmojiEmotionsIcon, value: '1200+', label: 'Happy Clients' }
 ];
 
 const StatsSection = () => {

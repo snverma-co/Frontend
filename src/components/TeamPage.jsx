@@ -1,10 +1,23 @@
 import { Box, Container, Typography, Grid } from '@mui/material';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ContactSection } from './ContactSection';
 import { PageTitle } from './PageTitle';
 
 const TeamPage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
   const { translations, isRTL } = useLanguage();
 
   const containerVariants = {
@@ -56,7 +69,7 @@ const TeamPage = () => {
               animate="visible"
               sx={{
                 position: 'relative',
-                marginTop: '-600px',
+                marginTop: '-550px',
                 '&::before': {
                   content: '""',
                   position: 'absolute',
@@ -201,12 +214,14 @@ const TeamPage = () => {
 
 
               </Typography>
+          
             </Box>
           </Grid>
         </Grid>
       </Container>
- 
-      <Container maxWidth="lg" sx={{ mb: 10 }}>
+ <br></br>
+ <br></br>
+      <Container maxWidth="lg" sx={{ mb: 10 }} id="second-member">
         <Grid container spacing={6} alignItems="center">
           <Grid item xs={12} md={6}>
             <Box

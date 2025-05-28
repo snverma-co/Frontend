@@ -1,8 +1,10 @@
 import { Box, Container, Typography, Grid, Card, CardContent, CardMedia } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const TeamSection = () => {
+  const navigate = useNavigate();
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: true
@@ -34,7 +36,7 @@ const TeamSection = () => {
 
   const teamMembers = [
     {
-      name: 'Late Shri CA S.N. VERMA',
+      name: 'Late CA S.N. VERMA',
       role: 'Founder',
       image: '/Founder Image 1.0.jpeg'
     },
@@ -150,6 +152,7 @@ const TeamSection = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/team#second-member')}
             style={{
               padding: '20px 50px',
               fontSize: '1.1rem',

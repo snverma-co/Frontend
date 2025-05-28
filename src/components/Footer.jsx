@@ -139,26 +139,26 @@ const Footer = () => {
               }}>
                 Contact Information
               </Typography>
-              <FooterLink href="#">
+              <FooterLink href="https://g.co/kgs/vgiiemE">
                 <LocationOnIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
                 H-5, 2nd Floor, Above Yes Bank, Model Town 3, New Delhi - 110009
               </FooterLink>
-              <FooterLink href="tel:+911148560000">
+              <FooterLink href="tel:+919811156389">
                 <PhoneIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
-                IND: +91-11-48560000
+                IND: +91 9811156389
               </FooterLink>
-              <FooterLink href="tel:+16468447244">
+              <FooterLink href="tel:+919625202677">
                 <PhoneIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
-                USA: +1-646-844-7244
+                IND: +91 9625202677
               </FooterLink>
-              <FooterLink href="tel:+442070480613">
+              {/* <FooterLink href="tel:+442070480613">
                 <PhoneIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
-                UK: +44-2070480613
+               
               </FooterLink>
               <FooterLink href="tel:+78001009689">
                 <PhoneIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
-                Russia: +7(800)100-96-89
-              </FooterLink>
+              
+              </FooterLink> */}
               <FooterLink href="mailto:info@snvcas.com">
                 <EmailIcon sx={{ mr: 1, fontSize: '1.2rem' }} />
                 info@snvcas.com
