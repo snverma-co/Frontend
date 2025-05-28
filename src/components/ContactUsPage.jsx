@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Breadcrumbs, Link, Grid } from '@mui/material';
+import { Box, Container, Typography, Breadcrumbs, Link, Grid, TextField, Button, Paper, Alert } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { ContactSection } from './ContactSection';
 import FindAccountantSection from './FindAccountantSection';
@@ -145,10 +145,10 @@ const ContactUsPage = () => {
             <Typography color="#fff">Contact Us</Typography>
           </Breadcrumbs>
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-  <IconCircle component="a" href="tel:+1234567890">
+  <IconCircle component="a" href="tel:+919811156389">
     <PhoneIcon />
   </IconCircle>
-  <IconCircle component="a" href="mailto:example@example.com">
+  <IconCircle component="a" href="mailto:info@snvcas.com">
     <EmailIcon />
   </IconCircle>
   <IconCircle
@@ -218,9 +218,11 @@ const ContactUsPage = () => {
                     <LocationOnIcon className="contact-icon" sx={{ fontSize: '3rem', color: '#0061ff' }} />
                     <Box>
                       <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>Our Location</Typography>
-                      <Typography variant="body1" sx={{ color: '#666' }}>
-                        H-5, 2nd Floor, Above Yes Bank, Model Town - 3, Delhi - 110009
-                      </Typography>
+                      <Link href="https://www.google.com/maps/search/?api=1&query=H-5,+2nd+Floor,+Above+Yes+Bank,+Model+Town+-+3,+Delhi+-+110009" target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                        <Typography variant="body1" sx={{ color: '#666' }}> 
+                          H-5, 2nd Floor, Above Yes Bank, Model Town - 3, Delhi - 110009 
+                        </Typography>
+                      </Link>
                     </Box>
                   </Box>
 
@@ -228,15 +230,17 @@ const ContactUsPage = () => {
                     <PhoneIcon className="contact-icon" sx={{ fontSize: '3rem', color: '#0061ff' }} />
                     <Box>
                       <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>Phone Numbers</Typography>
-                      <Typography variant="body1" sx={{ color: '#666', mb: 1 }}>
-                        IND: +91-11-48560000
-                      </Typography>
-                      <Typography variant="body1" sx={{ color: '#666', mb: 1 }}>
-                        USA: +1-646-844-7244
-                      </Typography>
-                      <Typography variant="body1" sx={{ color: '#666' }}>
-                        UK: +44-2070480613
-                      </Typography>
+                      <Link href="tel:+919811156389" sx={{ textDecoration: 'none' }}>
+                        <Typography variant="body1" sx={{ color: '#666', mb: 1 }} > 
+                          IND: +91 9811156389 
+                        </Typography>
+                      </Link>
+                      <Link href="tel:+919625202677" sx={{ textDecoration: 'none' }}>
+                        <Typography variant="body1" sx={{ color: '#666', mb: 1 }} > 
+                          IND: +91 9625202677 
+                        </Typography>
+                      </Link>
+                     
                     </Box>
                   </Box>
 
@@ -244,9 +248,11 @@ const ContactUsPage = () => {
                     <EmailIcon className="contact-icon" sx={{ fontSize: '3rem', color: '#0061ff' }} />
                     <Box>
                       <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>Email Address</Typography>
-                      <Typography variant="body1" sx={{ color: '#666' }}>
-                        info@snvcas.com
-                      </Typography>
+                      <Link href="mailto:info@snvcas.com" sx={{ textDecoration: 'none' }}>
+                        <Typography variant="body1" sx={{ color: '#666' }}> 
+                          info@snvcas.com 
+                        </Typography>
+                      </Link>
                     </Box>
                   </Box>
                 </Box>
