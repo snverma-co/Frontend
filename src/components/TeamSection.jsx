@@ -34,14 +34,14 @@ const TeamSection = () => {
 
   const teamMembers = [
     {
-      name: 'S N VERMA',
+      name: 'Late Shri CA S.N. VERMA',
       role: 'Founder',
-      image: '/team-photo.jpg'
+      image: '/Founder Image 1.0.jpeg'
     },
     {
-      name: 'VIPIN VERMA',
-      role: 'Managing Director',
-      image: '/team-photo.jpg'
+      name: 'CA VIPIN VERMA',
+      role: 'Senior Partner',
+      image: '/senior partner img.jpeg'
     }
   ];
 

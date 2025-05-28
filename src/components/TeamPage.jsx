@@ -48,7 +48,7 @@ const TeamPage = () => {
 
       <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center" direction="row-reverse">
-          <Grid item xs={12} md={6}>
+          <Grid item xs={40} md={6}>
             <Box
               component={motion.div}
               variants={containerVariants}
@@ -56,10 +56,11 @@ const TeamPage = () => {
               animate="visible"
               sx={{
                 position: 'relative',
+                marginTop: '-600px',
                 '&::before': {
                   content: '""',
                   position: 'absolute',
-                  top: -20,
+                  top: -30,
                   right: -20,
                   left: 20,
                   bottom: 20,
@@ -118,7 +119,7 @@ const TeamPage = () => {
                 variants={itemVariants}
                 sx={{ color: '#4CAF50', mb: 3, fontStyle: 'italic' }}
               >
-                Chartered Accountant in Delhi
+                Chartered Accountant
               </Typography>
               <Typography
                 variant="body1"
@@ -181,14 +182,9 @@ const TeamPage = () => {
                 variants={itemVariants}
                 sx={{ color: '#666', lineHeight: 1.8 }}
               >
-               <br></br>
-              <Typography
-                variant="body1"
-                component={motion.p}
-                variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
-              >
-              With a legacy built on trust, innovation, and client-centric service, CA Vipin Verma continues to lead S N Verma & Co. with the same passion and vision that have defined his remarkable career.
+                  With a legacy built on trust, innovation, and client-centric service, CA Vipin Verma continues to lead S N Verma & Co. with the same passion and vision that have defined his remarkable career.
+        
+            
 
 
 
@@ -197,7 +193,7 @@ const TeamPage = () => {
 
 
 
-              </Typography>
+   
 
 
 
@@ -209,8 +205,153 @@ const TeamPage = () => {
           </Grid>
         </Grid>
       </Container>
-      
-      {/* Add more team members here as needed */}
+ 
+      <Container maxWidth="lg" sx={{ mb: 10 }}>
+        <Grid container spacing={6} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Box
+              component={motion.div}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              sx={{
+                position: 'relative',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: -20,
+                  left: -20,
+                  right: 20,
+                  bottom: 20,
+                  background: 'linear-gradient(45deg, #4CAF50 30%, #45a049 90%)',
+                  borderRadius: '10px',
+                  zIndex: 0
+                }
+              }}
+            >
+              <Box
+                component="img"
+                src="/JAHNAVI.jpeg"
+                alt="S.N. Verma"
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  borderRadius: '10px',
+                  position: 'relative',
+                  zIndex: 1, 
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
+                }}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              component={motion.div}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <Typography
+                variant="overline"
+                component={motion.div}
+                variants={itemVariants}
+                sx={{ color: '#4CAF50', mb: 2, fontWeight: 600 }}
+              >
+               
+              </Typography>
+              <Typography
+  variant="h2"
+  component={motion.h1}
+  variants={itemVariants}
+  sx={{
+    fontWeight: 700,
+    mb: 3,
+    fontFamily: '"Playfair Display", serif',
+    color: '#1a1a1a',
+    whiteSpace: 'nowrap',     // Prevent line break
+    // overflow: 'hidden',       // Optional: hides overflow text
+    textOverflow: 'ellipsis'  // Optional: adds "..." if text overflows
+  }}
+>
+CA Jahnavi Verma
+</Typography>
+
+              <Typography
+                variant="h6"
+                component={motion.div}
+                variants={itemVariants}
+                sx={{ color: '#4CAF50', mb: 3, fontStyle: 'italic' }}
+              >
+                Chartered Accountant
+              </Typography>
+              <Typography
+                variant="body1"
+                component={motion.p}
+                variants={itemVariants}
+                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+              >
+              CA Jahnavi Verma, a third-generation Chartered Accountant, embodies the legacy of excellence at S N Verma & Co. with her youthful dynamism and visionary approach. Graduating from the University of Delhi in 2023, she joined the firm as an articled assistant in 2021 and qualified as a Chartered Accountant in 2024, marking the continuation of the firm’s tradition of professional brilliance.
+              </Typography>
+              <Typography
+                variant="body1"
+                component={motion.p}
+                variants={itemVariants}
+                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+              >
+              A consistent academic topper, CA Jahnavi Verma brings a blend of intellectual rigor and innovative thinking to the firm. Her expertise in business advisory and tax planning has introduced fresh perspectives, ensuring clients receive cutting-edge solutions tailored to their needs. With a forward-looking vision, she is committed to elevating S N Verma & Co. to new heights, expanding its professional horizons while upholding its core values of trust and excellence.
+
+
+
+
+              </Typography>
+              <Typography
+                variant="body1"
+                component={motion.p}
+                variants={itemVariants}
+                sx={{ color: '#666', lineHeight: 1.8 }}
+              >
+             As a young and dynamic leader, CA Jahnavi Verma is poised to carry forward the firm’s 55-year legacy with passion, innovation, and an unwavering commitment to client success. Her strategic insights and dedication make her a vital force in shaping the future of S N Verma & Co.
+
+
+
+
+              </Typography>
+              <br></br>
+            
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+
+      <Container maxWidth="lg">
+        <Grid container spacing={6} alignItems="center" direction="row-reverse">
+          <Grid item xs={12} md={6}>
+            <Box
+              component={motion.div}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              sx={{
+                position: 'relative',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: -20,
+                  right: -20,
+                  left: 20,
+                  bottom: 20,
+                  background: 'linear-gradient(45deg, #4CAF50 30%, #45a049 90%)',
+                  borderRadius: '10px',
+                  zIndex: 0
+                }
+              }}
+            >
+           
+            </Box>
+          </Grid>
+         
+        </Grid>
+      </Container>
       
       <ContactSection />
     </Box>

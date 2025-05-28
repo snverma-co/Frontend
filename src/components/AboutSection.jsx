@@ -288,8 +288,25 @@ const AboutSection = () => {
                     fontFamily: '"Playfair Display", serif'
                   }}
                 >
-                  Our Mission
+                 Why Choose S.N. Verma & Co.?
                 </Typography>
+                <Box component="ul" sx={{ pl: 2, mb: 3, color: '#666' }}>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Legacy of Trust:</strong> Over five decades of proven excellence in financial services.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Expert Team:</strong> A dedicated group of seasoned professionals with in-depth knowledge across domains.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Strong Network:</strong> Collaborations with top professionals in legal, financial, and regulatory fields to provide holistic solutions.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Client-Centric Approach:</strong> Tailored strategies to meet your unique needs, ensuring peace of mind and sustainable growth.
+                  </Typography>
+                  <Typography component="li" variant="body1" sx={{ mb: 1 }}>
+                    <strong>Innovative Solutions:</strong> Leveraging cutting-edge tools and insights to stay ahead in a dynamic financial world.
+                  </Typography>
+                </Box>
                 <Typography
                   variant="body1"
                   sx={{
@@ -298,29 +315,39 @@ const AboutSection = () => {
                     lineHeight: 1.8
                   }}
                 >
-                  Our mission is to empower our clients with insightful financial solutions, fostering their growth and success while upholding the highest standards of integrity and professionalism. We strive to be a catalyst for positive financial transformation, contributing to a robust economic environment.
+                 Whether you’re a startup seeking robust financial foundations, an established business navigating complex tax regimes, or an individual planning for wealth creation, S N Verma & Co. is your trusted partner. We combine experience, precision, and innovation to empower your financial journey.
                 </Typography>
 
                 <Typography
-                  variant="h6"
+                  variant="body1"
                   sx={{
-                    color: '#333',
-                    fontWeight: 600,
+                    color: '#666',
                     mb: 2,
-                    fontFamily: '"Playfair Display", serif'
+                    lineHeight: 1.8
                   }}
                 >
-                  Our Vision
+                 Let’s Build Your Success Together
+                </Typography>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: '#666',
+                    mb: 2,
+                    lineHeight: 1.8
+                  }}
+                >
+                 <strong>S.N. Verma & Co.</strong>
                 </Typography>
                 <Typography
                   variant="body1"
                   sx={{
                     color: '#666',
-                    mb: 4, 
+                    mb: 2,
                     lineHeight: 1.8
                   }}
                 >
-                  To be recognized as a leading Chartered Accountant firm, renowned for our expertise, ethical practices, and unwavering commitment to client satisfaction. We aim to continuously innovate and adapt, setting new benchmarks in the financial services industry.
+                <strong> – where expertise meets trust, and your success is our priority.</strong>
                 </Typography>
                 <Button onClick={toggleReadMore} variant="contained" sx={{ mt: 2, backgroundColor: '#4CAF50', '&:hover': { backgroundColor: '#388E3C' } }}>
                   {translations['Read Less'] || 'Read Less'}
