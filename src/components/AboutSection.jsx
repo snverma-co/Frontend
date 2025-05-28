@@ -220,15 +220,16 @@ const AboutSection = () => {
             </Typography>
 
             <Typography
-              variant="body1"
-              sx={{
-                color: '#666',
-                mb: 4,
-                lineHeight: 1.8
-              }}
-            >
-              For over 55 years, S N Verma & Co., a premier Chartered Accountant firm, has been a beacon of trust, expertise, and innovation in the financial and taxation landscape. Established in 1970, we have built an enduring legacy of delivering tailored, high-quality solutions to businesses, individuals, and organizations across diverse sectors. Our commitment to excellence and client-centric approach has made us a preferred partner for navigating the complexities of finance and compliance.
-            </Typography>
+  variant="body1"
+  sx={{
+    color: '#666',
+    mb: 4,
+    lineHeight: 1.8,
+    textAlign: 'justify' // Added this line to justify text
+  }}
+>
+  For over 55 years, S N Verma & Co., a premier Chartered Accountant firm, has been a beacon of trust, expertise, and innovation in the financial and taxation landscape. Established in 1970, we have built an enduring legacy of delivering tailored, high-quality solutions to businesses, individuals, and organizations across diverse sectors. Our commitment to excellence and client-centric approach has made us a preferred partner for navigating the complexities of finance and compliance.
+</Typography>
 
             {!showMore && (
               <Button onClick={toggleReadMore} variant="contained" sx={{ mt: 2, mb: 2, backgroundColor: '#4CAF50', '&:hover': { backgroundColor: '#388E3C' } }}>
@@ -255,13 +256,14 @@ const AboutSection = () => {
                   sx={{
                     color: '#666',
                     mb: 2,
+                    textAlign: 'justify', // Added this line to justify text
                     lineHeight: 1.8
                   }}
                 >
                   At S N Verma & Co., we offer a comprehensive suite of services backed by decades of experience and a deep understanding of evolving regulations. Our areas of expertise include:
                 </Typography>
                 
-                <Box component="ul" sx={{ pl: 2, mb: 3, color: '#666' }}>
+                <Box component="ul" sx={{ pl: 2, mb: 3, textAlign: 'justify',  color: '#666' }}>
                   <Typography component="li" variant="body1" sx={{ mb: 1 }}>
                     <strong>Direct & Indirect Taxation:</strong> Strategic solutions for tax optimization and compliance.
                   </Typography>
@@ -290,7 +292,7 @@ const AboutSection = () => {
                 >
                  Why Choose S.N. Verma & Co.?
                 </Typography>
-                <Box component="ul" sx={{ pl: 2, mb: 3, color: '#666' }}>
+                <Box component="ul" sx={{ pl: 2, mb: 3, textAlign: 'justify', color: '#666' }}>
                   <Typography component="li" variant="body1" sx={{ mb: 1 }}>
                     <strong>Legacy of Trust:</strong> Over five decades of proven excellence in financial services.
                   </Typography>
@@ -312,6 +314,7 @@ const AboutSection = () => {
                   sx={{
                     color: '#666',
                     mb: 2,
+                    textAlign: 'justify',
                     lineHeight: 1.8
                   }}
                 >

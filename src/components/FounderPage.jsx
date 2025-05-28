@@ -120,7 +120,7 @@ Late Shri CA S.N. Verma
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+                sx={{ mb: 3, color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
                The legacy of S N Verma & Co. was built on the vision, dedication, and unparalleled expertise of our founder, Late Shri S. N. Verma. In 1970, with a commitment to excellence and a passion for serving clients, he laid the foundation of our firm, which has grown into a trusted name in the financial and taxation landscape over the past 55 years.
               </Typography>
@@ -128,7 +128,7 @@ Late Shri CA S.N. Verma
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+                sx={{ mb: 3, color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
               Shri S. N. Verma was a true visionary, renowned for his profound knowledge in auditing, taxation, financial planning, and business growth strategies. His ability to navigate complex financial challenges with precision and foresight set a benchmark for excellence. A dedicated professional, he took personal care to resolve every client’s matter, earning their trust and building enduring relationships.
 
@@ -138,7 +138,7 @@ Late Shri CA S.N. Verma
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
+                sx={{ color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
               A true karmayogi, Shri Verma’s tireless work ethic and commitment to integrity shaped the firm’s ethos. Under his leadership, S N Verma & Co. grew into a vast empire of expertise, delivering innovative solutions and fostering sustainable growth for clients across diverse sectors.
 
@@ -149,7 +149,7 @@ Late Shri CA S.N. Verma
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+                sx={{ mb: 3, color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
               His legacy continues to inspire us every day. At S N Verma & Co., we honor his vision by walking in his footsteps, upholding the values of trust, excellence, and client-first service that he instilled. Shri S. N. Verma’s actions and principles remain the guiding light for our firm, driving us to empower our clients and achieve new heights of success.
 

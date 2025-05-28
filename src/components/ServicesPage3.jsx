@@ -125,10 +125,10 @@ const ServicesPage = () => {
           {tabValue === 0 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Globalization and liberalization have impacted Corporate India tremendously, over the last 2 decades the activities of the corporate citizen have become more and more complex. Corporate India has undertaken cross border transactions involving foreign investments, formed trade councils, etc. leaving no stone unturned to make its presence felt globally. This dynamic environment, in which a corporate entity functions, is entwined in a complicated legal and regulatory labyrinth requiring compliances at every step.
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 The SNV team helps its clients focus on their business while, it focuses on ensuring compliances and offers advise related services wherever needed.
 
 </Typography>
@@ -168,20 +168,20 @@ const ServicesPage = () => {
           {tabValue === 1 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Corporate India is governed by the Companies Act, 1956 / Companies Act, 2013 and other allied laws. The business environment has progressed with leaps and bounds as compared to the legislation governing these businesses. The Companies Act, 2013 has brought in many new challenges and compliances.
 
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 The changing environment has also brought Compliance to the forefront in India in recent times, with constant amendment to the statutes and the strictures of law, the adherence to the Companies Law, has been made more stringent.
 
 </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 In the face of these continuous changes, we at S N Verma & Co. undertake advisory and compliance related services under the Companies Act, 2013 and the new intended legislation including documentation and registrations required with the Registrar of Companies. Our services in Corporate Law Matters are customized in accordance to client's specific requirements. We assist the client's from the very initial processes of company incorporation to company maintenance process, regulatory compliance, XBRL services, etc.
 
 </Typography>
 
-<Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+<Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
 We also provide specialized services in conversion of Companies into LLP.
 
 
@@ -221,15 +221,15 @@ We also provide specialized services in conversion of Companies into LLP.
           {tabValue === 2 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 A Limited Liability Partnership or LLP is a new type of legal entity, which has been introduced in India in the year 2008; this entity has features of both a company and a partnership firm. It is an alternative corporate business vehicle that would give the benefits of limited liability but would allow its members the flexibility of organizing their internal structure as a partnership based on an agreement amongst its partners.
 
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 LLP Act, 2008 permits partnerships and companies to convert into LLPs.
 
 </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Our services in Limited Liability Partnerships (LLP) are customized in accordance to client's specific requirements. LLP being a new legislation in India, we assist the client's from the very initial processes of LLP incorporation including drafting and vetting of LLP Agreements, compliance related to conversion of company or partnership firm into limited liability partnership firms, audits and taxation of LLPs and other routine compliances.
 
 </Typography>
@@ -268,16 +268,16 @@ We also provide specialized services in conversion of Companies into LLP.
   {tabValue === 3 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 The Foreign Exchange Management Act (FEMA) is the legislation that governs the foreign currency in India with the objective of facilitating external trade, balance of payments and promoting the orderly development and maintenance of the foreign exchange market in India.
 
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 India’s economic policies are designed to attract significant capital inflows into India on a sustained basis and to encourage technology collaborations between Indian concerns and foreign entities. Policy initiatives taken over the last decade by successive finance ministers of India have resulted in inflows of foreign investment in diverse sectors of the economy.
 
 </Typography>
 
-<Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+<Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
 We provide services to investors to facilitate their investments into India, including advising on investment strategy, consultation for doing business outside India, obtaining permissions for setting up office including assistance for Joint Ventures (JV) and handling other routine compliances including obtaining permissions from RBI under FEMA.
 
 
@@ -318,7 +318,7 @@ We provide services to investors to facilitate their investments into India, inc
  {tabValue === 4 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Developing and owning a brand is a tedious process. Businesses have to see that their brands are duly registered so that there does not arise any infringement. We assist our clients in obtaining registration under Trade Marks Laws.
 
 </Typography>
@@ -359,9 +359,9 @@ We provide services to investors to facilitate their investments into India, inc
 {tabValue === 5 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 A VAT Audit in India involves an expression of the auditors’ opinion on certain financial details, given by a dealer registered with VAT authorities to comply with the provisions of the VAT Laws. As VAT is a state subject, the VAT audit compliance varies from state to state.               </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Our dedicated team of trained professionals conducts the VAT audit keeping in mind the latest judicial pronouncements, amendments, circulars and notifications as applicable to a dealer registered under relevant VAT authorities.
 
 </Typography>
@@ -402,12 +402,12 @@ We provide services to investors to facilitate their investments into India, inc
 {tabValue === 6 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 In today’s rapidly changing organization’s structures, growing statutory compliances and complex business environment management assurance is very critical for strong corporate governance, risk management, effective internal control and efficient operations.
                 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 We assist in effectively managing business risks by ensuring Flawless Processes, Effective Controls and complete compliance to Internal and External Policies, Guidelines and Regulations. These services are tailored to meet individual needs and provide effective support to management in meeting the challenges and opportunities presented by today’s complex business environment.                </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Our services enable our clients to effectively coordinate their growth with the quality and the operational challenges faced by them.
 
 </Typography>
@@ -446,11 +446,11 @@ We provide services to investors to facilitate their investments into India, inc
 {tabValue === 7 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Risk management is a big concern for both audit committees and senior management in corporate internally. Companies today need experienced internal auditors to address concerns in risk management, enhance internal controls, execute business plans and meet governance responsibilities.                </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Apart from the statutory compliance, internal audits provide a number of important services to company management. These include detecting and preventing fraud, testing internal control, and monitoring compliance with company policy and government regulation. Smaller companies may require these functions even more than large companies. A small business simply cannot afford employee fraud, waste, or a government fine. Establishing an internal audit function provides a vital step in the growth of a small business.    </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Our experienced audit professionals take a risk-based approach to internal audit with a view to help clients improve performance and operating efficiency. We go beyond traditional fundamentals and add tangible value. We work to build internal audit into a strategic and productive tool in today's corporate governance environment.
 
 
@@ -490,11 +490,11 @@ We provide services to investors to facilitate their investments into India, inc
 {tabValue === 8 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 The present day complex business and regulation environment has made it essential that a comprehensive and critical review of the internal controls and policies of an organization is done to ensure that leakages in management and statutory compliances are plugged.          </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 A review of the internal controls and compliances is a systematic independent appraisal activity done for an organization to review whether these are commensurate with the nature and size of the organization. It entails, a review of the entire operations, evaluating the actual performances in comparison with predetermined targets. This identifies the cause of variances and helps to formulate corrective actions, providing a comprehensive insight into the functioning and effectiveness of processes to ensure compliance to regulatory requirements.   </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Compliance audit is a critical component of the internal control process for any business and a prerequisite for assessing compliance with corporate performance standards. Whether it is compliance with internal corporate procedures or external regulatory requirements, effective internal auditing is the cornerstone of compliance management and continuous improvement. Effective compliance management protects and enhance clients’ brand and reputation by helping them avoid the adverse affects of non-compliance such as: litigation, fines, prosecution, bad PR, and the risks, costs, liability, and damage to brand reputation associated with non-compliance.
 
 
@@ -545,15 +545,15 @@ As part of Compliance Audit, we undertake a complete review of all tax and statu
 {tabValue === 9 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Today the world is moving towards better systems and processes, to ensure an organization is strong enough to weather the myriad changes of a dynamic environment. The global shrinkage of the world has made businesses’ rethink their strategy with a fresh perspective not only on compliances with domestic laws but also with global procedures. A review of processes and systems becomes indispensable in such an environment.
 
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 We conduct a review of systems and process within organizations to critically review that the operations at various levels are flawlessly followed, ensuring effective controls and operating efficiency. We constantly re-engineer our review procedures to meet the increasing expectations of stakeholders and management by navigating the new risk landscape, providing deeper insights and foresight enabling them to cut through the clutter.
 
 </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 The results are reviewed and the key findings along with recommendations are presented to the management of organizations, advising them off continuous improvement strategies.
 
 
@@ -594,12 +594,12 @@ As part of Compliance Audit, we undertake a complete review of all tax and statu
 {tabValue === 10 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 The Socio Assurance services offered by Lunawat aims to supplement the conventional audit of government departments and agencies, NGOs, corporate entities etc. to understand and improve their performance as perceived by the stakeholders in the social context.
 
 
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Social assurance is a way to document and hold an entity accountable for its social and ethical business practices. It is a process of understanding, measuring, reporting, and most importantly improving the efficiency and effectiveness of the local governance. It is also a way to assure the donor agencies granting the aid of the achievement of the social cause within established budgets and processes.
                 </Typography>
 
@@ -639,17 +639,17 @@ As part of Compliance Audit, we undertake a complete review of all tax and statu
 {tabValue === 11 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 Social Audits is a process of evaluation and reporting which is similar, in some respects to a financial audit but focuses on social performance rather than financial performance. It is a tool for evaluating how satisfactorily an organization has discharged its social responsibility. Social Audit is a reform tool aimed at strengthening accountability and transparency in the implementation of projects and policies. It is a method for organization to plan the internal and external consequences of the organization’s social and commercial operations. Social audits are further gaining importance amongst stakeholders due to compliance to be made by the corporate of their corporate social responsibility under the Indian Laws.
 
 
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 We conduct our audit in a way so as to fulfill both, financial reporting and social responsibility. Our audit not only focuses on financial records and their scrutiny but it is much more holistic which involves measuring, understanding, and improving the social performance of the organization as a whole. We ensure transparency, reduce leakages, force proper spending of funds, generate trust and peace, and create demand-led improvement in services.
 
 
 </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 We understand and co-relate the concept of corporate social responsibility with our audit engagement to establish a basis of credibility, confidence, and trust in the eyes of the stakeholders, management, and society.
 
 
@@ -690,26 +690,26 @@ As part of Compliance Audit, we undertake a complete review of all tax and statu
 {tabValue === 12 && (
             <>
               <Box sx={{ maxWidth: '800px' }}>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 India is a developing nation, plagued with problems of illiteracy, malnutrition, low human health index, women’s empowerment, slow infrastructure development, etc. Organizations like the World Bank, United Nations, etc. in conjunction with the developed countries of the world give aid to India for such projects ensuring inclusive and sustainable growth. Indian Government also gives aids to various organisations and NGOs for eradication of such problems.
 
 
 
 </Typography>
-                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ mb: 3, color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 The donor often requires the agency receiving aid to be responsible for the achievement of the social cause within established budgets and processes for their use. An evaluation of the performance of the organization against these is made mandatory.
 
 
 
 </Typography>
-                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
                 We examine and review the standards set not only in terms of the achievability of the monetary targets but also in terms of the actual deliverables of the entity in terms of social cause achieved. Thus the audit conducted by us goes beyond the conventional audit, which merely involves a scrutiny of financial transactions and books of accounts.
 
 
 
 
 </Typography>
-<Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'left' }}>
+<Typography variant="body1" sx={{ color: '#666', lineHeight: 1.8, textAlign: 'justify' }}>
 The firm’s fundamental objective in undertaking such audits is to contribute to the inclusive growth envisaged by the Donor Agencies for a better India.
 
 

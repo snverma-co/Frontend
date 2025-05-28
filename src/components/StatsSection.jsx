@@ -135,7 +135,7 @@ const StatsSection = () => {
             }
           }}
         >
-          {translations['Firm Description']}
+       S N VERMA & Co is a Chartered Accounting Firm committed to serving our clients as a Trusted Advisor.
         </Typography>
         <br/>
         <br/>
