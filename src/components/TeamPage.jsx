@@ -138,7 +138,7 @@ const TeamPage = () => {
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+                sx={{ mb: 3, color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
               CA Vipin Verma, a dynamic and visionary leader, is the driving force behind the continued success of S N Verma & Co. With over 30 years of exemplary experience in taxation, auditing, and business advisory, he has elevated the firm to new heights, blending tradition with innovation to deliver unparalleled client satisfaction.
               </Typography>
@@ -146,7 +146,7 @@ const TeamPage = () => {
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+                sx={{ mb: 3, color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
                A distinguished alumnus of the University of Delhi (1995), CA Vipin Verma earned his membership with the Institute of Chartered Accountants of India (ICAI) in 1996. A rank holder in the CA examinations and a consistent academic topper, his intellectual prowess laid a strong foundation for his illustrious career. Joining S N Verma & Co. in 1992 as an articled assistant, he swiftly rose to the role of partner in 1997, bringing fresh perspectives and transformative systems to the firm.
               </Typography>
@@ -154,7 +154,7 @@ const TeamPage = () => {
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
+                sx={{ color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
                Known for his forward-thinking approach, CA Vipin Verma introduced cutting-edge systems that were a decade ahead of their time, revolutionizing the firm’s operations and setting new industry standards. His passion for excellence and innovation has been a cornerstone of the firm’s growth.
 
@@ -165,7 +165,7 @@ const TeamPage = () => {
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
+                sx={{ color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
                A prominent figure in the professional community, CA Vipin Verma’s leadership extends beyond the firm. In 2007, at a remarkably young age, he was elected Chairman of NICASA and Treasurer of the Northern India Regional Council (NIRC) of ICAI, showcasing his dynamic leadership. As the founder-convenor of the Shalimar Bagh CPE Study Circle of NIRC of ICAI since 2003, he has spearheaded monthly seminars for over 22 years, fostering knowledge-sharing and professional development among CA peers. His active involvement in prestigious associations, including the ITAT Bar Association and STBA Bar Association of Delhi, underscores his influence in the field.
 
@@ -178,7 +178,7 @@ const TeamPage = () => {
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
+                sx={{ color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
               Specializing in taxation, audit matters, and business advisory, CA Vipin Verma is a trusted strategic advisor for businesses establishing operations in India and abroad. His extensive knowledge, sharp acumen, and relentless work ethic make him a pillar of S N Verma & Co., ensuring clients receive tailored, result-oriented solutions.
 
@@ -193,7 +193,7 @@ const TeamPage = () => {
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
+                sx={{ color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
                   With a legacy built on trust, innovation, and client-centric service, CA Vipin Verma continues to lead S N Verma & Co. with the same passion and vision that have defined his remarkable career.
         
@@ -303,7 +303,7 @@ CA Jahnavi Verma
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+                sx={{ mb: 3, color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
               CA Jahnavi Verma, a third-generation Chartered Accountant, embodies the legacy of excellence at S N Verma & Co. with her youthful dynamism and visionary approach. Graduating from the University of Delhi in 2023, she joined the firm as an articled assistant in 2021 and qualified as a Chartered Accountant in 2024, marking the continuation of the firm’s tradition of professional brilliance.
               </Typography>
@@ -311,7 +311,7 @@ CA Jahnavi Verma
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ mb: 3, color: '#666', lineHeight: 1.8 }}
+                sx={{ mb: 3, color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
               A consistent academic topper, CA Jahnavi Verma brings a blend of intellectual rigor and innovative thinking to the firm. Her expertise in business advisory and tax planning has introduced fresh perspectives, ensuring clients receive cutting-edge solutions tailored to their needs. With a forward-looking vision, she is committed to elevating S N Verma & Co. to new heights, expanding its professional horizons while upholding its core values of trust and excellence.
 
@@ -323,7 +323,7 @@ CA Jahnavi Verma
                 variant="body1"
                 component={motion.p}
                 variants={itemVariants}
-                sx={{ color: '#666', lineHeight: 1.8 }}
+                sx={{ color: '#666', textAlign: 'justify', lineHeight: 1.8 }}
               >
              As a young and dynamic leader, CA Jahnavi Verma is poised to carry forward the firm’s 55-year legacy with passion, innovation, and an unwavering commitment to client success. Her strategic insights and dedication make her a vital force in shaping the future of S N Verma & Co.
 
