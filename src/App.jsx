@@ -80,9 +80,8 @@ function App() {
             <Route path="/business-setup-india" element={<ServicePageWrapper component={ServicesPage7} title="Business Setup in India" />} />
             <Route path="/transaction-advisory" element={<ServicePageWrapper component={ServicesPage4} title="Transaction Advisory Services" />} />
             <Route path="/business-consultancy" element={<ServicePageWrapper component={ServicesPage8} title="Business Consultancy Services" />} />
-            <Route path="/gst-calculator" element={<Box><PageTitle title="GST Calculator" description="Free GST Calculator tool by S N Verma & Co. Calculate GST rates, input tax credit, and total tax liability easily." /><GSTCalculator /></Box>} />
-            <Route path="/income-tax-calculator" element={<Box><PageTitle title="Income Tax Calculator" description="Calculate your income tax liability with our free Income Tax Calculator. Get accurate tax calculations as per latest Indian tax laws." /><IncomeTaxCalculator /></Box>} />
-            <Route path="/tds-calculator" element={<Box><PageTitle title="TDS Calculator" description="Calculate TDS (Tax Deducted at Source) accurately with our free TDS Calculator. Know your tax deductions as per Income Tax Act." /><TDSCalculator /></Box>} />
+          
+           
             <Route path="/contact" element={<Box><PageTitle title="Contact Us" description="Contact S N Verma & Co., your trusted CA firm in Delhi. Get expert consultation for all your accounting, tax, and business advisory needs." /><ContactUsPage /></Box>} />
             <Route path="/company" element={<Box><PageTitle title="About Our Company" description="Learn about S N Verma & Co., a leading chartered accountancy firm in Delhi with years of expertise in providing comprehensive financial services." /><FounderPage /></Box>} />
             <Route path="/team" element={<TeamPage />} />
