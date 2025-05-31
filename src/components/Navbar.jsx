@@ -68,50 +68,58 @@ const MenuPopper = styled(Popper)(({ theme }) => ({
 }));
 
 const MenuItem = styled(MuiMenuItem)(({ theme, issubmenu }) => ({
-  padding: issubmenu ? '6px 12px 6px 24px' : '6px 16px',
-  color: '#333',
-  fontSize: '0.8rem',
+  padding: issubmenu ? '6px 12px 6px 26px' : '10px 16px',
+  color: '#2e2e2e',
+  fontSize: issubmenu ? '0.78rem' : '0.85rem',
   transition: 'all 0.2s ease',
   borderLeft: '2px solid transparent',
   whiteSpace: 'normal',
   wordWrap: 'break-word',
-  lineHeight: 1.3,
+  lineHeight: 1.4,
   position: 'relative',
+  backgroundColor: 'transparent',
   '&:before': issubmenu ? {
     content: '"•"',
     position: 'absolute',
-    left: '10px',
+    left: '12px',
+    top: '50%',
+    transform: 'translateY(-50%)',
     color: '#8BC34A',
     fontSize: '0.7rem'
   } : {},
   '&:hover': {
-    color: '#8BC34A',
+    color: '#689f38',
     borderLeft: '2px solid #8BC34A',
-    paddingLeft: issubmenu ? '28px' : '20px',
+    paddingLeft: issubmenu ? '30px' : '20px',
     backgroundColor: 'rgba(139, 195, 74, 0.08)'
   },
   '&.category': {
     fontWeight: 600,
-    fontSize: '0.85rem',
+    fontSize: '0.87rem',
     letterSpacing: '0.3px',
     borderBottom: '1px solid #eee',
-    backgroundColor: '#fafafa',
-    padding: '8px 16px',
+    backgroundColor: '#f8f8f8',
+    padding: '10px 16px',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    cursor: 'pointer',
+    color: '#333'
   }
 }));
 
-const SubmenuContainer = styled(Box)(({ theme, isvisible }) => ({
+
+const SubmenuContainer = styled(Box)(({ isvisible }) => ({
   display: 'flex',
   flexDirection: 'column',
-  maxHeight: isvisible ? '500px' : '0',
+  maxHeight: isvisible ? '600px' : '0',
   overflow: 'hidden',
-  transition: 'max-height 0.3s ease',
+  transition: 'all 0.3s ease',
   opacity: isvisible ? 1 : 0,
   visibility: isvisible ? 'visible' : 'hidden',
-  padding: isvisible ? '4px 0' : '0',
+  padding: isvisible ? '4px 0 4px 0' : '0',
+  marginLeft: '6px', // subtle indentation for submenus
+  borderLeft: isvisible ? '1px dashed #ddd' : 'none',
 }));
 
 const Navbar = () => {
@@ -288,21 +296,24 @@ const Navbar = () => {
             'Accounting Standard (INDAS)',
             'Others',
             'GST',
-            'VAT',
+            {
+              name: 'VAT',
+              items: [
+                'Delhi VAT',
+                'Maharastra VAT',
+                'Gujarat VAT',
+                'Telangana VAT',
+                'Tamil Nadu VAT',
+              ]
+            },
             'IGST',
             'UTGST',
             'Compensation Cess',
             'IBC Regulation'
-
-
-
-
-
-
             // Add more utility items here later
           ]
-          
         },
+        
         {
           name: 'Links',
           items: [
@@ -311,11 +322,6 @@ const Navbar = () => {
             'GST/VAT Links',
             'Ease Of Doing Business'
            
-
-
-
-
-
             // Add more utility items here later
           ]
           
@@ -421,7 +427,7 @@ const Navbar = () => {
     };
   };
 
-  const handleSubmenuClick = (item, subItem) => {
+  const handleSubmenuClick = (item, subItem, subSubItem) => {
     if (item === 'HOME') {
       navigate('/');
       window.scrollTo(0, 0);
@@ -567,38 +573,21 @@ const Navbar = () => {
         default:
           break;
       }
-    }else if (item === 'Links') {
-      switch(subItem) {
-        case 'Quick Links':
-      window.open('https://casnv.com/resources/Links/Quick_Link/Quick_Links-IT.aspx', '_blank', 'noopener');
-      break;
-    case 'Important Links':
-      window.open('https://casnv.com/resources/Links/important_links/important_links.aspx', '_blank', 'noopener');
-      break;
-    case 'GST/VAT Links':
-      window.open('https://casnv.com/resources/Links/Vat_Links/Vat_Links.aspx', '_blank', 'noopener');
-      break;
-    case 'Ease Of Doing Business':
-      window.open('https://casnv.com/resources/Links/EASE_OF_DOING_BUSINESS/EASE_OF_DOING_BUSINESS.aspx', '_blank', 'noopener');
-      break;
-    default:
-      break;
-  }
-}  else if (item === 'Bulletins') {
+    } else if (item === 'Bulletins') {
   switch(subItem) {
     case 'RBI SEBI':
-  window.open('https://casnv.com/advancesearch/notification/Bulletins/RBISEBI/RBISEBI.aspx', '_blank', 'noopener');
-  break;
-case 'Notification':
-  window.open('https://casnv.com/resources/Links/important_links/important_links.aspx', '_blank', 'noopener');
-  break;
-case 'Circular':
-  window.open('https://casnv.com/resources/Links/Vat_Links/Vat_Links.aspx', '_blank', 'noopener');
-  break;
-case 'Income Tax':
-  window.open('https://casnv.com/resources/Links/EASE_OF_DOING_BUSINESS/EASE_OF_DOING_BUSINESS.aspx', '_blank', 'noopener');
-  break;
-  case 'Service Tax':
+      window.open('https://casnv.com/advancesearch/notification/Bulletins/RBISEBI/RBISEBI.aspx', '_blank', 'noopener');
+      break;
+    case 'Notification':
+      window.open('https://casnv.com/resources/Links/important_links/important_links.aspx', '_blank', 'noopener');
+      break;
+    case 'Circular':
+      window.open('https://casnv.com/resources/Links/Vat_Links/Vat_Links.aspx', '_blank', 'noopener');
+      break;
+    case 'Income Tax':
+      window.open('https://casnv.com/resources/Links/EASE_OF_DOING_BUSINESS/EASE_OF_DOING_BUSINESS.aspx', '_blank', 'noopener');
+      break;
+    case 'Service Tax':
       window.open('https://casnv.com/advancesearch/notification/Bulletins/Service_Tax/Service_Tax.aspx', '_blank', 'noopener');
       break;
     case 'Central Sales Tax':
@@ -631,9 +620,36 @@ case 'Income Tax':
     case 'GST':
       window.open('https://casnv.com/advancesearch/notification/Bulletins/GST/GST.aspx', '_blank', 'noopener');
       break;
-    case 'VAT':
-      window.open('#', '_blank', 'noopener');
-      break;
+      case 'VAT':
+        if (subSubItem) {
+          // If subSubItem is provided, handle the VAT submenu
+          switch (subSubItem) {
+            case 'Delhi VAT':
+              window.open('https://casnv.com/advancesearch/notification/Bulletins/Delhi_VAT/Delhi_VAT.aspx', '_blank', 'noopener');
+              break;
+            case 'Maharastra VAT':
+              window.open('https://casnv.com/advancesearch/notification/Bulletins/Mumbai_VAT/Mumbai_VAT.aspx', '_blank', 'noopener');
+              break;
+            case 'Gujarat VAT':
+              window.open('https://casnv.com/advancesearch/notification/Bulletins/Gujarat_VAT/Gujarat_VAT.aspx', '_blank', 'noopener');
+              break;
+              case 'Telangana VAT':
+                window.open('https://casnv.com/advancesearch/notification/Bulletins/Telangana_VAT/Telangana_VAT.aspx', '_blank', 'noopener');
+                break;
+                case 'Tamil Nadu VAT':
+                  window.open('https://casnv.com/advancesearch/notification/Bulletins/TamilNadu_VAT/TamilNadu_VAT.aspx', '_blank', 'noopener');
+                  break;
+
+
+            default:
+              break;
+          }
+        } else {
+          // If no subSubItem, maybe open a general VAT page or do nothing
+          window.open('https://casnv.com/advancesearch/notification/Bulletins/VAT/VAT.aspx', '_blank', 'noopener');
+        }
+        break;
+
     case 'IGST':
       window.open('https://casnv.com/advancesearch/notification/Bulletins/IGST/IGST.aspx', '_blank', 'noopener');
       break;
@@ -648,8 +664,28 @@ case 'Income Tax':
       break;
     default:
       break;
+   
+  
   }
+}else if (item === 'Links') {
+  switch(subItem) {
+    case 'Quick Links':
+  window.open('https://casnv.com/resources/Links/Quick_Link/Quick_Links-IT.aspx', '_blank', 'noopener');
+  break;
+case 'Important Links':
+  window.open('https://casnv.com/resources/Links/important_links/important_links.aspx', '_blank', 'noopener');
+  break;
+case 'GST/VAT Links':
+  window.open('https://casnv.com/resources/Links/Vat_Links/Vat_Links.aspx', '_blank', 'noopener');
+  break;
+case 'Ease Of Doing Business':
+  window.open('https://casnv.com/resources/Links/EASE_OF_DOING_BUSINESS/EASE_OF_DOING_BUSINESS.aspx', '_blank', 'noopener');
+  break;
+default:
+  break;
 }
+}
+
     
     setServicesAnchorEl(null);
     setKnowledgeAnchorEl(null);
@@ -691,77 +727,167 @@ case 'Income Tax':
     );
   };
 
-  const renderSubmenuItems = (items) => {
+  const renderSubmenuItems = (items, parent = '') => {
+    items = items.map(item => {
+      if (typeof item === 'string') {
+        return { name: item };
+      } else if (item.name && item.items) {
+        return item;
+      } else {
+        return { name: item.name || 'Unnamed' };
+      }
+    });
+  
     return (
       <Box sx={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: 1,
-        p: 1.5,
-        maxHeight: '70vh',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gap: 1.5,
+        p: 2,
+        maxHeight: '75vh',
         overflowY: 'auto',
+        backgroundColor: '#f9f9f9',
+        borderRadius: '8px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
         '&::-webkit-scrollbar': {
-          width: '6px',
-        },
-        '&::-webkit-scrollbar-track': {
-          background: '#f1f1f1',
-          borderRadius: '10px',
+          width: '8px',
         },
         '&::-webkit-scrollbar-thumb': {
-          background: '#c1c1c1',
-          borderRadius: '10px',
+          backgroundColor: '#c1c1c1',
+          borderRadius: '8px',
         },
         '&::-webkit-scrollbar-thumb:hover': {
-          background: '#a8a8a8',
+          backgroundColor: '#999',
         }
       }}>
-        {items.map((item, index) => (
-          <Box key={item.name} sx={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            '& > *': { minWidth: 0 },
-            backgroundColor: 'rgba(249, 250, 251, 0.8)',
-            borderRadius: '6px',
-            overflow: 'hidden',
+        {items.map((item) => (
+          <Box key={item.name} sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: '#ffffff',
+            borderRadius: '8px',
+            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.1)',
             transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             '&:hover': {
-              boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              transform: 'translateY(-2px)'
             }
           }}>
-            <MenuItem 
-              className="category" 
-              onClick={() => item.items ? toggleCategory(item.name) : handleSubmenuClick(item.name)}
-              sx={{ cursor: 'pointer' }}
+            <MenuItem
+              className="category"
+              onClick={() => item.items ? toggleCategory(item.name) : handleSubmenuClick(parent || item.name, item.name)}
+              sx={{
+                cursor: 'pointer',
+                fontWeight: 500,
+                fontSize: '0.95rem',
+                py: 1
+              }}
             >
               {translations[item.name] || item.name}
               {item.items && (
                 <KeyboardArrowRightIcon sx={{
                   fontSize: '1rem',
+                  marginLeft: 'auto',
                   transition: 'transform 0.3s ease',
                   transform: expandedCategories[item.name] ? 'rotate(90deg)' : 'rotate(0deg)'
                 }} />
               )}
             </MenuItem>
+  
             {item.items && (
-              <SubmenuContainer 
+              <SubmenuContainer
                 isvisible={expandedCategories[item.name] ? 1 : 0}
                 onMouseEnter={() => setExpandedCategories(prev => ({ ...prev, [item.name]: true }))}
+                sx={{
+                  px: 1,
+                  py: 1,
+                  backgroundColor: '#f5f7fa',
+                  borderRadius: '6px',
+                  overflow: 'visible'
+                }}
               >
-                {item.items.map((subItem) => (
-                  <MenuItem
-                    key={subItem}
-                    issubmenu={1}
-                    onClick={() => handleSubmenuClick(item.name, subItem)}
-                    sx={{ 
-                      fontSize: '0.8rem',
-                      borderRadius: '4px',
-                      my: 0.1,
-                      mx: 0.5
-                    }}
-                  >
-                    {translations[subItem] || subItem}
-                  </MenuItem>
-                ))}
+                {item.items.map((subItem) => {
+                  if (typeof subItem === 'string') {
+                    return (
+                      <MenuItem
+                        key={subItem}
+                        issubmenu={1}
+                        onClick={() => handleSubmenuClick(item.name, subItem)}
+                        sx={{
+                          fontSize: '0.85rem',
+                          borderRadius: '4px',
+                          my: 0.5,
+                          mx: 0.5,
+                          py: 0.8,
+                          px: 1.2,
+                          '&:hover': {
+                            backgroundColor: '#e0f2ff'
+                          }
+                        }}
+                      >
+                        {translations[subItem] || subItem}
+                      </MenuItem>
+                    );
+                  } else if (typeof subItem === 'object' && subItem.items) {
+                    const nestedKey = `${item.name}-${subItem.name}`;
+                    return (
+                      <Box key={subItem.name} sx={{ width: '100%' }}>
+                        <MenuItem
+                          className="category"
+                          onClick={() => toggleCategory(nestedKey)}
+                          sx={{
+                            cursor: 'pointer',
+                            pl: 3,
+                            fontSize: '0.85rem',
+                            fontWeight: 500,
+                            backgroundColor: '#edf3f8'
+                          }}
+                        >
+                          {translations[subItem.name] || subItem.name}
+                          <KeyboardArrowRightIcon sx={{
+                            fontSize: '0.9rem',
+                            marginLeft: 'auto',
+                            transition: 'transform 0.3s ease',
+                            transform: expandedCategories[nestedKey] ? 'rotate(90deg)' : 'rotate(0deg)'
+                          }} />
+                        </MenuItem>
+                        <SubmenuContainer
+                          isvisible={expandedCategories[nestedKey] ? 1 : 0}
+                          sx={{
+                            pl: 3,
+                            py: 1,
+                            backgroundColor: '#f0f6fc',
+                            borderRadius: '6px',
+                            overflow: 'visible'
+                          }}
+                        >
+                          {subItem.items.map((subSubItem) => (
+                            <MenuItem
+                              key={subSubItem}
+                              issubmenu={1}
+                              onClick={() => handleSubmenuClick(item.name, subItem.name, subSubItem)}
+                              sx={{
+                                fontSize: '0.8rem',
+                                borderRadius: '4px',
+                                my: 0.3,
+                                mx: 0.5,
+                                pl: 4,
+                                py: 0.7,
+                                '&:hover': {
+                                  backgroundColor: '#d8ecff'
+                                }
+                              }}
+                            >
+                              {translations[subSubItem] || subSubItem}
+                            </MenuItem>
+                          ))}
+                        </SubmenuContainer>
+                      </Box>
+                    );
+                  } else {
+                    return renderSubmenuItems([subItem], item.name);
+                  }
+                })}
               </SubmenuContainer>
             )}
           </Box>
@@ -769,6 +895,12 @@ case 'Income Tax':
       </Box>
     );
   };
+  const SubmenuContainer = styled(Box)(({ isvisible }) => ({
+    display: isvisible ? 'block' : 'none',
+    transition: 'all 0.3s ease',
+  }));
+  
+  
 
   return (
     <StyledAppBar position="sticky">
@@ -886,3 +1018,4 @@ case 'Income Tax':
 };
 
 export default Navbar;
+
