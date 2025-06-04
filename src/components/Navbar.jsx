@@ -130,6 +130,8 @@ const Navbar = () => {
   const [companyAnchorEl, setCompanyAnchorEl] = useState(null);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const [expandedCategories, setExpandedCategories] = useState({});
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
 
   const servicesOpen = Boolean(servicesAnchorEl);
   const knowledgeOpen = Boolean(knowledgeAnchorEl);
@@ -641,6 +643,16 @@ const Navbar = () => {
         clearTimeout(timeoutId);
       }
     };
+  };
+  
+  const handleMobileMenuOpen = (event) => {
+    setMobileAnchorEl(event.currentTarget);
+    setMobileMenuOpen(true);
+  };
+  
+  const handleMobileMenuClose = () => {
+    setMobileMenuOpen(false);
+    setMobileAnchorEl(null);
   };
 
   const handleSubmenuClick = (item, subItem, subSubItem) => {
@@ -1599,7 +1611,7 @@ const Navbar = () => {
             <Typography variant="h5" component="div" sx={{
               color: '#4B0082',
               lineHeight: 1.2,
-              fontSize: '1.8rem',
+              fontSize: { xs: '1.4rem', sm: '1.8rem' },
               fontWeight: 500,
               fontFamily: '"Playfair Display", serif'
             }}>
@@ -1608,13 +1620,14 @@ const Navbar = () => {
             <Typography variant="subtitle2" sx={{
               color: '#666',
               letterSpacing: '0.5px',
-              fontSize: '0.9rem'
+              fontSize: { xs: '0.8rem', sm: '0.9rem' }
             }}>
               {translations['CHARTERED ACCOUNTANTS']}
             </Typography>
           </Box>
         </Box>
 
+        {/* Desktop Menu */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 0.5, flexWrap: 'nowrap', minWidth: 0 }}>
           {menuItems.map((item) =>
             typeof item === 'string' ? (
@@ -1701,6 +1714,143 @@ const Navbar = () => {
             </Typography>
           </Box>
         </Box>
+        
+        {/* Mobile Menu Icon */}
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+          {renderLanguageSelector()}
+          <IconButton 
+            edge="end" 
+            color="inherit" 
+            aria-label="menu"
+            onClick={handleMobileMenuOpen}
+            sx={{ ml: 1, color: '#4B0082' }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
+        
+        {/* Mobile Menu */}
+        <Menu
+          anchorEl={mobileAnchorEl}
+          open={mobileMenuOpen}
+          onClose={handleMobileMenuClose}
+          PaperProps={{
+            sx: {
+              mt: 1.5,
+              width: '100%',
+              maxWidth: '300px',
+              maxHeight: '80vh',
+              overflowY: 'auto'
+            }
+          }}
+        >
+          <MenuItem onClick={() => { handleClick(null, 'HOME'); handleMobileMenuClose(); }}>
+            {translations['HOME']}
+          </MenuItem>
+          
+          {/* Company Menu */}
+          <MenuItem onClick={(e) => {
+            toggleCategory('COMPANY-MOBILE');
+          }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+              {translations['COMPANY']}
+              <KeyboardArrowRightIcon sx={{
+                transition: 'transform 0.3s ease',
+                transform: expandedCategories['COMPANY-MOBILE'] ? 'rotate(90deg)' : 'rotate(0deg)'
+              }} />
+            </Box>
+          </MenuItem>
+          
+          {expandedCategories['COMPANY-MOBILE'] && menuItems.find(item => item.name === 'COMPANY').items.map(subItem => (
+            <MenuItem 
+              key={subItem.name}
+              onClick={() => { 
+                if (subItem.onClick) subItem.onClick();
+                else handleSubmenuClick('COMPANY', subItem.name);
+                handleMobileMenuClose();
+              }}
+              sx={{ pl: 4 }}
+            >
+              {translations[subItem.name] || subItem.name}
+            </MenuItem>
+          ))}
+          
+          {/* Services Menu */}
+          <MenuItem onClick={(e) => {
+            toggleCategory('SERVICES-MOBILE');
+          }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+              {translations['SERVICES']}
+              <KeyboardArrowRightIcon sx={{
+                transition: 'transform 0.3s ease',
+                transform: expandedCategories['SERVICES-MOBILE'] ? 'rotate(90deg)' : 'rotate(0deg)'
+              }} />
+            </Box>
+          </MenuItem>
+          
+          {expandedCategories['SERVICES-MOBILE'] && menuItems.find(item => item.name === 'SERVICES').items.map(subItem => (
+            <MenuItem 
+              key={typeof subItem === 'string' ? subItem : subItem.name}
+              onClick={() => { 
+                handleSubmenuClick('SERVICES', typeof subItem === 'string' ? subItem : subItem.name);
+                handleMobileMenuClose();
+              }}
+              sx={{ pl: 4 }}
+            >
+              {translations[typeof subItem === 'string' ? subItem : subItem.name] || (typeof subItem === 'string' ? subItem : subItem.name)}
+            </MenuItem>
+          ))}
+          
+          <MenuItem onClick={() => { handleClick(null, 'CAREERS'); handleMobileMenuClose(); }}>
+            {translations['CAREERS']}
+          </MenuItem>
+          
+          {/* Knowledge Menu */}
+          <MenuItem onClick={(e) => {
+            toggleCategory('KNOWLEDGE-MOBILE');
+          }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+              {translations['KNOWLEDGE & EVENTS']}
+              <KeyboardArrowRightIcon sx={{
+                transition: 'transform 0.3s ease',
+                transform: expandedCategories['KNOWLEDGE-MOBILE'] ? 'rotate(90deg)' : 'rotate(0deg)'
+              }} />
+            </Box>
+          </MenuItem>
+          
+          {expandedCategories['KNOWLEDGE-MOBILE'] && menuItems.find(item => item.name === 'KNOWLEDGE & EVENTS').items.map(subItem => (
+            <MenuItem 
+              key={typeof subItem === 'string' ? subItem : subItem.name}
+              onClick={() => { 
+                handleSubmenuClick('KNOWLEDGE & EVENTS', typeof subItem === 'string' ? subItem : subItem.name);
+                handleMobileMenuClose();
+              }}
+              sx={{ pl: 4 }}
+            >
+              {translations[typeof subItem === 'string' ? subItem : subItem.name] || (typeof subItem === 'string' ? subItem : subItem.name)}
+            </MenuItem>
+          ))}
+          
+          <MenuItem onClick={() => { handleClick(null, 'CONTACT US'); handleMobileMenuClose(); }}>
+            {translations['CONTACT US']}
+          </MenuItem>
+          
+          {/* Phone Number */}
+          <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+            m: 1,
+            p: 1,
+            backgroundColor: 'rgba(139, 195, 74, 0.1)',
+            borderRadius: '20px',
+            justifyContent: 'center'
+          }}>
+            <PhoneIcon sx={{ color: '#8BC34A', mr: 0.5, fontSize: '1.2rem' }} />
+            <Typography variant="body2" sx={{ color: '#333', fontWeight: 500 }}>
+              +91 98111 56389
+            </Typography>
+          </Box>
+        </Menu>
       </Toolbar>
     </StyledAppBar>
   );
