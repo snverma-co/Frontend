@@ -60,44 +60,47 @@ const TeamPage = () => {
      
 
       <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center" direction="row-reverse">
-          <Grid item xs={40} md={6}>
-            <Box
-              component={motion.div}
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              sx={{
-                position: 'relative',
-                marginTop: '-550px',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: -30,
-                  right: -20,
-                  left: 20,
-                  bottom: 20,
-                  background: 'linear-gradient(45deg, #4CAF50 30%, #45a049 90%)',
-                  borderRadius: '10px',
-                  zIndex: 0
-                }
-              }}
-            >
-               <Box
-                component="img"
-                src="/senior partner img.jpeg"
-                alt="S.N. Verma"
-                sx={{
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '10px',
-                  position: 'relative',
-                  zIndex: 1, 
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-                }}
-              />
-            </Box>
-          </Grid>
+      <Grid container spacing={6} alignItems="center" direction="row-reverse">
+  <Grid item xs={12} md={6}>
+    <Box
+      component={motion.div}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      sx={{
+        position: 'relative',
+        marginTop: {
+          xs: '0px',      // On mobile: no negative margin
+          md: '-550px'    // On desktop: keep original margin
+        },
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: -30,
+          right: -20,
+          left: 20,
+          bottom: 20,
+          background: 'linear-gradient(45deg, #4CAF50 30%, #45a049 90%)',
+          borderRadius: '10px',
+          zIndex: 0
+        }
+      }}
+    >
+      <Box
+        component="img"
+        src="/senior partner img.jpeg"
+        alt="S.N. Verma"
+        sx={{
+          width: '100%',
+          height: 'auto',
+          borderRadius: '10px',
+          position: 'relative',
+          zIndex: 1,
+          boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
+        }}
+      />
+    </Box>
+  </Grid>
           <Grid item xs={12} md={6}>
             <Box
               component={motion.div}
@@ -114,18 +117,27 @@ const TeamPage = () => {
                 Senior Partner of S.N. VERMA & CO.
               </Typography>
               <Typography
-                variant="h2"
-                component={motion.h1}
-                variants={itemVariants}
-                sx={{
-                  fontWeight: 700,
-                  mb: 3,
-                  fontFamily: '"Playfair Display", serif',
-                  color: '#1a1a1a'
-                }}
-              >
-              CA Vipin Verma
-              </Typography>
+  variant="h2"
+  component={motion.h1}
+  variants={itemVariants}
+  sx={{
+    fontWeight: 700,
+    mb: 3,
+    fontFamily: '"Playfair Display", serif',
+    color: '#1a1a1a',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    fontSize: {
+      xs: '1.8rem',  // Small phones
+      sm: '2.2rem',  // Tablets
+      md: '3rem',    // Laptops/desktops
+      lg: '3.5rem',  // Large screens
+    },
+  }}
+>
+  CA Vipin Verma
+</Typography>
               <Typography
                 variant="h6"
                 component={motion.div}
@@ -283,12 +295,18 @@ const TeamPage = () => {
     mb: 3,
     fontFamily: '"Playfair Display", serif',
     color: '#1a1a1a',
-    whiteSpace: 'nowrap',     // Prevent line break
-    // overflow: 'hidden',       // Optional: hides overflow text
-    textOverflow: 'ellipsis'  // Optional: adds "..." if text overflows
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    fontSize: {
+      xs: '1.8rem',  // Small phones
+      sm: '2.2rem',  // Tablets
+      md: '3rem',    // Laptops/desktops
+      lg: '3.5rem',  // Large screens
+    },
   }}
 >
-CA Jahnavi Verma
+  CA Jahnavi Verma
 </Typography>
 
               <Typography

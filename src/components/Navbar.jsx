@@ -1775,61 +1775,138 @@ const Navbar = () => {
             </MenuItem>
           ))}
           
-          {/* Services Menu */}
-          <MenuItem onClick={(e) => {
-            toggleCategory('SERVICES-MOBILE');
-          }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
-              {translations['SERVICES']}
-              <KeyboardArrowRightIcon sx={{
-                transition: 'transform 0.3s ease',
-                transform: expandedCategories['SERVICES-MOBILE'] ? 'rotate(90deg)' : 'rotate(0deg)'
-              }} />
-            </Box>
-          </MenuItem>
-          
-          {expandedCategories['SERVICES-MOBILE'] && menuItems.find(item => item.name === 'SERVICES').items.map(subItem => (
-            <MenuItem 
-              key={typeof subItem === 'string' ? subItem : subItem.name}
-              onClick={() => { 
-                handleSubmenuClick('SERVICES', typeof subItem === 'string' ? subItem : subItem.name);
-                handleMobileMenuClose();
-              }}
-              sx={{ pl: 4 }}
-            >
-              {translations[typeof subItem === 'string' ? subItem : subItem.name] || (typeof subItem === 'string' ? subItem : subItem.name)}
-            </MenuItem>
-          ))}
+      {/* Services Menu */}
+<MenuItem onClick={() => toggleCategory('SERVICES-MOBILE')}>
+  <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+    {translations['SERVICES']}
+    <KeyboardArrowRightIcon
+      sx={{
+        transition: 'transform 0.3s ease',
+        transform: expandedCategories['SERVICES-MOBILE'] ? 'rotate(90deg)' : 'rotate(0deg)'
+      }}
+    />
+  </Box>
+</MenuItem>
+
+{/* Subitems under SERVICES */}
+{expandedCategories['SERVICES-MOBILE'] &&
+  menuItems.find(item => item.name === 'SERVICES').items.map((subItem, i) => {
+    const subItemName = typeof subItem === 'string' ? subItem : subItem.name;
+    const hasSubSubItems = typeof subItem !== 'string' && Array.isArray(subItem.items);
+    const subKey = `SERVICES-${subItemName}-MOBILE`;
+
+    return (
+      <Box key={subItemName}>
+        <MenuItem
+          onClick={() => {
+            hasSubSubItems
+              ? toggleCategory(subKey)
+              : (handleSubmenuClick('SERVICES', subItemName), handleMobileMenuClose());
+          }}
+          sx={{ pl: 4 }}
+        >
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+            {translations[subItemName] || subItemName}
+            {hasSubSubItems && (
+              <KeyboardArrowRightIcon
+                sx={{
+                  transition: 'transform 0.3s ease',
+                  transform: expandedCategories[subKey] ? 'rotate(90deg)' : 'rotate(0deg)'
+                }}
+              />
+            )}
+          </Box>
+        </MenuItem>
+
+        {/* Sub-Subitems */}
+        {hasSubSubItems && expandedCategories[subKey] &&
+          subItem.items.map((subSubItem) => {
+            const subSubItemName = typeof subSubItem === 'string' ? subSubItem : subSubItem.name;
+            return (
+              <MenuItem
+                key={subSubItemName}
+                onClick={() => {
+                  handleSubmenuClick(subItemName, subSubItemName);
+                  handleMobileMenuClose();
+                }}
+                sx={{ pl: 6 }}
+              >
+                {translations[subSubItemName] || subSubItemName}
+              </MenuItem>
+            );
+          })}
+      </Box>
+    );
+  })}
+
           
           <MenuItem onClick={() => { handleClick(null, 'CAREERS'); handleMobileMenuClose(); }}>
             {translations['CAREERS']}
           </MenuItem>
-          
-          {/* Knowledge Menu */}
-          <MenuItem onClick={(e) => {
-            toggleCategory('KNOWLEDGE-MOBILE');
-          }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
-              {translations['KNOWLEDGE & EVENTS']}
-              <KeyboardArrowRightIcon sx={{
-                transition: 'transform 0.3s ease',
-                transform: expandedCategories['KNOWLEDGE-MOBILE'] ? 'rotate(90deg)' : 'rotate(0deg)'
-              }} />
-            </Box>
-          </MenuItem>
-          
-          {expandedCategories['KNOWLEDGE-MOBILE'] && menuItems.find(item => item.name === 'KNOWLEDGE & EVENTS').items.map(subItem => (
-            <MenuItem 
-              key={typeof subItem === 'string' ? subItem : subItem.name}
-              onClick={() => { 
-                handleSubmenuClick('KNOWLEDGE & EVENTS', typeof subItem === 'string' ? subItem : subItem.name);
-                handleMobileMenuClose();
-              }}
-              sx={{ pl: 4 }}
-            >
-              {translations[typeof subItem === 'string' ? subItem : subItem.name] || (typeof subItem === 'string' ? subItem : subItem.name)}
-            </MenuItem>
-          ))}
+       {/* Knowledge Menu */}
+<MenuItem onClick={() => toggleCategory('KNOWLEDGE-MOBILE')}>
+  <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+    {translations['KNOWLEDGE & EVENTS']}
+    <KeyboardArrowRightIcon
+      sx={{
+        transition: 'transform 0.3s ease',
+        transform: expandedCategories['KNOWLEDGE-MOBILE'] ? 'rotate(90deg)' : 'rotate(0deg)'
+      }}
+    />
+  </Box>
+</MenuItem>
+
+{/* Subitems under KNOWLEDGE & EVENTS */}
+{expandedCategories['KNOWLEDGE-MOBILE'] &&
+  menuItems.find(item => item.name === 'KNOWLEDGE & EVENTS').items.map((subItem) => {
+    const subItemName = typeof subItem === 'string' ? subItem : subItem.name;
+    const hasSubSubItems = typeof subItem !== 'string' && Array.isArray(subItem.items);
+    const subKey = `KNOWLEDGE-${subItemName}-MOBILE`;
+
+    return (
+      <Box key={subItemName}>
+        <MenuItem
+          onClick={() => {
+            hasSubSubItems
+              ? toggleCategory(subKey)
+              : (handleSubmenuClick('KNOWLEDGE & EVENTS', subItemName), handleMobileMenuClose());
+          }}
+          sx={{ pl: 4 }}
+        >
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+            {translations[subItemName] || subItemName}
+            {hasSubSubItems && (
+              <KeyboardArrowRightIcon
+                sx={{
+                  transition: 'transform 0.3s ease',
+                  transform: expandedCategories[subKey] ? 'rotate(90deg)' : 'rotate(0deg)'
+                }}
+              />
+            )}
+          </Box>
+        </MenuItem>
+
+        {/* Sub-Subitems */}
+        {hasSubSubItems && expandedCategories[subKey] &&
+          subItem.items.map((subSubItem) => {
+            const subSubItemName = typeof subSubItem === 'string' ? subSubItem : subSubItem.name;
+            return (
+              <MenuItem
+                key={subSubItemName}
+                onClick={() => {
+                  handleSubmenuClick(subItemName, subSubItemName);
+                  handleMobileMenuClose();
+                }}
+                sx={{ pl: 6 }}
+              >
+                {translations[subSubItemName] || subSubItemName}
+              </MenuItem>
+            );
+          })}
+      </Box>
+    );
+  })}
+
           
           <MenuItem onClick={() => { handleClick(null, 'CONTACT US'); handleMobileMenuClose(); }}>
             {translations['CONTACT US']}
