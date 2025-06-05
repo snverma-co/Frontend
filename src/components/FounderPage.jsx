@@ -100,12 +100,18 @@ const FounderPage = () => {
     mb: 3,
     fontFamily: '"Playfair Display", serif',
     color: '#1a1a1a',
-    whiteSpace: 'nowrap',     // Prevent line break
-    // overflow: 'hidden',       // Optional: hides overflow text
-    textOverflow: 'ellipsis'  // Optional: adds "..." if text overflows
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    fontSize: {
+      xs: '1.8rem',  // Small phones
+      sm: '2.2rem',  // Tablets
+      md: '3rem',    // Laptops/desktops
+      lg: '3.5rem',  // Large screens
+    },
   }}
 >
-Late Shri CA S.N. Verma
+  Late Shri CA S.N.Verma
 </Typography>
 
               <Typography
