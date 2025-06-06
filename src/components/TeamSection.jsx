@@ -22,17 +22,21 @@ const TeamSection = () => {
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  // Variant function to animate from left or right
+  const getItemVariants = (direction = 'left') => ({
+    hidden: {
+      opacity: 0,
+      x: direction === 'left' ? -300 : 300 // Completely offscreen
+    },
     visible: {
       opacity: 1,
-      y: 0,
+      x: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.8,
         ease: 'easeOut'
       }
     }
-  };
+  });
 
   const teamMembers = [
     {
@@ -63,7 +67,7 @@ const TeamSection = () => {
       <Container maxWidth="lg">
         <Typography
           component={motion.h2}
-          variants={itemVariants}
+          variants={getItemVariants('left')}
           variant="h3"
           sx={{
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
@@ -76,12 +80,32 @@ const TeamSection = () => {
         
         </Typography>
 
-        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} justifyContent="center" alignItems="center" sx={{ maxWidth: '1200px', mx: 'auto', flexWrap: { xs: 'wrap', md: 'nowrap' }, px: { xs: 1, sm: 2 } }}>
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 3, md: 4 }}
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            maxWidth: '1200px',
+            mx: 'auto',
+            flexWrap: { xs: 'wrap', md: 'nowrap' },
+            px: { xs: 1, sm: 2 }
+          }}
+        >
           {teamMembers.map((member, index) => (
-            <Grid item xs={12} sm={6} md={6} key={index} sx={{ flex: { xs: '0 0 100%', md: 1 }, mb: { xs: 2, md: 0 } }}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={6}
+              key={index}
+              sx={{ flex: { xs: '0 0 100%', md: 1 }, mb: { xs: 2, md: 0 } }}
+            >
               <Card
                 component={motion.div}
-                variants={itemVariants}
+                variants={getItemVariants(index % 2 === 0 ? 'left' : 'right')}
+                initial="hidden"
+                animate={inView ? 'visible' : 'hidden'}
                 whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 sx={{
                   height: '100%',
@@ -102,10 +126,7 @@ const TeamSection = () => {
                     height: { xs: 300, sm: 350, md: 400 },
                     objectFit: 'cover',
                     borderRadius: { xs: '8px 8px 0 0', md: '16px 16px 0 0' },
-                    transition: 'transform 0.3s ease',
-                    '&:hover': {
-                      transform: 'scale(1.05)'
-                    }
+                    transition: 'transform 0.3s ease'
                   }}
                 />
                 <CardContent
@@ -142,7 +163,7 @@ const TeamSection = () => {
 
         <Box
           component={motion.div}
-          variants={itemVariants}
+          variants={getItemVariants('left')}
           sx={{
             display: 'flex',
             justifyContent: 'center',

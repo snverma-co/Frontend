@@ -1,9 +1,9 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Container, Typography, Rating } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useEffect, useRef, useState } from 'react';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 
+// Styled testimonial card with animation and hover effect
 const TestimonialCard = styled(Box)(({ theme, isVisible, index }) => ({
   background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
@@ -21,11 +21,12 @@ const TestimonialCard = styled(Box)(({ theme, isVisible, index }) => ({
     boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
     '& .quote-icon': {
       transform: 'rotate(10deg) scale(1.1)',
-      color: 'rgba(139, 195, 74, 0.3)'
-    }
-  }
+      color: 'rgba(139, 195, 74, 0.3)',
+    },
+  },
 }));
 
+// Quote icon styled
 const QuoteIcon = styled(FormatQuoteIcon)(({ theme }) => ({
   position: 'absolute',
   top: '20px',
@@ -33,52 +34,56 @@ const QuoteIcon = styled(FormatQuoteIcon)(({ theme }) => ({
   fontSize: '40px',
   color: 'rgba(139, 195, 74, 0.2)',
   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-  pointerEvents: 'none'
+  pointerEvents: 'none',
 }));
 
+// Testimonials data with full text included
 const testimonials = [
   {
     text: 'Exceptional service! Their expertise in taxation and financial planning has been invaluable for our business growth.',
     rating: 5,
     name: 'Rajesh Kumar',
-    company: 'Tech Solutions Ltd'
+    company: 'Tech Solutions Ltd',
   },
   {
     text: 'Professional, thorough, and always available when needed. They have been our trusted advisors for years.',
     rating: 5,
     name: 'Priya Sharma',
-    company: 'Innovation Corp'
+    company: 'Innovation Corp',
   },
   {
     text: 'Their attention to detail and deep understanding of accounting standards sets them apart from others.',
     rating: 5,
     name: 'Amit Patel',
-    company: 'Global Traders'
+    company: 'Global Traders',
   },
   {
     text: 'Their international tax expertise helped us expand our operations globally. The team provided invaluable guidance throughout the process.',
     rating: 5,
     name: 'Sarah Chen',
-    company: 'Global Ventures Inc'
+    company: 'Global Ventures Inc',
   },
   {
     text: 'Outstanding audit services! They helped us identify key areas for improvement and strengthened our financial controls.',
     rating: 5,
     name: 'Vikram Malhotra',
-    company: 'Retail Solutions Group'
+    company: 'Retail Solutions Group',
   },
   {
     text: 'Their forensic accounting team helped us resolve complex financial discrepancies. Highly professional and discrete service.',
     rating: 5,
     name: 'Anita Desai',
-    company: 'Financial Analytics Ltd'
-  }
+    company: 'Financial Analytics Ltd',
+  },
 ];
 
+// Main testimonials component
 const TestimonialsSection = () => {
-  const { translations } = useLanguage();
+  // For visibility animation
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+
+  // For carousel dragging & sliding
   const carousel = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -87,6 +92,7 @@ const TestimonialsSection = () => {
   const [slideDirection, setSlideDirection] = useState('right');
   const autoSlideInterval = useRef(null);
 
+  // Mouse / Touch handlers for drag scroll
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.pageX - carousel.current.offsetLeft);
@@ -98,7 +104,7 @@ const TestimonialsSection = () => {
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    carousel.current.style.cursor = 'grab';
+    if (carousel.current) carousel.current.style.cursor = 'grab';
     setAutoSlideEnabled(true);
     startAutoSlide();
   };
@@ -107,7 +113,7 @@ const TestimonialsSection = () => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - carousel.current.offsetLeft;
-    const walk = (x - startX) * 2;
+    const walk = (x - startX) * 2; // scroll-fast multiplier
     carousel.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -129,32 +135,44 @@ const TestimonialsSection = () => {
   const startAutoSlide = () => {
     if (!autoSlideInterval.current && autoSlideEnabled) {
       autoSlideInterval.current = setInterval(() => {
-        if (carousel.current) {
-          const maxScroll = carousel.current.scrollWidth - carousel.current.clientWidth;
-          const currentScroll = carousel.current.scrollLeft;
-          const cardWidth = carousel.current.clientWidth / 3;
-          
-          if (slideDirection === 'right') {
-            const newScrollLeft = currentScroll + cardWidth;
-            if (newScrollLeft >= maxScroll) {
-              setSlideDirection('left');
-              carousel.current.scrollLeft = maxScroll;
-            } else {
-              carousel.current.scrollLeft = newScrollLeft;
-            }
-          } else {
-            const newScrollLeft = currentScroll - cardWidth;
-            if (newScrollLeft <= 0) {
-              setSlideDirection('right');
-              carousel.current.scrollLeft = 0;
-            } else {
-              carousel.current.scrollLeft = newScrollLeft;
-            }
+        if (!carousel.current) return;
+  
+        const container = carousel.current;
+        const cards = container.querySelectorAll('div > div > div'); // TestimonialCard elements
+        if (!cards.length) return;
+  
+        const card = cards[0];
+        const style = getComputedStyle(card);
+        const cardMarginRight = parseInt(style.marginRight || '0', 10);
+        const cardWidth = card.offsetWidth + cardMarginRight;
+  
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const currentScroll = container.scrollLeft;
+  
+        let newScrollLeft;
+  
+        if (slideDirection === 'right') {
+          newScrollLeft = currentScroll + cardWidth;
+          if (newScrollLeft >= maxScroll - 10) { // Buffer to avoid over-scrolling
+            newScrollLeft = maxScroll;
+            setSlideDirection('left');
+          }
+        } else {
+          newScrollLeft = currentScroll - cardWidth;
+          if (newScrollLeft <= 0) {
+            newScrollLeft = 0;
+            setSlideDirection('right');
           }
         }
-      }, 3000);
+  
+        container.scrollTo({
+          left: newScrollLeft,
+          behavior: 'smooth',
+        });
+      }, 5000);
     }
   };
+  
 
   const stopAutoSlide = () => {
     if (autoSlideInterval.current) {
@@ -163,6 +181,7 @@ const TestimonialsSection = () => {
     }
   };
 
+  // Intersection observer to reveal section with animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -171,43 +190,36 @@ const TestimonialsSection = () => {
           observer.unobserve(entry.target);
         }
       },
-      {
-        threshold: 0.2
-      }
+      { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
     };
   }, []);
 
+  // Reset carousel scroll and slide direction on resize
   useEffect(() => {
     const updateWidth = () => {
       if (carousel.current) {
         carousel.current.scrollLeft = 0;
+        setSlideDirection('right');
       }
     };
 
     updateWidth();
     const resizeObserver = new ResizeObserver(updateWidth);
-    if (carousel.current) {
-      resizeObserver.observe(carousel.current);
-    }
+    if (carousel.current) resizeObserver.observe(carousel.current);
 
     return () => {
-      if (carousel.current) {
-        resizeObserver.unobserve(carousel.current);
-      }
+      if (carousel.current) resizeObserver.unobserve(carousel.current);
       stopAutoSlide();
     };
   }, []);
 
+  // Attach event listeners for dragging and start auto slide
   useEffect(() => {
     startAutoSlide();
     const currentCarousel = carousel.current;
@@ -228,12 +240,11 @@ const TestimonialsSection = () => {
       currentCarousel.removeEventListener('touchmove', handleTouchMove);
       currentCarousel.removeEventListener('touchend', handleMouseUp);
     };
-  }, [isDragging, startX, scrollLeft]);
+  }, [isDragging, startX, scrollLeft, slideDirection, autoSlideEnabled]);
 
   return (
     <Box
       ref={sectionRef}
-
       sx={{
         py: { xs: 6, sm: 7, md: 8 },
         background: 'url("/testimonials-bg.jpg")',
@@ -248,12 +259,13 @@ const TestimonialsSection = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(135deg, rgba(245, 247, 250, 0.85) 0%, rgba(232, 237, 242, 0.85) 100%)',
-          zIndex: 0
-        }
+          background:
+            'linear-gradient(135deg, rgba(245, 247, 250, 0.85) 0%, rgba(232, 237, 242, 0.85) 100%)',
+          zIndex: 0,
+        },
       }}
     >
-      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 }, position: 'relative', zIndex: 1 }}>
         <Typography
           variant="h2"
           align="center"
@@ -262,7 +274,7 @@ const TestimonialsSection = () => {
             fontWeight: 600,
             color: '#333',
             fontFamily: '"Playfair Display", serif',
-            fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+            fontSize: { xs: '1.6rem', sm: '2.2rem', md: '2.5rem' },
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(-30px)',
             transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -270,8 +282,8 @@ const TestimonialsSection = () => {
               color: '#4CAF50',
               display: 'inline-block',
               transform: isVisible ? 'scale(1)' : 'scale(0.8)',
-              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s'
-            }
+              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s',
+            },
           }}
         >
           What our <span>clients</span> say about us
@@ -283,14 +295,14 @@ const TestimonialsSection = () => {
             mb: { xs: 4, sm: 5, md: 6 },
             color: '#666',
             fontFamily: '"Playfair Display", serif',
-            fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
+            fontSize: { xs: '0.85rem', sm: '1rem', md: '1.1rem' },
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(-20px)',
-            transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s'
+            transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s',
           }}
         >
-          Unlike most accounting companies, S N VERMA & Co. is an integrated finance management team.
-          From the start, we see ourselves as your partner.
+          Unlike most accounting companies, S N VERMA & Co. is an integrated finance management
+          team. From the start, we see ourselves as your partner.
         </Typography>
 
         <Box
@@ -309,8 +321,8 @@ const TestimonialsSection = () => {
               display: 'flex',
               gap: { xs: '1rem', sm: '1.5rem', md: '2rem' },
               padding: { xs: '0.5rem', sm: '0.75rem', md: '1rem' },
-              width: 'max-content'
-            }
+              width: 'max-content',
+            },
           }}
         >
           <Box>
@@ -320,21 +332,21 @@ const TestimonialsSection = () => {
                 isVisible={isVisible}
                 index={index}
                 sx={{
-                  width: { xs: '280px', sm: '320px', md: '360px' },
+                  width: { xs: '80vw', sm: '320px', md: '360px' },
                   flex: '0 0 auto',
-                  minHeight: { xs: '300px', sm: '320px', md: '340px' },
-                  padding: { xs: 2.5, sm: 3, md: 4 }
+                  minHeight: { xs: '260px', sm: '320px', md: '340px' },
+                  padding: { xs: 2, sm: 3, md: 4 },
                 }}
               >
-                <QuoteIcon className="quote-icon" sx={{ fontSize: { xs: '32px', sm: '36px', md: '40px' } }} />
+                <QuoteIcon className="quote-icon" sx={{ fontSize: { xs: '28px', sm: '36px', md: '40px' } }} />
                 <Typography
                   variant="body1"
                   sx={{
-                    mb: { xs: 2, sm: 2.5, md: 3 },
+                    mb: { xs: 1.5, sm: 2.5, md: 3 },
                     color: '#555',
-                    lineHeight: 1.8,
+                    lineHeight: 1.6,
                     fontStyle: 'italic',
-                    fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }
+                    fontSize: { xs: '0.8rem', sm: '1rem', md: '1.1rem' },
                   }}
                 >
                   {testimonial.text}
@@ -342,7 +354,11 @@ const TestimonialsSection = () => {
                 <Rating
                   value={testimonial.rating}
                   readOnly
-                  sx={{ mb: { xs: 1.5, sm: 2, md: 2 }, color: '#8BC34A' }}
+                  sx={{
+                    mb: { xs: 1, sm: 2, md: 2 },
+                    color: '#8BC34A',
+                    fontSize: { xs: 18, sm: 22, md: 24 },
+                  }}
                 />
                 <Typography
                   variant="h6"
@@ -350,7 +366,7 @@ const TestimonialsSection = () => {
                     fontWeight: 600,
                     color: '#333',
                     mb: { xs: 0.5, sm: 0.75, md: 1 },
-                    fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+                    fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.2rem' },
                   }}
                 >
                   {testimonial.name}
@@ -359,7 +375,7 @@ const TestimonialsSection = () => {
                   variant="subtitle2"
                   sx={{
                     color: '#666',
-                    fontSize: { xs: '0.8rem', sm: '0.9rem', md: '1rem' }
+                    fontSize: { xs: '0.7rem', sm: '0.9rem', md: '1rem' },
                   }}
                 >
                   {testimonial.company}
