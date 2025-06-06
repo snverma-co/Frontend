@@ -144,7 +144,7 @@ const PrivacyPolicy = () => {
           </Typography>
           <Typography paragraph>
             Email: info@snvcas.com<br />
-            Phone: +91-11-48560000<br />
+            Phone: +91 9811156389<br />
             Address: H-5, 2nd Floor, Above Yes Bank, Model Town 3, New Delhi - 110009
           </Typography>
         </Section>
