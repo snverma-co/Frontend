@@ -79,7 +79,7 @@ const StatsSection = () => {
       ref={sectionRef}
       sx={{
         textAlign: 'center',
-        py: 8,
+        py: { xs: 5, sm: 6, md: 8 },  // Adjusted padding for different screen sizes
         backgroundColor: '#f5f5f5',
         position: 'relative',
         '&::before': {
@@ -88,21 +88,22 @@ const StatsSection = () => {
           top: 0,
           left: 0,
           right: 0,
-          height: '50px',
+          height: { xs: '30px', sm: '40px', md: '50px' },  // Adjusted height for different screen sizes
           background: 'linear-gradient(to bottom right, transparent 49%, #f5f5f5 50%)'
         }
       }}
     >
-      <Container>
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}> {/* Added responsive padding */}
         <Typography
           variant="h2"
           className="title-item"
           sx={{
             fontWeight: 'bold',
             color: '#333',
-            mb: 2,
+            mb: { xs: 1, sm: 1.5, md: 2 },  // Adjusted margin for different screen sizes
             fontFamily: '"Playfair Display", serif',
-            fontSize: { xs: '1.5rem', md: '2.5rem' },
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },  // Refined font sizes
+            lineHeight: { xs: 1.3, sm: 1.4, md: 1.5 },  // Added line height for better readability
             opacity: 0,
             transform: 'translateY(-20px)',
             transition: 'all 0.6s ease-out',
@@ -121,10 +122,12 @@ const StatsSection = () => {
           className="desc-item"
           sx={{
             color: '#666',
-            mb: 6,
+            mb: { xs: 4, sm: 5, md: 6 },  // Adjusted margin for different screen sizes
             maxWidth: '800px',
             mx: 'auto',
-            fontSize: { xs: '0.8rem', md: '1rem' },
+            fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },  // Refined font sizes
+            lineHeight: { xs: 1.5, sm: 1.6, md: 1.7 },  // Added line height for better readability
+            px: { xs: 1, sm: 2, md: 0 },  // Added horizontal padding for smaller screens
             opacity: 0,
             transform: 'translateY(-20px)',
             transition: 'all 0.6s ease-out',
@@ -137,18 +140,18 @@ const StatsSection = () => {
         >
        S N VERMA & Co is a Chartered Accounting Firm committed to serving our clients as a Trusted Advisor.
         </Typography>
-        <br/>
-        <br/>
+        {/* Removed extra br tags and replaced with proper spacing in the container */}
         <Box
           sx={{
             display: 'grid',
             gridTemplateColumns: {
-              xs: '1fr',
-              sm: '1fr 1fr',
-              md: 'repeat(5, 1fr)'
+              xs: 'repeat(1, 1fr)',  // 1 column on mobile
+              sm: 'repeat(2, 1fr)',  // 2 columns on tablet
+              md: 'repeat(5, 1fr)'   // 5 columns on desktop (unchanged)
             },
-            gap: 4,
-            textAlign: 'center'
+            gap: { xs: 3, sm: 3.5, md: 4 },  // Adjusted gap for different screen sizes
+            textAlign: 'center',
+            mt: { xs: 2, sm: 3, md: 4 }  // Added top margin instead of br tags
           }}
         >
           {stats.map((stat, index) => {
@@ -161,6 +164,11 @@ const StatsSection = () => {
                   opacity: 0,
                   transform: 'translateY(20px)',
                   transition: 'all 0.6s ease-out',
+                  transitionDelay: `${0.1 * index}s`,  // Added staggered animation
+                  backgroundColor: { xs: 'rgba(255,255,255,0.7)', md: 'transparent' },  // Added subtle background on mobile
+                  borderRadius: { xs: '8px', md: '0' },  // Added rounded corners on mobile
+                  padding: { xs: 3, sm: 2, md: 1 },  // Added padding for mobile cards
+                  boxShadow: { xs: '0 2px 10px rgba(0,0,0,0.05)', md: 'none' },  // Added subtle shadow on mobile
                   '&.animate': {
                     opacity: 1,
                     transform: 'translateY(0)'
@@ -169,9 +177,9 @@ const StatsSection = () => {
               >
                 <Icon
                   sx={{
-                    fontSize: 48,
+                    fontSize: { xs: 40, sm: 44, md: 48 },  // Adjusted icon size for different screens
                     color: '#4CAF50',
-                    mb: 2
+                    mb: { xs: 1.5, md: 2 }
                   }}
                 />
                 <Typography
@@ -179,7 +187,8 @@ const StatsSection = () => {
                   sx={{
                     fontWeight: 'bold',
                     color: '#333',
-                    mb: 1
+                    mb: 1,
+                    fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' }  // Adjusted font size for different screens
                   }}
                 >
                   {animatedValues[index] + '+'}
@@ -188,7 +197,8 @@ const StatsSection = () => {
                   variant="body1"
                   sx={{
                     color: '#666',
-                    fontWeight: 500
+                    fontWeight: 500,
+                    fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' }  // Adjusted font size for different screens
                   }}
                 >
                   {translations[stat.label] || stat.label}
