@@ -110,7 +110,7 @@ const Footer = () => {
                 We are prominent Chartered Accountants in India offering comprehensive accounting and financial services.
               </Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
-                <SocialIconButton component="a" href="#" target="_blank">
+                <SocialIconButton component="a" href="https://www.facebook.com/people/SN-Verma-Co/61577064453964/" target="_blank">
                   <FacebookIcon />
                 </SocialIconButton>
                 <SocialIconButton component="a" href="#" target="_blank">
@@ -122,7 +122,7 @@ const Footer = () => {
                 <SocialIconButton component="a" href="#" target="_blank">
                   <YouTubeIcon />
                 </SocialIconButton>
-                <SocialIconButton component="a" href="#" target="_blank">
+                <SocialIconButton component="a" href="https://www.instagram.com/snvermaco?igsh=MW9lbWc0NTRveG51NA==" target="_blank">
                   <InstagramIcon />
                 </SocialIconButton>
               </Box>
