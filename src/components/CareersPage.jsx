@@ -67,6 +67,7 @@ const CareersPage = () => {
   const { translations } = useLanguage();
   const navigate = useNavigate();
   const [showThankYou, setShowThankYou] = useState(false);
+  const [loading, setLoading] = useState(false); // Loader state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -120,16 +121,16 @@ const CareersPage = () => {
     if (name === 'resume' && files) {
       const file = files[0];
       const maxSize = 5 * 1024 * 1024; // 5MB in bytes
-      
+
       if (file.size > maxSize) {
         setErrors(prev => ({
           ...prev,
           resume: 'File size must be less than 5MB'
         }));
-        e.target.value = ''; // Reset file input
+        e.target.value = '';
         return;
       }
-      
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData(prev => ({
@@ -147,8 +148,7 @@ const CareersPage = () => {
         ...prev,
         [name]: value
       }));
-      
-      // Validate field on change
+
       const error = validateField(name, value);
       setErrors(prev => ({
         ...prev,
@@ -159,8 +159,8 @@ const CareersPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loader
 
-    // Validate all fields
     const newErrors = {};
     Object.keys(formData).forEach(field => {
       if (field !== 'captcha') {
@@ -175,8 +175,8 @@ const CareersPage = () => {
 
     setErrors(newErrors);
 
-    // Check if there are any errors
     if (Object.values(newErrors).some(error => error)) {
+      setLoading(false); // Stop loader if validation fails
       return;
     }
 
@@ -205,7 +205,6 @@ const CareersPage = () => {
         }));
       }
 
-      // Reset captcha
       setCaptchaValue({
         num1: Math.floor(Math.random() * 10),
         num2: Math.floor(Math.random() * 10)
@@ -216,6 +215,8 @@ const CareersPage = () => {
         ...prev,
         submit: 'An error occurred while submitting the form'
       }));
+    } finally {
+      setLoading(false); // Stop loader after try/catch
     }
   };
 
@@ -225,6 +226,42 @@ const CareersPage = () => {
 
   return (
     <Box sx={{ pb: 8 }}>
+      {loading && (
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 9999
+          }}
+        >
+          <Box
+            sx={{
+              width: 60,
+              height: 60,
+              border: '6px solid #ccc',
+              borderTop: '6px solid #1976d2',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite'
+            }}
+          />
+          <style>
+            {`
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            `}
+          </style>
+        </Box>
+      )}
+
       <StyledHero>
         <Container>
           <Box sx={{ pt: 4 }}>
@@ -233,14 +270,14 @@ const CareersPage = () => {
               <Typography>Careers</Typography>
             </StyledBreadcrumbs>
           </Box>
-          <Box sx={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
             mt: 8
           }}>
             <Box>
-              <Typography variant="h2" sx={{ 
+              <Typography variant="h2" sx={{
                 mb: 2,
                 fontWeight: 700,
                 fontFamily: '"Playfair Display", serif'
@@ -266,7 +303,7 @@ const CareersPage = () => {
 
       <Container maxWidth="md">
         <StyledForm elevation={3}>
-          <Typography variant="h4" align="center" sx={{ 
+          <Typography variant="h4" align="center" sx={{
             mb: 4,
             color: '#333',
             fontWeight: 600,
@@ -274,7 +311,7 @@ const CareersPage = () => {
           }}>
             For career opportunities
           </Typography>
-          <Typography variant="h5" align="center" sx={{ 
+          <Typography variant="h5" align="center" sx={{
             mb: 4,
             color: '#666'
           }}>
@@ -376,22 +413,22 @@ const CareersPage = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-  <TextField
-    fullWidth
-    type="file"
-    label="Resume"
-    name="resume"
-    onChange={handleChange}
-    required
-    variant="outlined"
-    InputLabelProps={{ shrink: true }}
-    error={!!errors.resume}
-    helperText={errors.resume}
-  />
-  <Typography variant="body2" color="textSecondary" style={{ marginTop: 4 }}>
-    * File size should be below 5MB
-  </Typography>
-</Grid>
+                <TextField
+                  fullWidth
+                  type="file"
+                  label="Resume"
+                  name="resume"
+                  onChange={handleChange}
+                  required
+                  variant="outlined"
+                  InputLabelProps={{ shrink: true }}
+                  error={!!errors.resume}
+                  helperText={errors.resume}
+                />
+                <Typography variant="body2" color="textSecondary" style={{ marginTop: 4 }}>
+                  * File size should be below 5MB
+                </Typography>
+              </Grid>
               <Grid item xs={12}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                   <Typography variant="body1">
