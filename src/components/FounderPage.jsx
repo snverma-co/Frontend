@@ -106,8 +106,8 @@ const FounderPage = () => {
     fontSize: {
       xs: '1.8rem',  // Small phones
       sm: '2.2rem',  // Tablets
-      md: '3rem',    // Laptops/desktops
-      lg: '3.5rem',  // Large screens
+      md: '2rem',    // Laptops/desktops
+      lg: '3rem',  // Large screens
     },
   }}
 >

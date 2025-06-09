@@ -1,10 +1,10 @@
 import { Box, Button, Container, Typography, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
-// Styled Hero Section (background image handled dynamically via props)
+// Styled Hero Section
 const HeroSection = styled(Box)(({ theme }) => ({
   paddingTop: '80px',
   position: 'relative',
@@ -18,17 +18,13 @@ const HeroSection = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   color: '#fff',
   transition: 'background-image 1s ease-in-out',
-
-  // Ensure text and image are legible on smaller screens
   [theme.breakpoints.down('md')]: {
-    backgroundAttachment: 'scroll',        // Prevent flicker on mobile
-    backgroundSize: 'cover',               // Make sure it fills the view
-    backgroundPosition: 'center center',   // Re-center image for small devices
+    backgroundAttachment: 'scroll',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
   }
 }));
 
-
-// Styled Buttons
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: '25px',
   padding: '10px 30px',
@@ -54,72 +50,91 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const Hero = () => {
   const [text, setText] = useState('');
-  const [wordIndex, setWordIndex] = useState(0);
+  const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [typingDelay, setTypingDelay] = useState(150);
+
   const { translations, isRTL } = useLanguage();
   const navigate = useNavigate();
 
-  // Background image slideshow
+  const words = [
+    translations['ITR’s'],
+    translations['GST'],
+    translations['TDS'],
+    translations['Audit'],
+    translations['Financial Planning'],
+    translations['Balance Sheet'],
+    translations['Wealth Management'],
+    translations['Systems']
+  ];
+
   const backgroundImages = [
     '/bgimg.jpg',
     '/diverse-group-young-professionals-are-engaged-their-respective-tasks-computers_1339901-7178.avif',
     '/grouppic.JPG',
     '/premium_photo-1683120730432-b5ea74bd9047.jpeg'
   ];
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Change background image every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 5000); // Change every 5 seconds
+      setCurrentImageIndex(prev => (prev + 1) % backgroundImages.length);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Typing effect
-  const words = [
-    translations['Taxation'],
-    translations['Income Statements'],
-    translations['Variance Analysis'],
-    translations['Audit'],
-    translations['Cost Accounting'],
-    translations['Forensic Accounting'],
-    translations['Ledger'],
-    translations['Balance Sheet'],
-    translations['Depreciation'],
-    translations['Accounting Standards'],
-    translations['Financial Statements']
-  ];
-  const typingSpeed = 150;
-  const deletingSpeed = 50;
-  const pauseTime = 2000;
+  // useRefs to hold current state values to avoid stale closures in timeout
+  const loopNumRef = useRef(loopNum);
+  const isDeletingRef = useRef(isDeleting);
+  const textRef = useRef(text);
 
   useEffect(() => {
-    if (!words[wordIndex]) return;
+    loopNumRef.current = loopNum;
+  }, [loopNum]);
 
-    const word = words[wordIndex];
-    const timer = setTimeout(() => {
-      if (isDeleting) {
-        setText(text => {
-          if (text === '') {
-            setIsDeleting(false);
-            setWordIndex((prev) => (prev + 1) % words.length);
-            return '';
-          }
-          return text.slice(0, -1);
-        });
+  useEffect(() => {
+    isDeletingRef.current = isDeleting;
+  }, [isDeleting]);
+
+  useEffect(() => {
+    textRef.current = text;
+  }, [text]);
+
+  // Typing effect logic
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentIndex = loopNumRef.current % words.length;
+      const fullText = words[currentIndex];
+      let updatedText;
+
+      if (isDeletingRef.current) {
+        updatedText = fullText.substring(0, textRef.current.length - 1);
       } else {
-        setText(text => {
-          if (text === word) {
-            setTimeout(() => setIsDeleting(true), pauseTime);
-            return text;
-          }
-          return word.slice(0, text.length + 1);
-        });
+        updatedText = fullText.substring(0, textRef.current.length + 1);
       }
-    }, isDeleting ? deletingSpeed : typingSpeed);
 
+      setText(updatedText);
+
+      // Control typing speed and pauses
+      let delay = isDeletingRef.current ? 75 : 150;
+
+      if (!isDeletingRef.current && updatedText === fullText) {
+        delay = 1000; // pause before deleting
+        setIsDeleting(true);
+      } else if (isDeletingRef.current && updatedText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNumRef.current + 1);
+        delay = 500; // pause before typing next word
+      }
+
+      setTypingDelay(delay);
+    };
+
+    const timer = setTimeout(handleTyping, typingDelay);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, wordIndex, words]);
+  }, [text, typingDelay, words]);
 
   return (
     <HeroSection
@@ -133,29 +148,49 @@ const Hero = () => {
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} md={7}>
             <Box>
-              <Typography variant="h2" component="h1" sx={{
-                fontWeight: 800,
-                mb: 2,
-                textAlign: isRTL ? 'right' : 'left',
-                fontSize: { xs: '2rem', sm: '2rem', md: '2.5rem' },
-                letterSpacing: '-0.5px',
-                lineHeight: 1.2,
-                fontFamily: '"Playfair Display", serif',
-                '& .highlight': {
-                  color: '#4CAF50'
-                }
-              }}>
+              <Typography
+                variant="h2"
+                component="h1"
+                sx={{
+                  fontWeight: 800,
+                  mb: 2,
+                  textAlign: isRTL ? 'right' : 'left',
+                  fontSize: { xs: '2rem', sm: '2rem', md: '2.5rem' },
+                  letterSpacing: '-0.5px',
+                  lineHeight: 1.2,
+                  fontFamily: '"Playfair Display", serif',
+                  '& .highlight': {
+                    color: '#4CAF50'
+                  },
+                  overflowWrap: 'normal',
+                  wordBreak: 'keep-all',
+                }}
+              >
                 {translations['Manage Your']}{' '}
-                <span style={{ color: '#4CAF50', transition: 'color 0.3s ease' }}>{text}</span><br />
+                <span
+                  style={{
+                    color: '#4CAF50',
+                    transition: 'color 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    overflowWrap: 'normal',
+                    wordBreak: 'keep-all',
+                    display: 'inline-block',
+                  }}
+                >
+                  {text}
+                </span><br />
                 {translations['The Right Way']}
               </Typography>
 
-              <Typography variant="h5" sx={{
-                mb: 4,
-                textAlign: isRTL ? 'right' : 'left',
-                fontSize: '1.25rem',
-                fontFamily: '"Playfair Display", serif'
-              }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  mb: 4,
+                  textAlign: isRTL ? 'right' : 'left',
+                  fontSize: '1.25rem',
+                  fontFamily: '"Playfair Display", serif'
+                }}
+              >
                 {translations['Empowering Excellence']}, {translations['Every Step of the Way']}
               </Typography>
 
@@ -186,7 +221,7 @@ const Hero = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={5}>
-            {/* Right grid left empty intentionally */}
+            {/* Right grid intentionally left empty */}
           </Grid>
         </Grid>
       </Container>
@@ -195,4 +230,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

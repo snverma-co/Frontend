@@ -42,14 +42,22 @@ const TeamSection = () => {
     {
       name: 'Late CA S.N. VERMA',
       role: 'Founder',
-      image: '/Founder Image 1.0.jpeg'
+      image: '/Founder Image 1.0.jpeg',
+      navigateTo: '/Company' // Add navigation path for founder
     },
     {
       name: 'CA VIPIN VERMA',
       role: 'Senior Partner',
-      image: '/senior partner img.jpeg'
+      image: '/senior partner img.jpeg',
+      navigateTo: '/team' // Add navigation path for senior partner
     }
   ];
+
+  // Handle card click to navigate to the appropriate page
+  const handleCardClick = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0); // Scroll to top
+  };
 
   return (
     <Box
@@ -107,6 +115,7 @@ const TeamSection = () => {
                 initial="hidden"
                 animate={inView ? 'visible' : 'hidden'}
                 whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                onClick={() => handleCardClick(member.navigateTo)} // Add onClick handler
                 sx={{
                   height: '100%',
                   display: 'flex',
@@ -115,7 +124,8 @@ const TeamSection = () => {
                   overflow: 'hidden',
                   backgroundColor: 'white',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer' // Add pointer cursor to indicate clickable
                 }}
               >
                 <CardMedia

@@ -1400,8 +1400,13 @@ const Navbar = () => {
 
   const languageOptions = {
     en: 'English',
-    hi: 'हिंदी',
-    gu: 'ગુજરાતી'
+  hi: 'हिंदी',
+  gu: 'ગુજરાતી',
+  zh: '中文',        // Chinese
+  ar: 'العربية',     // Arabic
+  es: 'Español',     // Spanish
+  fr: 'Français'    // French
+ 
   };
 
   const renderLanguageSelector = () => {
