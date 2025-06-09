@@ -1,6 +1,6 @@
 import { Box, Container, Typography, TextField, Button, Grid, Paper, Breadcrumbs, Link } from '@mui/material';
 import { ContactSection } from './ContactSection';
-import { useRef, useEffect } from 'react'; // already have useState, also add these
+import { useState } from 'react';
 import ThankYou from './ThankYou/ThankYou';
 import { styled } from '@mui/material/styles';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -219,23 +219,10 @@ const CareersPage = () => {
       setLoading(false); // Stop loader after try/catch
     }
   };
-  const thankYouRef = useRef(null);
 
-  useEffect(() => {
-    if (showThankYou && thankYouRef.current) {
-      thankYouRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [showThankYou]);
-
-
- if (showThankYou) {
-  return (
-    <div ref={thankYouRef}>
-      <ThankYou message="Thank you for your application. We will review it and get back to you soon." />
-    </div>
-  );
-}
-
+  if (showThankYou) {
+    return <ThankYou message="Thank you for your application. We will review it and get back to you soon." />;
+  }
 
   return (
     <Box sx={{ pb: 8 }}>
