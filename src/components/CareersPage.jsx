@@ -78,6 +78,7 @@ const CareersPage = () => {
     resume: '',
     captcha: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -159,7 +160,10 @@ const CareersPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Start loader
+    setLoading(true);
+  
     // Validate all fields
     const newErrors = {};
     Object.keys(formData).forEach(field => {
@@ -167,24 +171,26 @@ const CareersPage = () => {
         newErrors[field] = validateField(field, formData[field]);
       }
     });
-
+  
     const expectedAnswer = captchaValue.num1 + captchaValue.num2;
     if (Number(formData.captcha) !== expectedAnswer) {
       newErrors.captcha = 'Please enter the correct captcha value';
     }
-
+  
     setErrors(newErrors);
-
-    // Check if there are any errors
+  
+    // Stop loader if validation fails
     if (Object.values(newErrors).some(error => error)) {
+      setLoading(false);
       return;
     }
-
+  
     try {
       const formDataWithoutCaptcha = { ...formData };
       delete formDataWithoutCaptcha.captcha;
+  
       const response = await submitCareerForm(formDataWithoutCaptcha);
-
+  
       if (response.success) {
         setShowThankYou(true);
         setFormData({
@@ -204,24 +210,65 @@ const CareersPage = () => {
           submit: response.message || 'Failed to submit form. Please try again.'
         }));
       }
-
+  
       // Reset captcha
       setCaptchaValue({
         num1: Math.floor(Math.random() * 10),
         num2: Math.floor(Math.random() * 10)
       });
+  
     } catch (error) {
       console.error('Form submission error:', error);
       setErrors(prev => ({
         ...prev,
         submit: 'An error occurred while submitting the form'
       }));
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   if (showThankYou) {
     return <ThankYou message="Thank you for your application. We will review it and get back to you soon." />;
   }
+
+  {loading && (
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 9999
+      }}
+    >
+      <Box
+        sx={{
+          width: 60,
+          height: 60,
+          border: '6px solid #ccc',
+          borderTop: '6px solid #1976d2',
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite'
+        }}
+      />
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
+    </Box>
+  )}
+  
 
   return (
     <Box sx={{ pb: 8 }}>
