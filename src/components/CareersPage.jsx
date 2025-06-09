@@ -1,6 +1,6 @@
-import { Box, Container, Typography, TextField, Button, Grid, Paper, Breadcrumbs, Link } from '@mui/material';
+import { Box, Container, Typography, TextField, Button, Grid, Paper, Breadcrumbs, Link, CircularProgress } from '@mui/material';
 import { ContactSection } from './ContactSection';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ThankYou from './ThankYou/ThankYou';
 import { styled } from '@mui/material/styles';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -63,11 +63,86 @@ const StyledButton = styled(Button)(({ theme }) => ({
   }
 }));
 
+// Advanced Loader Component
+const AdvancedLoader = () => {
+  return (
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        zIndex: 9999,
+        backdropFilter: 'blur(8px)',
+      }}
+    >
+      <Box
+        sx={{
+          position: 'relative',
+          width: 120,
+          height: 120,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CircularProgress
+          size={100}
+          thickness={4}
+          sx={{
+            color: '#2196F3',
+            position: 'absolute',
+            animation: 'pulse 1.5s ease-in-out infinite',
+            '@keyframes pulse': {
+              '0%': { opacity: 1, transform: 'scale(0.8)' },
+              '50%': { opacity: 0.5, transform: 'scale(1)' },
+              '100%': { opacity: 1, transform: 'scale(0.8)' },
+            },
+          }}
+        />
+        <CircularProgress
+          size={80}
+          thickness={4}
+          sx={{
+            color: '#21CBF3',
+            position: 'absolute',
+            animation: 'pulse 1.5s ease-in-out infinite 0.3s',
+          }}
+        />
+      </Box>
+      <Typography
+        variant="h6"
+        sx={{
+          mt: 3,
+          fontWeight: 600,
+          color: '#333',
+          textAlign: 'center',
+          animation: 'fadeInOut 2s ease-in-out infinite',
+          '@keyframes fadeInOut': {
+            '0%': { opacity: 0.5 },
+            '50%': { opacity: 1 },
+            '100%': { opacity: 0.5 },
+          },
+        }}
+      >
+        Processing your application...
+      </Typography>
+    </Box>
+  );
+};
+
 const CareersPage = () => {
   const { translations } = useLanguage();
   const navigate = useNavigate();
   const [showThankYou, setShowThankYou] = useState(false);
   const [loading, setLoading] = useState(false); // Loader state
+  const thankYouRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -157,6 +232,19 @@ const CareersPage = () => {
     }
   };
 
+  // Add effect to scroll to thank you message when it appears
+  useEffect(() => {
+    if (showThankYou && thankYouRef.current) {
+      // Use setTimeout to ensure the ThankYou component is rendered
+      setTimeout(() => {
+        thankYouRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 100);
+    }
+  }, [showThankYou]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Start loader
@@ -221,46 +309,12 @@ const CareersPage = () => {
   };
 
   if (showThankYou) {
-    return <ThankYou message="Thank you for your application. We will review it and get back to you soon." />;
+    return <div ref={thankYouRef}><ThankYou message="Thank you for your application. We will review it and get back to you soon." /></div>;
   }
 
   return (
     <Box sx={{ pb: 8 }}>
-      {loading && (
-        <Box
-          sx={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 9999
-          }}
-        >
-          <Box
-            sx={{
-              width: 60,
-              height: 60,
-              border: '6px solid #ccc',
-              borderTop: '6px solid #1976d2',
-              borderRadius: '50%',
-              animation: 'spin 1s linear infinite'
-            }}
-          />
-          <style>
-            {`
-              @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-            `}
-          </style>
-        </Box>
-      )}
+      {loading && <AdvancedLoader />}
 
       <StyledHero>
         <Container>

@@ -1,4 +1,4 @@
-import { Box, Container, Typography, TextField, Button, Grid } from '@mui/material';
+import { Box, Container, Typography, TextField, Button, Grid, CircularProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -26,7 +26,79 @@ const StyledButton = styled(Button)(({ theme }) => ({
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
 }));
 
-
+// Advanced Loader Component
+const AdvancedLoader = () => {
+  return (
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        zIndex: 9999,
+        backdropFilter: 'blur(8px)',
+      }}
+    >
+      <Box
+        sx={{
+          position: 'relative',
+          width: 120,
+          height: 120,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CircularProgress
+          size={100}
+          thickness={4}
+          sx={{
+            color: '#2196F3',
+            position: 'absolute',
+            animation: 'pulse 1.5s ease-in-out infinite',
+            '@keyframes pulse': {
+              '0%': { opacity: 1, transform: 'scale(0.8)' },
+              '50%': { opacity: 0.5, transform: 'scale(1)' },
+              '100%': { opacity: 1, transform: 'scale(0.8)' },
+            },
+          }}
+        />
+        <CircularProgress
+          size={80}
+          thickness={4}
+          sx={{
+            color: '#21CBF3',
+            position: 'absolute',
+            animation: 'pulse 1.5s ease-in-out infinite 0.3s',
+          }}
+        />
+      </Box>
+      <Typography
+        variant="h6"
+        sx={{
+          mt: 3,
+          fontWeight: 600,
+          color: '#333',
+          textAlign: 'center',
+          animation: 'fadeInOut 2s ease-in-out infinite',
+          '@keyframes fadeInOut': {
+            '0%': { opacity: 0.5 },
+            '50%': { opacity: 1 },
+            '100%': { opacity: 0.5 },
+          },
+        }}
+      >
+        Sending your message...
+      </Typography>
+    </Box>
+  );
+};
 
 const AnimatedBox = styled(Box)(({ theme, isVisible = false, delay = 0 }) => ({
   transform: `translateY(${isVisible ? '0' : '50px'})`,
@@ -53,6 +125,7 @@ const AnimatedBox = styled(Box)(({ theme, isVisible = false, delay = 0 }) => ({
 
 export const ContactSection = () => {
   const [showThankYou, setShowThankYou] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -74,6 +147,7 @@ export const ContactSection = () => {
   const { translations, isRTL } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const thankYouRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -100,6 +174,18 @@ export const ContactSection = () => {
       }
     };
   }, []);
+
+  // Effect to scroll to thank you message when it appears
+  useEffect(() => {
+    if (showThankYou && thankYouRef.current) {
+      setTimeout(() => {
+        thankYouRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 100);
+    }
+  }, [showThankYou]);
 
   const validateField = (name, value) => {
     let error = '';
@@ -151,6 +237,9 @@ export const ContactSection = () => {
       return;
     }
 
+    // Show loader
+    setIsLoading(true);
+
     try {
       const response = await submitContactForm({
         name: formData.fullName,
@@ -161,6 +250,10 @@ export const ContactSection = () => {
         message: formData.message,
         createdAt: new Date()
       });
+      
+      // Hide loader and show thank you message
+      setIsLoading(false);
+      
       if (response.success) {
         setShowThankYou(true);
         setFormData({
@@ -175,13 +268,14 @@ export const ContactSection = () => {
         alert(response.message);
       }
     } catch (error) {
+      setIsLoading(false);
       alert('An error occurred while submitting the form');
       console.error('Form submission error:', error);
     }
   };
 
   if (showThankYou) {
-    return <ThankYou message="Thank you for reaching out. We will get back to you shortly." />;
+    return <div ref={thankYouRef}><ThankYou message="Thank you for reaching out. We will get back to you shortly." /></div>;
   }
 
   return (
@@ -205,6 +299,7 @@ export const ContactSection = () => {
           pointerEvents: 'none'
         }
       }}>
+      {isLoading && <AdvancedLoader />}
       <Container maxWidth="none" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
         <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center" justifyContent="center">
 
@@ -601,6 +696,7 @@ export const ContactSection = () => {
               type="submit" 
               variant="contained"
               fullWidth
+              disabled={isLoading}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '15px',
@@ -619,7 +715,9 @@ export const ContactSection = () => {
                   }
                 }, mt: 2 }}
             >
-              Submit
+              {isLoading ? (
+                <CircularProgress size={24} color="inherit" sx={{ mr: 1 }} />
+              ) : 'Submit'}
             </StyledButton>
           </AnimatedBox>
         </Box>
