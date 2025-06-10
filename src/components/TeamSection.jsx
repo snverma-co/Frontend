@@ -183,7 +183,11 @@ const TeamSection = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/team#second-member')}
+            onClick={() => {
+              navigate('/team');
+              window.scrollTo(0, 0); // Scrolls to top
+            }}
+            
             style={{
               padding: '20px 50px',
               fontSize: '1.1rem',
