@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Container, Typography, Rating } from '@mui/material';
+import { Box, Container, Typography, Rating, IconButton, Tooltip } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
 
 // Styled testimonial card with animation and hover effect
 const TestimonialCard = styled(Box)(({ theme, isVisible, index }) => ({
@@ -35,6 +37,18 @@ const QuoteIcon = styled(FormatQuoteIcon)(({ theme }) => ({
   color: 'rgba(139, 195, 74, 0.2)',
   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
   pointerEvents: 'none',
+}));
+
+// Control button styled
+const ControlButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  bottom: '20px',
+  right: '20px',
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  zIndex: 10,
+  '&:hover': {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+  },
 }));
 
 // Testimonials data with full text included
@@ -89,8 +103,8 @@ const TestimonialsSection = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [autoSlideEnabled, setAutoSlideEnabled] = useState(true);
-  const [slideDirection, setSlideDirection] = useState('right');
   const autoSlideInterval = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   // Mouse / Touch handlers for drag scroll
   const handleMouseDown = (e) => {
@@ -99,14 +113,16 @@ const TestimonialsSection = () => {
     setScrollLeft(carousel.current.scrollLeft);
     carousel.current.style.cursor = 'grabbing';
     stopAutoSlide();
-    setAutoSlideEnabled(false);
+    setIsPlaying(false);
   };
 
   const handleMouseUp = () => {
     setIsDragging(false);
     if (carousel.current) carousel.current.style.cursor = 'grab';
-    setAutoSlideEnabled(true);
-    startAutoSlide();
+    if (autoSlideEnabled) {
+      startAutoSlide();
+      setIsPlaying(true);
+    }
   };
 
   const handleMouseMove = (e) => {
@@ -122,7 +138,7 @@ const TestimonialsSection = () => {
     setStartX(e.touches[0].pageX - carousel.current.offsetLeft);
     setScrollLeft(carousel.current.scrollLeft);
     stopAutoSlide();
-    setAutoSlideEnabled(false);
+    setIsPlaying(false);
   };
 
   const handleTouchMove = (e) => {
@@ -132,13 +148,31 @@ const TestimonialsSection = () => {
     carousel.current.scrollLeft = scrollLeft - walk;
   };
 
+  // Handle infinite scroll logic
+  const handleInfiniteScroll = () => {
+    if (!carousel.current) return;
+    
+    const container = carousel.current;
+    const scrollPosition = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    
+    // If we've scrolled to the end, reset to the beginning
+    if (scrollPosition + clientWidth >= scrollWidth - 10) {
+      container.scrollTo({
+        left: 0,
+        behavior: 'auto'
+      });
+    }
+  };
+
   const startAutoSlide = () => {
     if (!autoSlideInterval.current && autoSlideEnabled) {
       autoSlideInterval.current = setInterval(() => {
         if (!carousel.current) return;
   
         const container = carousel.current;
-        const cards = container.querySelectorAll('div > div > div'); // TestimonialCard elements
+        const cards = container.querySelectorAll('div > div > div');
         if (!cards.length) return;
   
         const card = cards[0];
@@ -146,39 +180,40 @@ const TestimonialsSection = () => {
         const cardMarginRight = parseInt(style.marginRight || '0', 10);
         const cardWidth = card.offsetWidth + cardMarginRight;
   
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        const currentScroll = container.scrollLeft;
-  
-        let newScrollLeft;
-  
-        if (slideDirection === 'right') {
-          newScrollLeft = currentScroll + cardWidth;
-          if (newScrollLeft >= maxScroll - 10) { // Buffer to avoid over-scrolling
-            newScrollLeft = maxScroll;
-            setSlideDirection('left');
-          }
-        } else {
-          newScrollLeft = currentScroll - cardWidth;
-          if (newScrollLeft <= 0) {
-            newScrollLeft = 0;
-            setSlideDirection('right');
-          }
-        }
-  
+        const newScrollLeft = container.scrollLeft + 1; // Scroll 1px at a time for smoother animation
+        
         container.scrollTo({
           left: newScrollLeft,
-          behavior: 'smooth',
+          behavior: 'auto'
         });
-      }, 5000);
+        
+        // Check if we need to reset for infinite loop
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+          container.scrollTo({
+            left: 0,
+            behavior: 'auto'
+          });
+        }
+      }, 16); // Update at 60fps for smoother animation
     }
   };
-  
 
   const stopAutoSlide = () => {
     if (autoSlideInterval.current) {
       clearInterval(autoSlideInterval.current);
       autoSlideInterval.current = null;
     }
+  };
+
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      stopAutoSlide();
+      setAutoSlideEnabled(false);
+    } else {
+      setAutoSlideEnabled(true);
+      startAutoSlide();
+    }
+    setIsPlaying(!isPlaying);
   };
 
   // Intersection observer to reveal section with animation
@@ -200,12 +235,11 @@ const TestimonialsSection = () => {
     };
   }, []);
 
-  // Reset carousel scroll and slide direction on resize
+  // Reset carousel scroll on resize
   useEffect(() => {
     const updateWidth = () => {
       if (carousel.current) {
         carousel.current.scrollLeft = 0;
-        setSlideDirection('right');
       }
     };
 
@@ -221,7 +255,10 @@ const TestimonialsSection = () => {
 
   // Attach event listeners for dragging and start auto slide
   useEffect(() => {
-    startAutoSlide();
+    if (autoSlideEnabled) {
+      startAutoSlide();
+    }
+    
     const currentCarousel = carousel.current;
     if (!currentCarousel) return;
 
@@ -240,7 +277,7 @@ const TestimonialsSection = () => {
       currentCarousel.removeEventListener('touchmove', handleTouchMove);
       currentCarousel.removeEventListener('touchend', handleMouseUp);
     };
-  }, [isDragging, startX, scrollLeft, slideDirection, autoSlideEnabled]);
+  }, [isDragging, startX, scrollLeft, autoSlideEnabled]);
 
   return (
     <Box
@@ -305,83 +342,153 @@ const TestimonialsSection = () => {
           team. From the start, we see ourselves as your partner.
         </Typography>
 
-        <Box
-          ref={carousel}
-          sx={{
-            overflow: 'hidden',
-            width: '100%',
-            cursor: 'grab',
-            position: 'relative',
-            scrollBehavior: 'smooth',
-            WebkitOverflowScrolling: 'touch',
-            '&::-webkit-scrollbar': { display: 'none' },
-            msOverflowStyle: 'none',
-            scrollbarWidth: 'none',
-            '& > div': {
+        <Box sx={{ position: 'relative' }}>
+          <Tooltip title={isPlaying ? "Pause" : "Play"}>
+            <ControlButton 
+              onClick={togglePlayPause}
+              aria-label={isPlaying ? "Pause testimonials" : "Play testimonials"}
+              size="medium"
+            >
+              {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+            </ControlButton>
+          </Tooltip>
+          
+          <Box
+            ref={carousel}
+            sx={{
+              overflow: 'hidden',
+              width: '100%',
+              cursor: 'grab',
+              position: 'relative',
+              scrollBehavior: 'smooth',
+              WebkitOverflowScrolling: 'touch',
+              '&::-webkit-scrollbar': { display: 'none' },
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none',
+            }}
+          >
+            <Box sx={{ 
               display: 'flex',
               gap: { xs: '1rem', sm: '1.5rem', md: '2rem' },
               padding: { xs: '0.5rem', sm: '0.75rem', md: '1rem' },
               width: 'max-content',
-            },
-          }}
-        >
-          <Box>
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                isVisible={isVisible}
-                index={index}
-                sx={{
-                  width: { xs: '80vw', sm: '320px', md: '360px' },
-                  flex: '0 0 auto',
-                  minHeight: { xs: '260px', sm: '320px', md: '340px' },
-                  padding: { xs: 2, sm: 3, md: 4 },
-                }}
-              >
-                <QuoteIcon className="quote-icon" sx={{ fontSize: { xs: '28px', sm: '36px', md: '40px' } }} />
-                <Typography
-                  variant="body1"
+            }}>
+              {/* Original testimonials */}
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                <TestimonialCard
+                  key={index}
+                  isVisible={isVisible}
+                  index={index % testimonials.length}
                   sx={{
-                    mb: { xs: 1.5, sm: 2.5, md: 3 },
-                    color: '#555',
-                    lineHeight: 1.6,
-                    fontStyle: 'italic',
-                    fontSize: { xs: '0.8rem', sm: '1rem', md: '1.1rem' },
+                    width: { xs: '80vw', sm: '320px', md: '360px' },
+                    flex: '0 0 auto',
+                    minHeight: { xs: '260px', sm: '320px', md: '340px' },
+                    padding: { xs: 2, sm: 3, md: 4 },
                   }}
                 >
-                  {testimonial.text}
-                </Typography>
-                <Rating
-                  value={testimonial.rating}
-                  readOnly
+                  <QuoteIcon className="quote-icon" sx={{ fontSize: { xs: '28px', sm: '36px', md: '40px' } }} />
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mb: { xs: 1.5, sm: 2.5, md: 3 },
+                      color: '#555',
+                      lineHeight: 1.6,
+                      fontStyle: 'italic',
+                      fontSize: { xs: '0.8rem', sm: '1rem', md: '1.1rem' },
+                    }}
+                  >
+                    {testimonial.text}
+                  </Typography>
+                  <Rating
+                    value={testimonial.rating}
+                    readOnly
+                    sx={{
+                      mb: { xs: 1, sm: 2, md: 2 },
+                      color: '#8BC34A',
+                      fontSize: { xs: 18, sm: 22, md: 24 },
+                    }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 600,
+                      color: '#333',
+                      mb: { xs: 0.5, sm: 0.75, md: 1 },
+                      fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.2rem' },
+                    }}
+                  >
+                    {testimonial.name}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      color: '#666',
+                      fontSize: { xs: '0.7rem', sm: '0.9rem', md: '1rem' },
+                    }}
+                  >
+                    {testimonial.company}
+                  </Typography>
+                </TestimonialCard>
+              ))}
+              
+              {/* Duplicate the first few testimonials to create the infinite loop effect */}
+              {testimonials.slice(0, 3).map((testimonial, index) => (
+                <TestimonialCard
+                  key={`duplicate-${index}`}
+                  isVisible={isVisible}
+                  index={index}
                   sx={{
-                    mb: { xs: 1, sm: 2, md: 2 },
-                    color: '#8BC34A',
-                    fontSize: { xs: 18, sm: 22, md: 24 },
-                  }}
-                />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    color: '#333',
-                    mb: { xs: 0.5, sm: 0.75, md: 1 },
-                    fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.2rem' },
+                    width: { xs: '80vw', sm: '320px', md: '360px' },
+                    flex: '0 0 auto',
+                    minHeight: { xs: '260px', sm: '320px', md: '340px' },
+                    padding: { xs: 2, sm: 3, md: 4 },
                   }}
                 >
-                  {testimonial.name}
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  sx={{
-                    color: '#666',
-                    fontSize: { xs: '0.7rem', sm: '0.9rem', md: '1rem' },
-                  }}
-                >
-                  {testimonial.company}
-                </Typography>
-              </TestimonialCard>
-            ))}
+                  <QuoteIcon className="quote-icon" sx={{ fontSize: { xs: '28px', sm: '36px', md: '40px' } }} />
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mb: { xs: 1.5, sm: 2.5, md: 3 },
+                      color: '#555',
+                      lineHeight: 1.6,
+                      fontStyle: 'italic',
+                      fontSize: { xs: '0.8rem', sm: '1rem', md: '1.1rem' },
+                    }}
+                  >
+                    {testimonial.text}
+                  </Typography>
+                  <Rating
+                    value={testimonial.rating}
+                    readOnly
+                    sx={{
+                      mb: { xs: 1, sm: 2, md: 2 },
+                      color: '#8BC34A',
+                      fontSize: { xs: 18, sm: 22, md: 24 },
+                    }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 600,
+                      color: '#333',
+                      mb: { xs: 0.5, sm: 0.75, md: 1 },
+                      fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.2rem' },
+                    }}
+                  >
+                    {testimonial.name}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      color: '#666',
+                      fontSize: { xs: '0.7rem', sm: '0.9rem', md: '1rem' },
+                    }}
+                  >
+                    {testimonial.company}
+                  </Typography>
+                </TestimonialCard>
+              ))}
+            </Box>
           </Box>
         </Box>
       </Container>
