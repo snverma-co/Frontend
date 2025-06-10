@@ -1,7 +1,10 @@
 import { Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
+// Import existing components
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import AboutSection from './components/AboutSection';
@@ -36,6 +39,9 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import { PageTitle } from './components/PageTitle';
 import TeamPage from './components/TeamPage';
 
+// Import new components
+import VideosPage from './components/VideosPage';
+
 const HomePage = () => (
   <Box>
     <PageTitle 
@@ -67,36 +73,51 @@ const ServicePageWrapper = ({ component: Component, title }) => (
 function App() {
   return (
     <LanguageProvider>
-      <Router>
-        <Box>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/audit-and-assurance" element={<ServicePageWrapper component={ServicesPage} title="Audit & Assurance Services" />} />
-            <Route path="/taxation" element={<ServicePageWrapper component={ServicesPage2} title="Taxation Services" />} />
-            <Route path="/regulatory-advisory" element={<ServicePageWrapper component={ServicesPage3} title="Regulatory Advisory Services" />} />
-            <Route path="/ngo-and-trust" element={<ServicePageWrapper component={ServicesPage5} title="NGO & Trust Services" />} />
-            <Route path="/accounting-advisory" element={<ServicePageWrapper component={ServicesPage6} title="Accounting Advisory Services" />} />
-            <Route path="/business-setup-india" element={<ServicePageWrapper component={ServicesPage7} title="Business Setup in India" />} />
-            <Route path="/transaction-advisory" element={<ServicePageWrapper component={ServicesPage4} title="Transaction Advisory Services" />} />
-            <Route path="/business-consultancy" element={<ServicePageWrapper component={ServicesPage8} title="Business Consultancy Services" />} />
-          
+      <AuthProvider>
+        <Router>
+          <Box>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/audit-and-assurance" element={<ServicePageWrapper component={ServicesPage} title="Audit & Assurance Services" />} />
+              <Route path="/taxation" element={<ServicePageWrapper component={ServicesPage2} title="Taxation Services" />} />
+              <Route path="/regulatory-advisory" element={<ServicePageWrapper component={ServicesPage3} title="Regulatory Advisory Services" />} />
+              <Route path="/ngo-and-trust" element={<ServicePageWrapper component={ServicesPage5} title="NGO & Trust Services" />} />
+              <Route path="/accounting-advisory" element={<ServicePageWrapper component={ServicesPage6} title="Accounting Advisory Services" />} />
+              <Route path="/business-setup-india" element={<ServicePageWrapper component={ServicesPage7} title="Business Setup in India" />} />
+              <Route path="/transaction-advisory" element={<ServicePageWrapper component={ServicesPage4} title="Transaction Advisory Services" />} />
+              <Route path="/business-consultancy" element={<ServicePageWrapper component={ServicesPage8} title="Business Consultancy Services" />} />
+            
            
-            <Route path="/contact" element={<Box><PageTitle title="Contact Us" description="Contact S N Verma & Co., your trusted CA firm in Delhi. Get expert consultation for all your accounting, tax, and business advisory needs." /><ContactUsPage /></Box>} />
-            <Route path="/company" element={<Box><PageTitle title="About Our Company" description="Learn about S N Verma & Co., a leading chartered accountancy firm in Delhi with years of expertise in providing comprehensive financial services." /><FounderPage /></Box>} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" description="Join S N Verma & Co., a leading CA firm in Delhi. Explore exciting career opportunities in accounting, taxation, and financial advisory services." /><CareersPage /></Box>} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            {/* <Route path="/utilities" element={<Box><PageTitle title="Utilities" description="Various utility tools provided by S N Verma & Co." /><Utilities /></Box>} /> */}
-            <Route path="/rates-of-tds" element={<Box><PageTitle title="Rates of TDS" description="Details about Rates of TDS." /><div>Rates of TDS Page - Under Construction</div></Box>} />
-            <Route path="/tds-rates-nri" element={<Box><PageTitle title="TDS Rates of N.R.I us 195" description="Details about TDS Rates for N.R.I under section 195." /><div>TDS Rates of N.R.I us 195 Page - Under Construction</div></Box>} />
-          </Routes>
-          <ContactIcons />
-          <Footer />
-          <ScrollToTop />
-        </Box>
-      </Router>
+              <Route path="/contact" element={<Box><PageTitle title="Contact Us" description="Contact S N Verma & Co., your trusted CA firm in Delhi. Get expert consultation for all your accounting, tax, and business advisory needs." /><ContactUsPage /></Box>} />
+              <Route path="/company" element={<Box><PageTitle title="About Our Company" description="Learn about S N Verma & Co., a leading chartered accountancy firm in Delhi with years of expertise in providing comprehensive financial services." /><FounderPage /></Box>} />
+              <Route path="/team" element={<TeamPage />} />
+              <Route path="/careers" element={<Box><PageTitle title="Career Opportunities" description="Join S N Verma & Co., a leading CA firm in Delhi. Explore exciting career opportunities in accounting, taxation, and financial advisory services." /><CareersPage /></Box>} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              {/* <Route path="/utilities" element={<Box><PageTitle title="Utilities" description="Various utility tools provided by S N Verma & Co." /><Utilities /></Box>} /> */}
+              <Route path="/rates-of-tds" element={<Box><PageTitle title="Rates of TDS" description="Details about Rates of TDS." /><div>Rates of TDS Page - Under Construction</div></Box>} />
+              <Route path="/tds-rates-nri" element={<Box><PageTitle title="TDS Rates of N.R.I us 195" description="Details about TDS Rates for N.R.I under section 195." /><div>TDS Rates of N.R.I us 195 Page - Under Construction</div></Box>} />
+              
+              {/* New protected route for videos */}
+              <Route path="/videos" element={
+                <ProtectedRoute>
+                  <Box>
+                    <PageTitle 
+                      title="Educational Videos" 
+                      description="Access our exclusive educational videos on Income Tax, GST, and TDS." 
+                    />
+                    <VideosPage />
+                  </Box>
+                </ProtectedRoute>
+              } />
+            </Routes>
+            <ContactIcons />
+            <Footer />
+            <ScrollToTop />
+          </Box>
+        </Router>
+      </AuthProvider>
     </LanguageProvider>
   );
 }

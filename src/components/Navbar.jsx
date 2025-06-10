@@ -157,8 +157,12 @@ const Navbar = () => {
           }
         },
         {
-          name: 'Videos'
+        name: 'Videos',
+        onClick: () => {
+          navigate('/videos');
+          window.scrollTo(0, 0);
         }
+      }
       ]
     },
     {
@@ -659,7 +663,7 @@ const Navbar = () => {
     if (item === 'HOME') {
       navigate('/');
       window.scrollTo(0, 0);
-    } else if (item === 'COMPANY' || item === 'Founder' || item === 'Our Team') {
+    } else if (item === 'COMPANY' || item === 'Founder' || item === 'Our Team' || item === 'Videos') {
       if (subItem === 'Founder' || item === 'Founder') {
         navigate('/company');
         window.scrollTo(0, 0);
