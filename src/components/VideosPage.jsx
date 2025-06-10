@@ -28,9 +28,9 @@ const VideoCard = styled(Card)(({ theme }) => ({
 // Sample video data - replace with actual videos
 const videoCategories = {
   'Income Tax': [
-    { id: 1, title: 'Folder Creation Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Folder Creation Tutorial.mp4' },
-    { id: 2, title: 'Steps To Prepare ITR', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Steps To Prepare ITR.mp4' },
-    { id: 3, title: 'Busy 21 Software Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Busy 21 Software Tutorial.mp4' },
+    // { id: 1, title: 'Folder Creation Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Folder Creation Tutorial.mp4' },
+    // { id: 2, title: 'Steps To Prepare ITR', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Steps To Prepare ITR.mp4' },
+    // { id: 3, title: 'Busy 21 Software Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Busy 21 Software Tutorial.mp4' },
     // { id: 4, title: 'To Operate Balance sheet in Busy software', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/To Operate Balance sheet in Busy software.mp4' },
     // { id: 5, title: 'Import and Export on ICEGATE (Part1)', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Import and Export on ICEGATE (Part1).mp4' },
     // { id: 6, title: 'Import and Export on ICEGATE (Part2)', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'Videos/income tax/Import and Export on ICEGATE (Part2).mp4' },
@@ -53,9 +53,9 @@ const videoCategories = {
 
   ],
   'GST': [
-    { id: 1, title: 'How to File GSTR-1', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/How to File GSTR-1.mp4' },
-    { id: 2, title: 'GST Registration (Part-1)', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/GST Registration (Part-1).mp4' },
-    { id: 3, title: 'How to Generate JSON file for GSTR-1 (In Case of Busy Software)', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/How to Generate JSON file for GSTR-1 (In Case of Busy Software).mp4' },
+    // { id: 1, title: 'How to File GSTR-1', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/How to File GSTR-1.mp4' },
+    // { id: 2, title: 'GST Registration (Part-1)', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/GST Registration (Part-1).mp4' },
+    // { id: 3, title: 'How to Generate JSON file for GSTR-1 (In Case of Busy Software)', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/How to Generate JSON file for GSTR-1 (In Case of Busy Software).mp4' },
     // { id: 4, title: 'How to Generate JSON file for GSTR-1 (In Case Data Sent by Client in Excel)', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/How to Generate JSON file for GSTR-1 (In Case Data Sent by Client in Excel).mp4' },
     // { id: 5, title: 'How to Create Challan', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/How to Create Challan.mp4' },
     // { id: 6, title: 'How to file clarification-existing registration', thumbnail: '/GSTthubnail.png', videoUrl: 'Videos/gst/How to file clarification-existing registration.mp4' },
@@ -74,7 +74,7 @@ const videoCategories = {
   ],
 
 'OTHERS': [
-    { id: 1, title: 'How to Download PDF Without a password', thumbnail: '/testimonials-bg.jpg', videoUrl: 'Videos/others/How to Download PDF Without a password.mp4' },
+    // { id: 1, title: 'How to Download PDF Without a password', thumbnail: '/testimonials-bg.jpg', videoUrl: 'Videos/others/How to Download PDF Without a password.mp4' },
    
   ],
 };
