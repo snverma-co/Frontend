@@ -30,25 +30,24 @@ const videoCategories = {
   'Income Tax': [
     { id: 1, title: 'Folder Creation Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1ce2BXpHc5b7ggqYDxkt9VqEPyFU0ULWt/preview' },
     { id: 2, title: 'Steps To Prepare ITR', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1wNiYrMQ0hWWknDz2pt2km6cfl82Ek_0V/preview' },
-    { id: 3, title: 'Busy 21 Software Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1VqN4pZODzhLvCsS1A7ybyYybU6KhXjKt/preview' },
-    { id: 4, title: 'To Operate Balance sheet in Busy software', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1vF8xbYnw03qQdEJ8M9J0Cx-q4YP2l0X1/preview' },
-    { id: 5, title: 'Import and Export on ICEGATE (Part1)', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1FSuxUcwYR43CCxr4oX9MWcjKhBKJhT5t/preview' },
-    { id: 6, title: 'Import and Export on ICEGATE (Part2)', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1mD_ao8-StVHGrG_UhvqV10cp4wa5sf80/view?usp=sharing' },
-    { id: 7, title: 'Audit Trail Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1QXKbv4dYBgJs1l4xycrgEC37uavtfdjQ/preview' },
-    { id: 8, title: 'How to download large size 26AS from Traces', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/12KbJ3KHXKHC4Q5Lf-8Io_byzs1NvOJDX/preview' },
-    { id: 9, title: 'How to Import Large size 26AS in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/13uq1-0tAtR46ieh3hmA5kuUvZB1D-N_0/preview' },
-    { id: 10, title: 'How To Log In and Import On Icegate 2.0', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1PZg4nEky3Z7TceCnjACjJQoGjaxEt1qP/preview' },
-    { id: 11, title: 'How to Import 26AS, AIS & TIS in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1riDD5sZLZS5XLAPSJGDzsS9WnFeHvpFg/preview' },
-    { id: 12, title: 'Common mistakes to be avoided in ITR Genius Feeding (For Company and Firms)', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1FNbFVBdBeFGKaZbA_ms0B4ZKClKSerLd/preview' },
-    { id: 13, title: 'Basic Information to be feeded mandatorily', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1l2rGy0KX0ffVmc6t8aDw9CeVu2b8hnHy/preview' },
-    { id: 14, title: 'How to fill salary details in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1BkSMCGWzXBpz9U2WsWogGxV62ufdMmS9/preview' },
-    { id: 15, title: '(Part 1) How to Fill Form 3CA 3CB', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1DEa7NvQSo_Z-HTqDB9ZYROtrt5u8NBUj/preview' },
-    { id: 16, title: '(Clause 1 to 11)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1FGjBdRHC6X8iWptVkN3-hhqY_DnAojAP/preview' },
-    { id: 17, title: '(Clause 12 to 21)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1fFscbHnt1x33O9_GwhMbS0NdihHCM_qa/preview' },
-    { id: 18, title: '(Clause 22 to 27)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1SeacuzyAcqYCjaufhuNy_hmmQr_tr3st/preview' },
-    { id: 19, title: '(Clause 28 to 44)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1Et0fTuivKZXMT1soch23_phz11dCJG8v/preview' },
-    { id: 20, title: 'How to fill House Property details in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/14Bv8LfPoFxjy0Q5LcP0aNLohRsVxVEhO/preview' },
-    { id: 21, title: 'Part 1-Equity Oriented Securities Capital Gain Feeding in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1z1vdpHMgnJI1ei6xpX3BlLgU8k_VD8qT/preview' },
+  
+    { id: 3, title: 'To Operate Balance sheet in Busy software', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1vF8xbYnw03qQdEJ8M9J0Cx-q4YP2l0X1/preview' },
+  
+    { id: 4, title: 'Audit Trail Tutorial', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1QXKbv4dYBgJs1l4xycrgEC37uavtfdjQ/preview' },
+    { id: 5, title: 'How to download large size 26AS from Traces', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/12KbJ3KHXKHC4Q5Lf-8Io_byzs1NvOJDX/preview' },
+    { id: 6, title: 'How to Import Large size 26AS in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/13uq1-0tAtR46ieh3hmA5kuUvZB1D-N_0/preview' },
+  
+    { id: 7, title: 'How to Import 26AS, AIS & TIS in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1riDD5sZLZS5XLAPSJGDzsS9WnFeHvpFg/preview' },
+    { id: 8, title: 'Common mistakes to be avoided in ITR Genius Feeding (For Company and Firms)', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1FNbFVBdBeFGKaZbA_ms0B4ZKClKSerLd/preview' },
+    { id: 9, title: 'Basic Information to be feeded mandatorily', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1l2rGy0KX0ffVmc6t8aDw9CeVu2b8hnHy/preview' },
+    { id: 10, title: 'How to fill salary details in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1BkSMCGWzXBpz9U2WsWogGxV62ufdMmS9/preview' },
+    { id: 11, title: '(Part 1) How to Fill Form 3CA 3CB', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1DEa7NvQSo_Z-HTqDB9ZYROtrt5u8NBUj/preview' },
+    { id: 12, title: '(Clause 1 to 11)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1FGjBdRHC6X8iWptVkN3-hhqY_DnAojAP/preview' },
+    { id: 13, title: '(Clause 12 to 21)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1fFscbHnt1x33O9_GwhMbS0NdihHCM_qa/preview' },
+    { id: 14, title: '(Clause 22 to 27)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1SeacuzyAcqYCjaufhuNy_hmmQr_tr3st/preview' },
+    { id: 15, title: '(Clause 28 to 44)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1Et0fTuivKZXMT1soch23_phz11dCJG8v/preview' },
+    { id: 16, title: 'How to fill House Property details in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/14Bv8LfPoFxjy0Q5LcP0aNLohRsVxVEhO/preview' },
+    { id: 17, title: 'Part 1-Equity Oriented Securities Capital Gain Feeding in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1z1vdpHMgnJI1ei6xpX3BlLgU8k_VD8qT/preview' },
 
 
   ],
@@ -68,13 +67,17 @@ const videoCategories = {
     { id: 13, title: 'Amendment_Core fields', thumbnail: '/GSTthubnail.png', videoUrl: 'https://drive.google.com/file/d/1j0MHBaWYUWWedTk0Q1NhmOoBpd8IVlpw/preview' },
   ],
   'TDS': [
-    { id: 1, title: 'TDS Deduction Rules', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
-    { id: 2, title: 'TDS Return Filing', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://www.youtube.com/embed/dQw4w9Wideos/gst/How tgXcQ' },
-    { id: 3, title: 'TDS Compliance for Businesses', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+    // { id: 1, title: 'TDS Deduction Rules', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+    // { id: 2, title: 'TDS Return Filing', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://www.youtube.com/embed/dQw4w9Wideos/gst/How tgXcQ' },
+    // { id: 3, title: 'TDS Compliance for Businesses', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
   ],
 
 'OTHERS': [
     { id: 1, title: 'How to Download PDF Without a password', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1Q00nBVI7ZBcdxRXTV9dGMxYb-JFRq79y/preview' },
+    { id: 2, title: 'Busy 21 Software Tutorial', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1VqN4pZODzhLvCsS1A7ybyYybU6KhXjKt/preview' },
+    { id: 3, title: 'Import and Export on ICEGATE (Part1)', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1FSuxUcwYR43CCxr4oX9MWcjKhBKJhT5t/preview' },
+    { id: 4, title: 'Import and Export on ICEGATE (Part2)', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1mD_ao8-StVHGrG_UhvqV10cp4wa5sf80/view?usp=sharing' },
+    { id: 5, title: 'How To Log In and Import On Icegate 2.0', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1PZg4nEky3Z7TceCnjACjJQoGjaxEt1qP/preview' },
    
   ],
 };

@@ -155,14 +155,7 @@ const Navbar = () => {
             navigate('/team');
             window.scrollTo(0, 0);
           }
-        },
-        {
-        name: 'Videos',
-        onClick: () => {
-          navigate('/videos');
-          window.scrollTo(0, 0);
         }
-      }
       ]
     },
     {
@@ -275,14 +268,7 @@ const Navbar = () => {
             'National Industies Classification',
             'HSN Rates List',
             'Deduction u/s 80TTA Vs 80TTB'
-
-
-
-
-
-            // Add more utility items here later
           ]
-
         },
         {
           name: 'Bulletins',
@@ -316,10 +302,8 @@ const Navbar = () => {
             'UTGST',
             'Compensation Cess',
             'IBC Regulation'
-            // Add more utility items here later
           ]
         },
-
         {
           name: 'Links',
           items: [
@@ -327,10 +311,7 @@ const Navbar = () => {
             'Important Links',
             'GST/VAT Links',
             'Ease Of Doing Business'
-
-            // Add more utility items here later
           ]
-
         },
         {
           name: 'Acts',
@@ -372,19 +353,12 @@ const Navbar = () => {
                 'Karnataka VAT Act, 2003',
                 'Gujarat VAT Act, 2003',
                 'UP VAT Act, 2008',
-
                 'Rajasthan VAT Act, 2003',
                 'Punjab VAT Act',
                 'Haryana VAT Act',
                 'Telangana VAT Act, 2005',
                 'Andhra Pradesh VAT Act, 2005',
-
                 'Bihar VAT Act, 2005'
-
-
-
-
-
               ]
             },
             {
@@ -398,7 +372,6 @@ const Navbar = () => {
                 'Competition Act, 2002',
                 'Reserve Bank of India Act, 1934',
                 'MRTP Act, 1969',
-
                 'Equalisation Levy Act, 2016',
                 'Right to Information Act, 2005',
                 'FEMA Act, 1999',
@@ -413,7 +386,6 @@ const Navbar = () => {
               items: [
                 'IGST Act, 2017',
                 'CGST Tax Act, 2017',
-
                 'UTGST Act, 2017',
                 'GST (Compensation to States) Act'
               ]
@@ -462,16 +434,10 @@ const Navbar = () => {
                 'Karnataka VAT Rules, 2005',
                 'Gujarat VAT Rules, 2006',
                 'UP VAT Rules, 2008',
-
                 'Rajasthan VAT Rules, 2003',
                 'Punjab VAT Rules',
                 'Haryana VAT Rules, 2003',
                 'Telangana VAT Rules, 2005'
-
-
-
-
-
               ]
             },
             {
@@ -480,7 +446,6 @@ const Navbar = () => {
                 'Profession Tax Rules',
                 'NBFC Deposits Directions, 1998',
                 'NBFC & Misc NBC (Advt) Rules, 1977',
-
                 'NBFC Auditor Report Directions, 2008',
                 'Delhi Labour Welfare Fund Rules, 1997',
                 'Cost Records & Audit Rules, 2014',
@@ -489,26 +454,17 @@ const Navbar = () => {
                 'NCLT and NCLAT Rules',
                 'Insolvency & Bankruptcy Rules',
                 ' Benami Property Act 1988'
-
-
-
-
-
               ]
             },
             {
               name: 'GST Laws',
               items: [
                 'CGST Rules, 2017',
-                'IGST Rules, 2017',
-
-
-
+                'IGST Rules, 2017'
               ]
             }
           ]
         },
-
         {
           name: 'Forms',
           items: [
@@ -523,7 +479,6 @@ const Navbar = () => {
             'LLP Winding Up',
             'FEMA Forms',
             'LLP Forms',
-
             {
               name: 'CGST',
               items: [
@@ -545,13 +500,19 @@ const Navbar = () => {
                 'Transitional Provisions',
                 'Value of Supply'
               ]
-            },
+            }
           ]
+        },
+        {
+          name: 'Videos',
+          onClick: () => {
+            navigate('/videos');
+            window.scrollTo(0, 0);
+          }
         }
-
-
       ]
     },
+    
     'CONTACT US'
   ];
 
