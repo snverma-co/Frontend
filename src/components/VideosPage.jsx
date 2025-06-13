@@ -48,6 +48,7 @@ const videoCategories = {
     { id: 15, title: '(Clause 28 to 44)How to Fill Form 3CD', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1Et0fTuivKZXMT1soch23_phz11dCJG8v/preview' },
     { id: 16, title: 'How to fill House Property details in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/14Bv8LfPoFxjy0Q5LcP0aNLohRsVxVEhO/preview' },
     { id: 17, title: 'Part 1-Equity Oriented Securities Capital Gain Feeding in Genius', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1z1vdpHMgnJI1ei6xpX3BlLgU8k_VD8qT/preview' },
+    { id: 18, title: 'How to Generate Self Assessment Challan save on Income Tax Portal', thumbnail: '/INCOMETAXTHUMBNAIL.png', videoUrl: 'https://drive.google.com/file/d/1npf04btDyaN27agFVCR39BXWqB4Kv77Q/preview' },
 
 
   ],
@@ -65,6 +66,9 @@ const videoCategories = {
     { id: 11, title: 'How to file PMT-09', thumbnail: '/GSTthubnail.png', videoUrl: 'https://drive.google.com/file/d/1b5_O1uK8FAJjfKytxSau057uocD0Ft3J/preview' },
     { id: 12, title: 'How to furnish LUT', thumbnail: '/GSTthubnail.png', videoUrl: 'https://drive.google.com/file/d/1ratzvNsBZC1kzD9MurTn3LiLW_ZOSdPb/preview' },
     { id: 13, title: 'Amendment_Core fields', thumbnail: '/GSTthubnail.png', videoUrl: 'https://drive.google.com/file/d/1j0MHBaWYUWWedTk0Q1NhmOoBpd8IVlpw/preview' },
+   
+
+    
   ],
   'TDS': [
     // { id: 1, title: 'TDS Deduction Rules', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
