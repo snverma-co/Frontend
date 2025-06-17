@@ -143,7 +143,7 @@ const FindAccountantSection = () => {
                   fontWeight: 400
                 }}
               >
-                If you're thinking of using the services of an accountant you should look for someone who has a professional qualification; always check what qualifications and experience they have. Appointing an ICAEW Chartered Accountant or regulated firm will ensure you get someone who is qualified, committed and accountable.
+                If you're thinking of using the services of an accountant you should look for someone who has a professional qualification; always check what qualifications and experience they have. Appointing an ICAI Chartered Accountant or regulated firm will ensure you get someone who is qualified, committed and accountable.
               </Typography>
             </AnimatedBox>
           </Grid>
