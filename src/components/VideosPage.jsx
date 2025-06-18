@@ -80,7 +80,7 @@ const videoCategories = {
     { id: 1, title: 'How to Download PDF Without a password', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1Q00nBVI7ZBcdxRXTV9dGMxYb-JFRq79y/preview' },
     { id: 2, title: 'Busy 21 Software Tutorial', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1VqN4pZODzhLvCsS1A7ybyYybU6KhXjKt/preview' },
     { id: 3, title: 'Import and Export on ICEGATE (Part1)', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1FSuxUcwYR43CCxr4oX9MWcjKhBKJhT5t/preview' },
-    { id: 4, title: 'Import and Export on ICEGATE (Part2)', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1mD_ao8-StVHGrG_UhvqV10cp4wa5sf80/view?usp=sharing' },
+    { id: 4, title: 'Import and Export on ICEGATE (Part2)', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1mD_ao8-StVHGrG_UhvqV10cp4wa5sf80/preview' },
     { id: 5, title: 'How To Log In and Import On Icegate 2.0', thumbnail: '/testimonials-bg.jpg', videoUrl: 'https://drive.google.com/file/d/1PZg4nEky3Z7TceCnjACjJQoGjaxEt1qP/preview' },
    
   ],
