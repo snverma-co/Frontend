@@ -69,7 +69,7 @@ const testimonials = [
     text: 'Their attention to detail and deep understanding of accounting standards sets them apart from others.',
     rating: 5,
     name: 'Pooja Agarwal',
-    company: 'CFO Brook Field',
+    company: 'CFO BrookField Advisors',
   },
   {
     text: 'Their international tax expertise helped us expand our operations globally. The team provided invaluable guidance throughout the process.',
@@ -80,8 +80,8 @@ const testimonials = [
   {
     text: 'Outstanding audit services! They helped us identify key areas for improvement and strengthened our financial controls.',
     rating: 5,
-    name: 'Manish Arora (Lawyer of Supreme Court)',
-    company: 'Director of ULPC',
+    name: 'Manish Arora',
+    company: 'Advocate Supreme Court & Director of ULPC',
   },
   {
     text: 'Their forensic accounting team helped us resolve complex financial discrepancies. Highly professional and discrete service.',
