@@ -1782,7 +1782,29 @@ const Navbar = () => {
           onClick={() => {
             hasSubSubItems
               ? toggleCategory(subKey)
-              : (handleSubmenuClick('SERVICES', subItemName), handleMobileMenuClose());
+              : (() => {
+                  // Direct handling for single items
+                  if (subItemName === 'NGO / Trust') {
+                    navigate('/ngo-and-trust');
+                    window.scrollTo(0, 0);
+                  } else if (subItemName === 'Accounting Advisory') {
+                    navigate('/accounting-advisory');
+                    window.scrollTo(0, 0);
+                  } else if (subItemName === 'Setting up Business in India') {
+                    navigate('/business-setup-india');
+                    window.scrollTo(0, 0);
+                  } else if (subItemName === 'Consultancy') {
+                    navigate('/business-consultancy');
+                    window.scrollTo(0, 0);
+                  } else if (subItemName === 'Client Portal') {
+                    window.open('https://management-portal-frontend-three.vercel.app/login', '_blank');
+                    window.scrollTo(0, 0);
+                  } else {
+                    // For other items, use the existing handler
+                    handleSubmenuClick('SERVICES', subItemName);
+                  }
+                  handleMobileMenuClose();
+                })();
           }}
           sx={{ pl: 4 }}
         >
