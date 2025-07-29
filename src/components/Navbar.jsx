@@ -224,6 +224,9 @@ const Navbar = () => {
 
         {
           name: 'Consultancy'
+        },
+          {
+          name: 'Client Portal'
         }
       ]
     },
@@ -666,7 +669,15 @@ const Navbar = () => {
     } else if (item === 'Consultancy') {
       navigate('/business-consultancy');
       window.scrollTo(0, 0);
-    } else if (item === 'CONTACT US') {
+      
+
+    }else if (item === 'Client Portal') {
+       window.open('https://management-portal-frontend-three.vercel.app/login', '_blank');
+           window.scrollTo(0, 0);
+      
+
+    }
+     else if (item === 'CONTACT US') {
       navigate('/contact');
       window.scrollTo(0, 0);
     } else if (item === 'Calculators') {
@@ -1796,7 +1807,11 @@ const Navbar = () => {
               <MenuItem
                 key={subSubItemName}
                 onClick={() => {
-                  handleSubmenuClick(subItemName, subSubItemName);
+                  if (subSubItemName === 'Client Portal') {
+                    window.open('https://management-portal-frontend-three.vercel.app/login', '_blank');
+                  } else {
+                    handleSubmenuClick(subItemName, subSubItemName);
+                  }
                   handleMobileMenuClose();
                 }}
                 sx={{ pl: 6 }}
